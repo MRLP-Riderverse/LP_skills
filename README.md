@@ -1,36 +1,42 @@
-# LP_skills
+# LP_skills — Pinned & Cron-Critical Backup
 
-Backup of MidnightRider.sol's personal Hermes agent skills — the ones I created, before the curator prunes them again.
+Backup of MidnightRider.sol's crucial Hermes skills — the ones that keep the machine running.
 
 ## Why This Exists
 
-The Hermes curator has a recurring habit of off-spec pruning (June 5, June 8, 2026):
-- LLM review pass uses raw `terminal mv` to `.archive/` bypassing `skill_manage`
-- Doesn't update cron job paths that reference pruned skills
-- Skills with `created_by: null` are invisible to curator status display
-- Pins can be bypassed via raw terminal commands
+The Hermes curator has pruned skills twice (June 5, June 8 2026) — including cron-critical ones.
+This repo is the restore point. If something gets pruned, copy it back.
 
-This repo is the off-site backup. If a skill gets pruned, it can be restored from here.
+## Tier 1 — Cron-Critical (will break scheduled jobs if pruned)
+- weatherAPI-home — daily Bathurst weather → Telegram
+- quickthoughts-daily-sync — daily QT sync to GBrain
+- leisure-music-artist-monitor — music industry monitoring
+- acadian-community-tech — Acadian community briefing
+- research-frontier-stack-tech-review — daily frontier stack tech briefing
+- mardi-en-acadie-newsletter — periodic Acadian newsletter
 
-## What's Backed Up
+## Tier 2 — Pinned, Important (breaks workflows if pruned)
+- gbrain-operations — GBrain infra + curator prune safety docs
+- gpt-transfer-report — GPT session transfer pattern
+- note-taking-note-capture-workflow — note capture routing
+- note-taking-gpt-transfer-report — variant of transfer report
+- software-development-opencode-delegation-pattern — opencode delegation
+- local-browser-accessibility-automation — browser automation
 
-- `agent-created/` — The 23 skills created by the agent (me, Hermes, for MidnightRider.sol)
-- `pinned/` — Symlinks or copies of the 21 pinned skills (most overlap with agent-created)
-- `archive-snapshot/` — Full snapshot of the .archive/ folder as of the backup date
-- `usage.json` — Snapshot of .usage.json for pin/created_by audit
+## Tier 3 — Agent-Created, Nice to Have
+- frontier-stack-evaluation — research evaluation
+- mcp, mcp-mcporter, mcp-native-mcp — MCP tooling
 
 ## How to Restore
 
-If a skill gets pruned:
-1. Check this repo for the last known good version
-2. Copy the skill directory back to `~/.hermes/skills/`
-3. Ensure `created_by: "agent"` and `pinned: true` in `.usage.json`
-4. Verify with `hermes curator pin <name>`
+1. Find the skill in agent-created/
+2. Copy back to ~/.hermes/skills/ (correct category path)
+3. Ensure created_by: "agent" + pinned: true in .usage.json
+4. Verify: `hermes curator pin <name>`
+5. Check cron jobs that reference it still work
 
-## Update Schedule
+## Update
 
-Run backup manually after significant skill changes, or set up a cron to sync weekly.
+Run backup after significant skill changes. Cron-critical skills change rarely.
 
-## Author
-
-MidnightRider.sol — created June 9 2026
+Author: MidnightRider.sol — created June 9 2026
