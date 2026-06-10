@@ -7,10 +7,15 @@ The QuickThoughts.txt file was overwritten twice in late May 2026, destroying mo
 ## Timeline
 
 1. **April 19** — First crash. The notecore UI was patched, QuickThoughts corrupted. A reconstructed backup was saved at `.auto_backups/QuickThoughts_backup_20260419_183939.txt` (46KB, 626 lines). The auto-backup script was set up but only ran once.
+
 2. **May 5** — Manual backup made: `QuickThoughts.txt.backup2` (24KB, 332 lines). This captures the state after the April reconstruction but before the second hit.
+
 3. **May 25, ~19:33** — The QuickThoughts.txt file was deleted and recreated from scratch (new inode 9047258). The old 690+ line file was replaced. The trigger was likely a Hermes session using `write_file` instead of `note` CLI. Evidence: file birth timestamp is May 25 19:33, while the recap file was also created at 19:26-19:27 that day — same session window.
+
 4. **May 25-30** — The `note` CLI correctly appended new entries to the freshly created empty file, rebuilding content day by day.
+
 5. **May 30-31** — During a GPT transfer report skill testing session (memory offload + label testing), something overwrote the file AGAIN. The May 25-30 entries were wiped. Only entries captured on May 31 survived because they were appended after the last overwrite.
+
 6. **May 31** — User discovered the file had only ~13 lines / 3KB, all from today. Expected ~1000 lines / ~100K+ characters.
 
 ## Root cause

@@ -18,8 +18,9 @@ Deliver a concise, source-grounded brief with actionable implications for a noma
 - Prefer **verified primary sources** over commentary.
 - Prefer **recent, dated items** over evergreen explainers.
 - Do **not** invent current developments. If live verification is not possible, say so plainly.
-- Synthesize for action: the output should answer “what changed?” and “what should a sovereign builder do now?”
+- Synthesize for action: the output should answer "what changed?" and "what should a sovereign builder do now?"
 - Keep the result brief unless the user explicitly asks for depth.
+- **DELTA-ONLY by default:** Only report what is genuinely NEW since the last briefing. Check previous briefings via session_search before writing. Items reported in the last 3 briefings are STALE unless there is a new development on that exact topic. If nothing meaningful is new, respond [SILENT].
 
 ## Standard source hierarchy
 Use the most authoritative sources available in this order:
@@ -58,33 +59,44 @@ Use the most authoritative sources available in this order:
 
 
 ## Workflow
-1. **Establish the date window**
-   - Usually 7 days for fast-moving ecosystem items.
-   - Use up to 14 days for slower-moving essay/blog sources.
+1. **Check the last briefing** — Use session_search to find the most recent frontier-stack briefing session. Read its content to establish what's already been reported. Items from the last 3 briefings are STALE unless new information has emerged.
 
-2. **Collect sources from primary feeds/APIs first**
+2. **Establish the date window**
+ - Usually 7 days for fast-moving ecosystem items.
+ - Use up to 14 days for slower-moving essay/blog sources.
+
+3. **Collect sources from primary feeds/APIs first**
    - Use RSS/Atom where available.
    - Use GitHub releases/commits for code and protocol activity.
    - For sites without obvious feeds, inspect the HTML for feed links or recent-post indices.
 
-3. **Extract only the highest-signal items**
-   For each item, capture:
-   - date
-   - title
-   - URL
-   - one-sentence relevance note
+3. **Extract only the highest-signal NEW items**
+ For each item, capture:
+ - date
+ - title
+ - URL
+ - one-sentence relevance note
+ Then FILTER: discard any item that already appeared in the last 3 briefings unless there is a new development (new version, new follow-up, status change).
 
 4. **Synthesize, don’t enumerate**
    - Group by theme.
    - Identify the direction of travel.
    - Call out one or two meaningful implications for a nomadic sovereign workflow builder.
 
-5. **Check for “no news” conditions**
-   - If a topic has no verified update in the window, do not pad the brief.
-   - Prefer silence over speculation.
+5. **Check for "no news" conditions**
+ - If a topic has no verified update in the window, do not pad the brief.
+ - Prefer silence over speculation.
+ - If NOTHING is new across ALL sources, respond with exactly `[SILENT]` — no filler, no rehash, no "still quiet on X front" for known dormancies.
 
 ## Output shape
-Default output should look like this:
+Default output is DELTA-ONLY — only new items since the last briefing:
+- **What's new:** Only genuinely new items, with dates and URLs
+- **What changed:** Updates to previously reported items (status changes, new versions, follow-ups)
+- **Cross-stack signal:** One pattern that emerged from this cycle's new data
+- **Actionable:** 1–3 concrete moves based ONLY on new information
+- If nothing meaningful is new across ALL sources: respond with exactly `[SILENT]`
+
+For a FULL-SWEEP briefing (explicitly requested), use the expanded format:
 - **Bottom line:** one sentence on the dominant trend
 - **Sections by topic:** 2–4 bullets each, with dates and URLs
 - **Actionable moves:** 3–4 concrete recommendations for a sovereign builder
@@ -95,6 +107,8 @@ Default output should look like this:
 - Avoid hype.
 - Favor verbs and implications over product marketing language.
 - If multiple topics reinforce the same pattern, say so explicitly.
+- Use bullet lists, NOT markdown tables (Telegram strips tables).
+- Write in English ONLY — never duplicate content in other languages regardless of source language.
 
 ## Pitfalls
 - Do not treat a repost, quote post, or newsletter mention as a primary update unless it contains substantive original content.
@@ -102,6 +116,8 @@ Default output should look like this:
 - Do not confuse generic model/news chatter with a real infra change.
 - Do not overfit to one ecosystem; the brief should surface cross-stack patterns.
 - Do not deliver long raw research logs in the final brief.
+- Do not re-report items from the last 3 briefings unless there is a genuinely new development. Check session_search for the last briefing before writing — if Solana Subscriptions, micropython-wasm, OWS being offline, etc. were already covered, they are STALE. State them once, skip until something changes.
+- Do not re-confirm known dormancies (e.g. "Oxide dormant since Feb 2026") — this is already established. Skip until a new post actually appears.
 - Do not pipe large GitHub API JSON directly into Python via shell — it silently fails on control chars or quoting issues. Save to file first, parse second (see `references/daily-source-probes.md`).
 - Do not assume a GitHub release is stable without checking the `prerelease` flag.
 - Do not assume a release body contains the full story — Agave and x402 often have terse release bodies; PR bodies carry the real context.

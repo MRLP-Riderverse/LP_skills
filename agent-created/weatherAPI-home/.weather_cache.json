@@ -1,13 +1,13 @@
 {
-  "fetched_at": 1781010062.2383893,
+  "fetched_at": 1781096528.355505,
   "data": {
     "location": "Bathurst, NB",
-    "temperature_c": 21.4,
+    "temperature_c": 18.5,
     "conditions": "Clear sky",
     "emoji": "\u2600\ufe0f",
     "summary": "Pretty comfortable \u2014 enjoy it.",
     "precipitation_mm": 0.0,
-    "wind_speed_kmh": 6.6,
-    "observed_at": "2026-06-09T10:00"
+    "wind_speed_kmh": 7.5,
+    "observed_at": "2026-06-10T10:00"
   }
 }
