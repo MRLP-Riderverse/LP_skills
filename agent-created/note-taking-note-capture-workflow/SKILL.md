@@ -71,6 +71,30 @@ Important facts confirmed from the live script:
 - The skill should not claim a 3-column `line_num|note_num|content` format.
 - The skill should not claim stdin piping works for capture right now.
 
+## Agent Echo Wrapper
+
+For agent sessions where the user wants the capture *and* the rendered entry echoed back in chat, use the local wrapper at:
+
+```bash
+~/ExoCortex/websites/projects/LP_skills/agent-created/note-taking-note-capture-workflow/scripts/note_capture_echo.sh
+```
+
+What it does:
+- runs the real `note` CLI first
+- prints the normal confirmation line
+- then reads the latest appended block from the target note file and echoes the exact stored entry
+- preserves the live timestamp and multiline structure from the file itself
+
+Example output shape:
+
+```text
+*** added to QuickThoughts.txt @ 20:31:22 | 10.06.26 ***
+
+Captured entry:
+⁜ 20:31:22 | 10.06.26 > Notes, by Hermes : Testing echo wrapper
+  ########
+```
+
 ## How Hermes Should Capture Notes
 
 ### Single-line note
