@@ -23,13 +23,23 @@ The goal is simple: preserve `QuickThoughts.txt` as an append-only running log, 
 5. The stored entry block in the code block is the single source of truth for the user's visual review.
 
 **Correct Telegram response shape:**
-```
+```text
+Captured entry:
 ⁜ HH:MM:SS | DD.MM.YY > Notes, by Hermes : the note content
- ########
+  ########
 ```
+
+Acceptable variant:
+- omit `Captured entry:` and show only the stored block if needed
+
+Non-negotiable rules:
+- the stored `⁜ ...` line must appear only once
+- do **not** duplicate the timestamp/content line in the reply
+- do **not** include extra CLI confirmation chatter around the proof block
 
 **WRONG — do not do this:**
 - "Logged. ⁜ ..." (redundant preamble)
+- echoing both `Captured entry:` *and* a second paraphrased or repeated timestamp line
 - "Captured as: • Notes, by Hermes : ..." (markdown bullets instead of code block)
 - Saving to Hermes memory and replying conversationally without running note CLI at all
 
@@ -73,7 +83,7 @@ As currently implemented, the `note` script appends entries like this:
 
 ```text
 ⁜ HH:MM:SS | DD.MM.YY > <content>
- ########
+  ########
 ```
 
 For multiline notes, it appends:
@@ -83,7 +93,7 @@ For multiline notes, it appends:
 -- | ***first line***
 -- | second line
 -- | *** end of multiline ***
- ########
+  ########
 ```
 
 Important facts confirmed from the live script:
@@ -358,7 +368,7 @@ After a note capture, verify as needed:
 - the note was routed through `note`
 - the new entry appears at the bottom of `QuickThoughts.txt`
 - the entry starts with `⁜ HH:MM:SS | DD.MM.YY >`
-- the entry ends with ` ########`
+- the entry ends with `  ########`
 - multiline notes use the `-- multiline below --` block structure when applicable
 - no older QuickThoughts content was modified during capture
 
@@ -440,7 +450,7 @@ echo "some note" >> ~/Documents/Notes/notecore/inbox/QuickThoughts.txt
 ```
 
 ```bash
-python some_script.py # that manually appends or rewrites QuickThoughts.txt
+python some_script.py  # that manually appends or rewrites QuickThoughts.txt
 ```
 
 ```bash
