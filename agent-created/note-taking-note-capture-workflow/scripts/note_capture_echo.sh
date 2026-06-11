@@ -5,37 +5,36 @@ NOTE_SCRIPT="${NOTE_SCRIPT:-/home/midnight/ExoCortex/Agentic/Scripts/note}"
 NOTE_FILE="${NOTE_TARGET_FILE:-$HOME/Documents/Notes/notecore/inbox/QuickThoughts.txt}"
 
 if [[ $# -eq 0 ]]; then
-  exec "$NOTE_SCRIPT"
+ exec "$NOTE_SCRIPT"
 fi
 
 note_stdout="$(mktemp)"
-cleanup() {
-  rm -f "$note_stdout"
-}
+echo_py="$(mktemp --suffix=.py)"
+cleanup() { rm -f "$note_stdout" "$echo_py"; }
 trap cleanup EXIT
 
-if "$NOTE_SCRIPT" "$@" >"$note_stdout"; then
-  true
-else
-  status=$?
-  cat "$note_stdout" >&2 || true
-  exit "$status"
-fi
-
-python3 - "$NOTE_FILE" <<'PY'
-from pathlib import Path
+# Write the echo scanner to a temp file (stdin must be free for tail pipe)
+cat > "$echo_py" <<'PY'
 import sys
-
-path = Path(sys.argv[1])
-if not path.exists():
-    raise SystemExit(f"note file not found: {path}")
-
-lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
-for idx in range(len(lines) - 1, -1, -1):
-    if lines[idx].startswith("⁜ "):
+lines = sys.stdin.read().splitlines()
+for i in range(len(lines) - 1, -1, -1):
+    if lines[i].startswith("\u205c "):
         print("Captured entry:")
-        print("\n".join(lines[idx:]))
-        break
-else:
-    raise SystemExit("latest capture not found in note file")
+        print("\n".join(lines[i:]))
+        sys.exit(0)
+sys.exit(1)
 PY
+
+if "$NOTE_SCRIPT" "$@" >"$note_stdout"; then
+ if result=$(tail -n 50 "$NOTE_FILE" | python3 "$echo_py"); then
+    printf '%s\n' "$result"
+ elif result=$(tail -n 100 "$NOTE_FILE" | python3 "$echo_py"); then
+    printf '%s\n' "$result"
+ else
+    echo "note captured (echo readback failed — entry is in QuickThoughts)" >&2
+ fi
+else
+ status=$?
+ cat "$note_stdout" >&2 || true
+ exit "$status"
+fi
