@@ -1,7 +1,7 @@
 ---
 name: directory_draft_intake
 description: Hyper-low-friction workflow for staging Acadie.sol directory inbox entries from live conversation or public research. Inbox layer is Name + Notes first; cleanup and normalization happen later.
-version: 1.3.0
+version: 1.4.0
 category: community
 aliases: [directory-draft-intake, acadie-directory-intake, directory-inbox-draft]
 ---
@@ -84,17 +84,37 @@ All of that can stay in notes at draft stage.
 
 ## Preferred inbox draft shape
 
-Use this shape by default for live intake:
+Use this shape by default for live intake.
+Treat `inbox/_template.md` as the canonical reference, with the matching copy in `references/draft-template.md` for the skill backup.
 
 ```md
 # Draft: <Name>
 
+Category: <coarse type>
+Area: <region>
+Tags: <optional search hints>
+
+## Description
+<short plain-language description of the place>
+
 ## Notes
-<raw notes preserved in plain language>
+<additional readable context, vibe, and useful local details>
+
+## Public data to carry forward
+- Address: <...>
+- Hours: <...>
+- Phone: <...>
+- Email: <...>
+- Website: <...>
+
+## Related places
+- <nearby venue / sibling branch / corridor anchor>
 
 ## Admin notes
 - Submitted by : Acadie.sol
-- ...
+- Telegram pass-through complete: [yes/no]
+- Raw intake preserved: [yes/no]
+- Restructured to template: [yes/no]
 ```
 
 If there are no true admin notes beyond attribution, keep only:
