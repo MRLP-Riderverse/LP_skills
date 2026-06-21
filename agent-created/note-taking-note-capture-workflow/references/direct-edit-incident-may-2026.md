@@ -13,7 +13,7 @@ During a session where the user asked to capture a note to QuickThoughts, the ag
 
 ## What went wrong
 
-1. **Format inconsistency** — The patched entry used `[2026-05-31]` prefix and [4/1] chunk label instead of the canonical `⁜ HH:MM:SS | DD.MM.YY > content ########` format. This creates a structurally inconsistent file that breaks downstream parsing and GBrain sync.
+1. **Format inconsistency** — The patched entry used `[2026-05-31]` prefix and `[4/1]` chunk label instead of the canonical `⁜ HH:MM:SS | DD.MM.YY > content ########` format. This creates a structurally inconsistent file that breaks downstream parsing and GBrain sync.
 
 2. **Data corruption risk** — The `patch` tool does find-and-replace. If the `old_string` match had been fuzzy or matched the wrong block, existing entries could have been overwritten or corrupted. The `note` CLI is append-only and cannot mutate existing content — that is its entire safety model.
 

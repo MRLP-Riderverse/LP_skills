@@ -1,0 +1,13 @@
+{
+  "fetched_at": 1782048659.9490106,
+  "data": {
+    "location": "Bathurst, New Brunswick, CA",
+    "temperature_c": 13.8,
+    "conditions": "Partly cloudy",
+    "emoji": "\u2601\ufe0f",
+    "summary": "Crisp and cool \u2014 a great day for a walk.",
+    "precipitation_mm": 0.0,
+    "wind_speed_kmh": 10.5,
+    "observed_at": "2026-06-21T10:30"
+  }
+}

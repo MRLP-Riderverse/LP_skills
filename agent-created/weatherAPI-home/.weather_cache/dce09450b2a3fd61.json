@@ -1,0 +1,13 @@
+{
+  "fetched_at": 1781524418.798524,
+  "data": {
+    "location": "San Diego, California, US",
+    "temperature_c": 18.2,
+    "conditions": "Partly cloudy",
+    "emoji": "\u2601\ufe0f",
+    "summary": "Pretty comfortable \u2014 enjoy it.",
+    "precipitation_mm": 0.0,
+    "wind_speed_kmh": 4.5,
+    "observed_at": "2026-06-15T04:45"
+  }
+}

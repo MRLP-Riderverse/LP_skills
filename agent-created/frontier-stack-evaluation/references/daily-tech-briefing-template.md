@@ -43,9 +43,11 @@ Use this structure for the daily frontier-stack briefing output.
 
 ## 🎯 CROSS-CUTTING SIGNALS
 
-| Signal | Implication |
-|--------|-------------|
-| [Concise signal] | [One-line implication] |
+- **[Signal 1]** → [One-line implication]
+- **[Signal 2]** → [One-line implication]
+- **[Signal 3]** → [One-line implication]
+
+*(Use labeled bullet pairs instead of markdown tables — Telegram strips tables.)*
 
 **Thread for the week:** *[Single sentence synthesizing the dominant theme across all sections]*
 
@@ -58,4 +60,11 @@ Use this structure for the daily frontier-stack briefing output.
 - Emoji section headers for quick scanning in Telegram
 - Bold for tool names, version numbers, and key metrics
 - No filler — if a section is genuinely quiet, say so briefly and move on
-- Cross-cutting table is mandatory, not optional
+- **Use bullet lists instead of markdown tables** — Telegram strips/garbles pipe tables. For cross-cutting signals, use labeled bullet pairs: `- **Signal:** X → **Implication:** Y`
+- **English only** — never duplicate sections in another language regardless of source language. Translate first.
+
+## Cron delivery rules (CRITICAL)
+- The briefing IS the final response. Never append a "Briefing delivered" or wrap-up message after the briefing.
+- The delivery system captures the LAST assistant message. Any post-briefing output will replace the full briefing.
+- If you track progress with the todo tool, do NOT emit a "all tasks complete" message as your final response.
+- Write the briefing, end with the thread sentence, stop.

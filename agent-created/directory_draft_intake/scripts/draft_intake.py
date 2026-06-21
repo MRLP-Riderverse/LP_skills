@@ -8,8 +8,6 @@ Notes-first by default:
 
 The script stays backwards-compatible with older structured flags so later
 normalization or scraper-fed workflows can still collapse fields into Notes.
-The emitted draft matches the canonical inbox template shape used by
-`inbox/_template.md`.
 """
 
 from __future__ import annotations

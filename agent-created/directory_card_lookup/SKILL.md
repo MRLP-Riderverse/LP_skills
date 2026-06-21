@@ -1,9 +1,11 @@
 ---
-name: directory_card_lookup
+name: directory-card-lookup
 description: Read/search Acadie.sol directory cards by business name across draft inbox and clean entries. If the match is clear, return the card; if ambiguous, return candidate cards for clarification.
 version: 1.0.0
-category: community
-aliases: [directory-card-lookup, acadie-directory-lookup, directory-card-search]
+metadata:
+  hermes:
+    tags: [directory, lookup, search, drafts, entries, retrieval, acadie-sol]
+    related_skills: [directory-draft-intake, hermes-agent]
 ---
 
 # Directory Card Lookup
@@ -36,13 +38,9 @@ That means it must work now even if the polished entries are sparse, while stayi
 
 ## Deterministic helper
 
-Primary helper script in the project repo:
+Primary helper script:
 
 - `/home/midnight/ExoCortex/websites/projects/acadie_sol_directory/scripts/lookup_cards.py`
-
-Backup mirror in this skill:
-
-- `scripts/lookup_cards.py`
 
 Run it with:
 
@@ -54,8 +52,10 @@ python3 scripts/lookup_cards.py "<query>" --root /home/midnight/ExoCortex/websit
 
 - Search both drafts and clean entries.
 - Match by semantic business name, not only exact filename.
+- Normalize punctuation variants in the query when looking up names (for example smart quotes vs straight apostrophes, hyphen vs en dash). Keep the returned title/path canonical.
 - If one result is clearly best, return that card.
 - If several results are plausible, return the candidate list and ask the user which one they want.
+- If the query is a chain or brand with multiple local branches, surface branch/address disambiguation instead of collapsing them into one result.
 - If nothing credible matches, say so directly.
 
 ## Response policy
@@ -70,7 +70,7 @@ Return:
 Return:
 - brief note that multiple plausible cards were found
 - candidate list with type, title, and path
-- ask which one they want opened
+- ask which one to open
 
 ### No match
 Return:
@@ -83,3 +83,4 @@ Return:
 - Prefer deterministic script output over ad-hoc fuzzy guessing in the LLM.
 - For now, inbox drafts are the main working set. Clean entries are secondary but should still be searched.
 - Later, a write/read workflow for polished `entries/` can layer on top of this.
+- Future lookup UX can surface related/nearby places for friendly event-planning discovery; see `references/relation-graph-lookup-notes.md`.

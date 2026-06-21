@@ -1,0 +1,13 @@
+{
+  "fetched_at": 1781525397.958632,
+  "data": {
+    "location": "Moncton, New Brunswick, CA",
+    "temperature_c": 17.0,
+    "conditions": "Overcast",
+    "emoji": "\u2601\ufe0f",
+    "summary": "Pretty comfortable \u2014 enjoy it.",
+    "precipitation_mm": 0.0,
+    "wind_speed_kmh": 16.4,
+    "observed_at": "2026-06-15T09:00"
+  }
+}

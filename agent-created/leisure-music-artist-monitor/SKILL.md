@@ -52,7 +52,7 @@ When running this skill, the following approach has proven effective:
 
 ## Evaluation Framework
 
-When analyzing music industry developments, the skill prompts assessment of:
+When analyzing music industry developments, the skill prompts assessment of::
 - **Artist activity**: New releases, tours, collaborations, announcements
 - **Distribution innovation**: New platforms, web3 adoption, direct-to-fan models
 - **Fan engagement**: Novel interaction models, community building, monetization
@@ -80,6 +80,15 @@ Results follow a structured format with:
 - Creator economy trends
 - Practical recommendations for artists/fans
 - Plain-language summary of what's actually happening
+
+## Delivery Rules (for cron-sent briefings)
+
+When this skill produces output delivered via Telegram (cron jobs, scheduled briefings):
+
+- **Post-briefing message truncation (CRITICAL):** The delivery system captures the LAST assistant message, not the longest. If the agent produces the briefing then appends a follow-up ("Briefing delivered..."), that follow-up replaces the briefing. **Prevention:** always end with the briefing content itself — no closing messages, no "done" confirmations, no meta-commentary after the final section.
+- **English only:** Write the entire briefing in English. If source material is in another language (e.g. Dutch tech blogs, French fashion press), translate before including. Never duplicate sections in the source language — this produces garbled Telegram output.
+- **No markdown tables:** Telegram strips or garbles pipe-delimited tables. Use bullet lists with labeled key-value pairs instead.
+- **Delta-only preferred:** For recurring briefings (daily/weekly), check what was already reported in the last 2-3 editions via session_search. Do not re-report stale items unless there is a genuinely new development. If nothing meaningful is new, respond `[SILENT]` to suppress delivery.
 
 ## Files Included
 

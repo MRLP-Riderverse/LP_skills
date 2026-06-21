@@ -24,6 +24,7 @@ Automatically review the previous completed day’s QuickThoughts entries, build
 - **Deterministic Index Blocks**: Produces local markdown blocks without depending on cloud models
 - **Telegram Status**: Sends concise Telegram summaries
 - **Stateful**: Tracks last reviewed day to avoid duplicates
+- **Snapshot Hygiene**: Uses a quiet daily `tail -40` check and a weekly full snapshot instead of a noisy full-file daily dump
 
 ## Architecture
 
@@ -33,13 +34,20 @@ QuickThoughts.txt (source of truth)
 [sync.py script]
     - Reviews the previous completed day
     - Creates dated .md files in ~/brain/sources/
-    - Runs gbrain import --no-embed
+    - Runs gbrain import ~/brain/sources/ --no-embed
     - Sends Telegram report
     - Updates state file
     ↓
 GBrain (indexed & searchable)
 Telegram (status summary)
 State file (prevents duplicates)
+
+Snapshot layer:
+QuickThoughts.txt
+    ↓
+[daily tail-40 local-only check]
+    ↓
+[weekly full snapshot to ~/Documents/Notes/notecore/snapshots/QuickThoughts/]
 ```
 
 ## Usage
@@ -65,7 +73,12 @@ hermes skill run quickthoughts-daily-sync --reset
 
 ### Cron Job (Automatic)
 
-The skill runs automatically via cron at **2:00 AM Atlantic Time** daily.
+The sync skill runs automatically via cron at **2:00 AM Atlantic Time** daily.
+
+Separate integrity snapshots now use a quieter cadence:
+- **Daily**: local-only `tail -40` check at **4:00 AM Atlantic Time**
+- **Weekly**: full snapshot at **Saturday 3:00 AM Atlantic Time**
+- **Storage**: `~/Documents/Notes/notecore/snapshots/QuickThoughts/`
 
 ```bash
 # View cron job
@@ -84,12 +97,20 @@ Location: `~/.hermes/state/quickthoughts-sync-state.json`
 
 ```json
 {
-  "last_sync_date": "2026-04-20",
-  "last_sync_timestamp": "2026-04-20T02:00:01-03:00",
-  "total_entries_synced": 47,
-  "last_report_sent": "2026-04-20T02:00:15-03:00"
+  "last_sync_date": "2026-06-15",
+  "last_sync_timestamp": "2026-06-16T02:00:01-03:00",
+  "total_entries_synced": 380,
+  "synced_dates": {
+    "2026-06-15": {
+      "entry_count": 4,
+      "sha256": "abc123...",
+      "synced_at": "2026-06-16T02:00:15-03:00"
+    }
+  }
 }
 ```
+
+The `synced_dates` map tracks per-day metadata including SHA256 of the rendered markdown (for re-import detection) and the Atlantic timestamp of the sync run.
 
 ### Local Model
 
@@ -172,6 +193,10 @@ If the sync hits an error:
 
 ## Troubleshooting
 
+### Snapshot cadence feels too noisy
+
+If a full daily QuickThoughts snapshot floods chat or Telegram, downgrade the daily job to a quiet `tail -40` check and move the full snapshot to a weekly cadence.
+
 ### Cron prompt-scan pitfall
 
 If this skill is loaded into a cron job and the job is blocked *before execution*, check the generated cron output first. A common cause is the prompt scanner rejecting literal secret-file inspection examples in the skill text.
@@ -211,6 +236,7 @@ hermes skill run quickthoughts-daily-sync --reset
 - Database locked by another process
 - Sources folder missing
 - File permissions
+- Missing directory argument (`gbrain import` requires `<dir>`)
 
 **Fix**:
 ```bash
@@ -219,6 +245,9 @@ hermes skill run quickthoughts-daily-sync --reset
 
 # Check sources folder exists
 ls ~/brain/sources/
+
+# Correct import command (directory argument is required)
+~/.bun/bin/gbrain import ~/brain/sources/ --no-embed
 
 # Kill stale GBrain processes
 pkill -f gbrain

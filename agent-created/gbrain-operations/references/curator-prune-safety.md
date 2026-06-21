@@ -191,6 +191,7 @@ All 14 have `created_by: "agent"` set in `.usage.json`.
 - After creating or restoring a skill, immediately pin it if it has scripts or cron references
 - Periodically audit `.archive/` for false positives
 - The curator config `prune_builtins: true` makes bundled skills vulnerable too — consider setting to `false` if you rely on bundled skills
+- **LP_skills GitHub backup repo** (github.com/MRLP-Riderverse/LP_skills): off-site backup of all agent-created skills + full archive snapshot + .usage.json snapshot. Created June 9 2026. If a skill gets pruned and can't be restored via `hermes curator restore`, check LP_skills for the last known good version. Local path: `~/ExoCortex/websites/projects/LP_skills/`. Contains: `agent-created/` (16 skills on disk), `archive-snapshot/` (80 skills), `usage-snapshot.json`, `BACKUP_MANIFEST.md`.
 
 ### Hardening Against the LLM Pass Vulnerability
 

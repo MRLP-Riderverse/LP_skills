@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
-Fetch current weather for Bathurst, NB from Open-Meteo.
+Fetch current weather from Open-Meteo with a home-location fallback.
 AUTHOR=MidnightRider.sol
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import os
 import time
 from pathlib import Path
 from typing import Any
@@ -16,12 +18,17 @@ from urllib import error, parse, request
 from weather_format import format_cli_text
 
 
-API_URL = "https://api.open-meteo.com/v1/forecast"
-CACHE_FILE = Path(__file__).with_name(".weather_cache.json")
+WEATHER_API_URL = "https://api.open-meteo.com/v1/forecast"
+GEOCODING_API_URL = "https://nominatim.openstreetmap.org/search"
+GEOCODING_USER_AGENT = "HermesWeather/1.0 (+local Hermes agent)"
+CACHE_DIR = Path(__file__).with_name(".weather_cache")
 CACHE_TTL_SECONDS = 600
-LATITUDE = 47.6167
-LONGITUDE = -65.6500
-LOCATION_NAME = "Bathurst, NB"
+CURRENT_LOCATION_ENV_VAR = "CURRENT_LOCATION"
+HOME_LOCATION_ENV_VAR = "HOME_LOCATION"
+LEGACY_HOME_LOCATION_ENV_VAR = "HOME_WEATHER_LOCATION"
+DEFAULT_LATITUDE = 47.6167
+DEFAULT_LONGITUDE = -65.6500
+DEFAULT_LOCATION_NAME = "Bathurst, NB"
 
 WEATHER_CODES = {
     0: "Clear sky",
@@ -97,22 +104,56 @@ def weather_advice(temperature_c: float, precipitation_mm: float, wind_speed_kmh
     return f"{base} {' '.join(extras)}" if extras else base
 
 
-def build_url() -> str:
+def normalize_location_query(location: str) -> str:
+    return " ".join(location.strip().split())
+
+
+def resolve_location_query(location: str | None = None) -> str:
+    explicit = normalize_location_query(location) if location else ""
+    if explicit:
+        return explicit
+
+    current_location = normalize_location_query(os.getenv(CURRENT_LOCATION_ENV_VAR, ""))
+    if current_location:
+        return current_location
+
+    home_location = normalize_location_query(os.getenv(HOME_LOCATION_ENV_VAR, ""))
+    if home_location:
+        return home_location
+
+    legacy_home_location = normalize_location_query(os.getenv(LEGACY_HOME_LOCATION_ENV_VAR, ""))
+    if legacy_home_location:
+        return legacy_home_location
+
+    return DEFAULT_LOCATION_NAME
+
+
+def cache_key_for_location(location_query: str) -> str:
+    return normalize_location_query(location_query).casefold()
+
+
+def cache_file_for_key(cache_key: str) -> Path:
+    digest = hashlib.sha256(cache_key.encode("utf-8")).hexdigest()[:16]
+    return CACHE_DIR / f"{digest}.json"
+
+
+def build_url(latitude: float, longitude: float) -> str:
     params = {
-        "latitude": LATITUDE,
-        "longitude": LONGITUDE,
+        "latitude": latitude,
+        "longitude": longitude,
         "current": "temperature_2m,weather_code,precipitation,wind_speed_10m",
         "temperature_unit": "celsius",
         "wind_speed_unit": "kmh",
         "precipitation_unit": "mm",
         "timezone": "auto",
     }
-    return f"{API_URL}?{parse.urlencode(params)}"
+    return f"{WEATHER_API_URL}?{parse.urlencode(params)}"
 
 
-def load_cache(max_age_seconds: int = CACHE_TTL_SECONDS) -> dict[str, Any] | None:
+def load_cache(cache_key: str, max_age_seconds: int = CACHE_TTL_SECONDS) -> dict[str, Any] | None:
+    cache_file = cache_file_for_key(cache_key)
     try:
-        payload = json.loads(CACHE_FILE.read_text(encoding="utf-8"))
+        payload = json.loads(cache_file.read_text(encoding="utf-8"))
     except FileNotFoundError:
         return None
     except (OSError, json.JSONDecodeError):
@@ -129,9 +170,10 @@ def load_cache(max_age_seconds: int = CACHE_TTL_SECONDS) -> dict[str, Any] | Non
     return data
 
 
-def load_stale_cache() -> dict[str, Any] | None:
+def load_stale_cache(cache_key: str) -> dict[str, Any] | None:
+    cache_file = cache_file_for_key(cache_key)
     try:
-        payload = json.loads(CACHE_FILE.read_text(encoding="utf-8"))
+        payload = json.loads(cache_file.read_text(encoding="utf-8"))
     except (FileNotFoundError, OSError, json.JSONDecodeError):
         return None
 
@@ -139,15 +181,87 @@ def load_stale_cache() -> dict[str, Any] | None:
     return data if isinstance(data, dict) else None
 
 
-def save_cache(data: dict[str, Any]) -> None:
+def save_cache(cache_key: str, data: dict[str, Any]) -> None:
     payload = {"fetched_at": time.time(), "data": data}
     try:
-        CACHE_FILE.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        cache_file_for_key(cache_key).write_text(json.dumps(payload, indent=2), encoding="utf-8")
     except OSError:
         pass
 
 
-def parse_weather(api_response: dict[str, Any]) -> dict[str, Any]:
+def clean_place_name(name: str) -> str:
+    cleaned = name.strip()
+    for prefix in ("City of ", "Ville de "):
+        if cleaned.startswith(prefix):
+            return cleaned[len(prefix):]
+    return cleaned
+
+
+def format_geocoded_location(result: dict[str, Any]) -> str:
+    address = result.get("address") if isinstance(result.get("address"), dict) else {}
+    place = (
+        address.get("city")
+        or address.get("town")
+        or address.get("village")
+        or address.get("municipality")
+        or result.get("name")
+        or ""
+    )
+    state = str(address.get("state", "")).split(" / ")[0].strip()
+    country_code = str(address.get("country_code", "")).upper().strip()
+    parts = [clean_place_name(str(place)), state, country_code]
+    return ", ".join(part for part in parts if part)
+
+
+def geocode_location(location_query: str) -> tuple[float, float, str]:
+    params = {
+        "q": location_query,
+        "format": "jsonv2",
+        "limit": 1,
+        "addressdetails": 1,
+    }
+    url = f"{GEOCODING_API_URL}?{parse.urlencode(params)}"
+    req = request.Request(url, headers={"User-Agent": GEOCODING_USER_AGENT})
+
+    try:
+        with request.urlopen(req, timeout=10) as response:
+            if response.status != 200:
+                raise WeatherError(f"Geocoding API returned HTTP {response.status}.")
+            results = json.load(response)
+    except error.URLError as exc:
+        raise WeatherError(f"Unable to reach geocoding API: {getattr(exc, 'reason', exc)}") from exc
+    except json.JSONDecodeError as exc:
+        raise WeatherError("Geocoding API returned invalid JSON.") from exc
+
+    if not isinstance(results, list) or not results:
+        raise WeatherError(f"Could not resolve location: {location_query}")
+
+    result = results[0]
+    try:
+        latitude = float(result["lat"])
+        longitude = float(result["lon"])
+    except (KeyError, TypeError, ValueError) as exc:
+        raise WeatherError("Geocoding API response was missing coordinates.") from exc
+
+    location_name = format_geocoded_location(result) or location_query
+    return latitude, longitude, location_name
+
+
+def resolve_coordinates(location_query: str) -> tuple[float, float, str]:
+    normalized_query = normalize_location_query(location_query)
+    if not normalized_query:
+        return DEFAULT_LATITUDE, DEFAULT_LONGITUDE, DEFAULT_LOCATION_NAME
+
+    try:
+        return geocode_location(normalized_query)
+    except WeatherError:
+        if normalized_query.casefold() == DEFAULT_LOCATION_NAME.casefold():
+            return DEFAULT_LATITUDE, DEFAULT_LONGITUDE, DEFAULT_LOCATION_NAME
+        raise
+
+
+def parse_weather(api_response: dict[str, Any], location_name: str) -> dict[str, Any]:
     current = api_response.get("current")
     if not isinstance(current, dict):
         raise WeatherError("API response did not include current weather data.")
@@ -162,7 +276,7 @@ def parse_weather(api_response: dict[str, Any]) -> dict[str, Any]:
         raise WeatherError("API response was missing expected weather fields.") from exc
 
     return {
-        "location": LOCATION_NAME,
+        "location": location_name,
         "temperature_c": temperature_c,
         "conditions": conditions,
         "emoji": weather_emoji(conditions),
@@ -173,46 +287,55 @@ def parse_weather(api_response: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def fetch_weather() -> dict[str, Any]:
-    cached = load_cache()
+def fetch_weather(location: str | None = None) -> dict[str, Any]:
+    location_query = resolve_location_query(location)
+    cache_key = cache_key_for_location(location_query)
+
+    cached = load_cache(cache_key)
     if cached is not None:
         return cached
 
-    url = build_url()
+    latitude, longitude, location_name = resolve_coordinates(location_query)
+    url = build_url(latitude, longitude)
+
     try:
         with request.urlopen(url, timeout=10) as response:
             if response.status != 200:
                 raise WeatherError(f"Weather API returned HTTP {response.status}.")
             api_response = json.load(response)
     except error.URLError as exc:
-        stale = load_stale_cache()
+        stale = load_stale_cache(cache_key)
         if stale is not None:
             return stale
         reason = getattr(exc, "reason", exc)
         raise WeatherError(f"Unable to reach weather API: {reason}") from exc
     except json.JSONDecodeError as exc:
-        stale = load_stale_cache()
+        stale = load_stale_cache(cache_key)
         if stale is not None:
             return stale
         raise WeatherError("Weather API returned invalid JSON.") from exc
 
-    weather = parse_weather(api_response)
-    save_cache(weather)
+    weather = parse_weather(api_response, location_name)
+    save_cache(cache_key, weather)
     return weather
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Fetch current weather for Bathurst, NB")
+    parser = argparse.ArgumentParser(description="Fetch current weather with home-location fallback")
     parser.add_argument(
         "--format",
         choices=("json", "text"),
         default="json",
         help="Output format for CLI use (default: json)",
     )
+    parser.add_argument(
+        "--location",
+        help="Override the default/home weather location for this request",
+    )
     args = parser.parse_args()
 
     try:
-        weather = fetch_weather()
+        weather = fetch_weather(location=args.location)
     except WeatherError as exc:
         print(json.dumps({"error": str(exc)}))
         return 1

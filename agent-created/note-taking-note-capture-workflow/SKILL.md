@@ -1,6 +1,6 @@
 ---
 name: note-capture-workflow
-description: "MANDATORY — activate whenever the user starts a message with note, remember, capture, or log, or explicitly asks to save/note/record something. On trigger: immediately run the echo wrapper script, then present ONLY the captured entry block in a code block — no conversational preamble, no Logged., no markdown bullets, no extra wrapping. The stored entry IS the reply."
+description: Use when the user says note, remember, capture, or log something to QuickThoughts, or when auditing the local note flow around `~/ExoCortex/Agentic/Scripts/note` and `~/Documents/Notes/notecore/inbox/QuickThoughts.txt`.
 category: note-taking
 aliases: [note-capture, note-capture-flow-audit, note-routing-policy]
 ---
@@ -10,38 +10,6 @@ aliases: [note-capture, note-capture-flow-audit, note-routing-policy]
 This skill defines the reliable Hermes protocol for capturing notes into the user's local QuickThoughts inbox.
 
 The goal is simple: preserve `QuickThoughts.txt` as an append-only running log, and always route capture through the user's `note` CLI.
-
-## ⚡ TRIGGER + RESPONSE PROTOCOL (READ FIRST)
-
-**When to capture:** Anytime the user starts a message with "note", "remember", "capture", "log", or explicitly asks to save/record something. This is NOT optional — it is a mandatory action.
-
-**What to do on trigger:**
-1. Run the echo wrapper: `NOTE_SOURCE_LABEL=Hermes ~/.hermes/skills/note-taking/note-capture-workflow/scripts/note_capture_echo.sh "..."`
-2. Present the echo wrapper output as a **code block** — that IS your entire response.
-3. **DO NOT** add conversational text before or after (no "Logged.", no "Captured as:", no "Done.", no bullet summary).
-4. **DO NOT** save to Hermes memory instead of running the note CLI — memory ≠ note capture.
-5. The stored entry block in the code block is the single source of truth for the user's visual review.
-
-**Correct Telegram response shape:**
-```text
-Captured entry:
-⁜ HH:MM:SS | DD.MM.YY > Notes, by Hermes : the note content
-  ########
-```
-
-Acceptable variant:
-- omit `Captured entry:` and show only the stored block if needed
-
-Non-negotiable rules:
-- the stored `⁜ ...` line must appear only once
-- do **not** duplicate the timestamp/content line in the reply
-- do **not** include extra CLI confirmation chatter around the proof block
-
-**WRONG — do not do this:**
-- "Logged. ⁜ ..." (redundant preamble)
-- echoing both `Captured entry:` *and* a second paraphrased or repeated timestamp line
-- "Captured as: • Notes, by Hermes : ..." (markdown bullets instead of code block)
-- Saving to Hermes memory and replying conversationally without running note CLI at all
 
 ## Core Rule
 
@@ -350,16 +318,13 @@ Use this when the user wants the note workflow checked end-to-end.
 3. Confirm normal capture appends to the inbox rather than overwriting it.
 4. Check whether multiline capture is still supported the way the skill claims.
 5. Check for misleading docs that mention stale formats or unsupported flows.
-6. Distinguish *capture* from *sync*: a note landing in `QuickThoughts.txt` does **not** by itself prove it reached GBrain.
-7. If the user asks to verify a note in GBrain, inspect the indexed page / daily page directly rather than inferring from the inbox file or search hits alone.
-8. Flag any command that can rewrite, truncate, rotate, or archive QuickThoughts so it is not confused with basic capture.
+6. Flag any command that can rewrite, truncate, rotate, or archive QuickThoughts so it is not confused with basic capture.
 
 What to report:
 - whether the live implementation matches the documented protocol
 - whether QuickThoughts capture is append-only
 - whether multiline instructions are accurate
 - whether any docs still describe old behavior
-- whether the note is present in GBrain proper or only in the QuickThoughts inbox
 - what should change to keep Hermes reliable
 
 ## Verification Checklist
@@ -397,39 +362,6 @@ Support files:
 - `references/tail-vs-read-scaling.md` for the current scaling rationale and implementation notes
 - `references/direct-edit-incident-may-2026.md` for the first incident (patch on open file, early May 2026)
 - `references/file-overwrite-incident-may-2026.md` for the second incident (write_file full overwrite, late May 2026) — includes timeline, root cause, and 9-step recovery procedure
-- `references/gbrain-sync-verification.md` for the QuickThoughts vs GBrain verification distinction and direct-check workflow
-- `references/echo-optimization-june-2026.md` for the tail -50 echo fix, pipe+heredoc stdin conflict pitfall, and lean-by-default guidance
-- `scripts/note_capture_echo.sh` for a re-runnable capture wrapper that prints the latest stored entry after a successful note write (uses `tail -n 50` + fallback `tail -n 100`, temp .py file for scanner)
-
-## Latest-Entry Echo Wrapper
-
-When the user wants the *actual captured note* echoed back after a successful write, use the wrapper script rather than manually rereading the whole inbox.
-
-Behavior:
-- runs the normal `note` CLI first
-- reads only the last 50 lines of `QuickThoughts.txt` via `tail -n 50`, scans bottom-up for the latest `⁜` block, and prints it
-- falls back to `tail -n 100` if the entry wasn't in the first 50 lines
-- for Telegram-facing wrapper output, omit the CLI confirmation line and show only the stored entry block so the timestamp/content block is the single source of truth
-
-Use cases:
-- verify the exact stored text after capture
-- show the user the final persisted entry, not a paraphrase
-- check multiline formatting without manually scanning the whole file
-
-Pitfalls:
-- this wrapper is for readback after capture, not for editing or rewriting the inbox
-- if no new `⁜` entry is found, treat it as a failed verification and inspect the note file directly
-- **NEVER read the full QuickThoughts.txt for echo readback.** The old implementation used `path.read_text()` on the entire file — this is O(n) for a growing inbox. Always use bounded `tail -n 50` with `tail -n 100` fallback. (Fixed June 2026 — see `references/echo-optimization-june-2026.md`)
-- **Pipe + heredoc stdin conflict:** `tail ... | python3 <<'PY'` silently fails because the pipe feeds tail output to Python's stdin *and* the heredoc also tries to send the script to stdin. The fix: write the Python scanner to a temp `.py` file and run `tail ... | python3 "$echo_py"` so stdin is free for the pipe. Never combine pipe input with heredoc input to the same process.
-
-### When to use the echo wrapper vs bare `note` CLI
-
-The echo wrapper adds a subprocess (temp .py file + python3 scan). For routine captures where the user just wants the note saved, bare `NOTE_SOURCE_LABEL=Hermes note "..."` is sufficient — the `note` CLI is append-only and reliable by design. Reserve the echo wrapper for:
-- testing / debugging capture formatting
-- confirming a multiline note landed correctly
-- auditing the note workflow
-
-**Lean by default.** Don't add readback overhead unless the user needs verification.
 
 ## Examples
 
