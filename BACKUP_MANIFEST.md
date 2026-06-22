@@ -21,6 +21,7 @@
 - mcp ✅
 - mcp-mcporter ✅
 - mcp-native-mcp ✅
+- acadie-sol-gallery ✅
 
 ## Ghost Entries (pruned before backup, unrecoverable)
 - frontier-stack-tech-review
