@@ -1,4 +1,4 @@
-# Backup Manifest — 2026-06-09
+# Backup Manifest — 2026-06-30
 
 ## Tier 1: Cron-Critical
 - weatherAPI-home ✅
@@ -12,12 +12,18 @@
 - gbrain-operations ✅
 - gpt-transfer-report ✅
 - note-taking-note-capture-workflow ✅
+- note-capture-workflow ✅
 - note-taking-gpt-transfer-report ✅
 - software-development-opencode-delegation-pattern ✅
 - local-browser-accessibility-automation ✅
 
 ## Tier 3: Agent-Created, Nice to Have
 - frontier-stack-evaluation ✅
+- acadie-sol-website ✅
+- community-event-directory-linking ✅
+- cron-job-reliability ✅
+- git-secrets-hygiene ✅
+- hermes-provider-config ✅
 - mcp ✅
 - mcp-mcporter ✅
 - mcp-native-mcp ✅
@@ -28,6 +34,5 @@
 - mcporter
 - music-artist-monitor (likely alias for leisure-music-artist-monitor)
 - native-mcp (likely alias for mcp-native-mcp)
-- note-capture-workflow (likely alias for note-taking-note-capture-workflow)
 - opencode-delegation-pattern (likely alias for software-development-opencode-delegation-pattern)
 - person-monitor

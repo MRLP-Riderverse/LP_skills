@@ -19,12 +19,18 @@ This repo is the restore point. If something gets pruned, copy it back.
 - gbrain-operations — GBrain infra + curator prune safety docs
 - gpt-transfer-report — GPT session transfer pattern
 - note-taking-note-capture-workflow — note capture routing
+- note-capture-workflow — current live note capture skill path/name
 - note-taking-gpt-transfer-report — variant of transfer report
 - software-development-opencode-delegation-pattern — opencode delegation
 - local-browser-accessibility-automation — browser automation
 
 ## Tier 3 — Agent-Created, Nice to Have
 - frontier-stack-evaluation — research evaluation
+- acadie-sol-website — Acadie.sol site workflow and references
+- community-event-directory-linking — event ↔ directory linking workflow
+- cron-job-reliability — Hermes cron failure / provider-routing notes
+- git-secrets-hygiene — secret exposure verification and remediation
+- hermes-provider-config — provider/local model config sync notes
 - mcp, mcp-mcporter, mcp-native-mcp — MCP tooling
 
 ## How to Restore
