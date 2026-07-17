@@ -25,8 +25,14 @@ MIRROR = REPO / "mirror"
 MANIFEST_JSON = REPO / "MIRROR_MANIFEST.json"
 MANIFEST_MD = REPO / "MIRROR_MANIFEST.md"
 
-EXCLUDED_NAMES = {".git", "__pycache__", ".weather_cache"}
-EXCLUDED_FILES = {".usage.json", ".usage.json.runtime"}
+EXCLUDED_NAMES = {".git", "__pycache__", ".weather_cache", ".hub", ".curator_backups"}
+EXCLUDED_FILES = {
+    ".usage.json",
+    ".usage.json.runtime",
+    ".usage.json.lock",
+    ".bundled_manifest",
+    ".curator_state",
+}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
 
 

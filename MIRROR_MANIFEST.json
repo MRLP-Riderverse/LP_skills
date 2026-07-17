@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-17T00:31:50+00:00",
+  "generated_at_utc": "2026-07-17T00:39:02+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -77,181 +77,6 @@
   ],
   "active_skill_count": 70,
   "active_files": [
-    {
-      "path": ".bundled_manifest",
-      "sha256": "38f4bad55d3adb5d52ef78b175378db4cd4c2e446a19696a7fc93a7d93a72194",
-      "bytes": 3421
-    },
-    {
-      "path": ".curator_backups/2026-06-13T02-03-45Z/cron-jobs.json",
-      "sha256": "d49ca731af62652ec0c8a8b28157537a6322f710c74ef1bb513805410bc1110a",
-      "bytes": 45268
-    },
-    {
-      "path": ".curator_backups/2026-06-13T02-03-45Z/manifest.json",
-      "sha256": "bc5fc84237cf83a8589f74ad355d80deb2b6473c090245eefc153cc6a45dc6a1",
-      "bytes": 262
-    },
-    {
-      "path": ".curator_backups/2026-06-13T02-03-45Z/skills.tar.gz",
-      "sha256": "953fdf2d5b6cf57c2ffbeea71776e07538df7b9b6ab14dd790313a8ebf19c168",
-      "bytes": 3361636
-    },
-    {
-      "path": ".curator_backups/2026-06-20T02-55-39Z/cron-jobs.json",
-      "sha256": "97788100aefa44bca9ca26eafe6795e9c14d65a27bf546bf7d293987f87e8b36",
-      "bytes": 45496
-    },
-    {
-      "path": ".curator_backups/2026-06-20T02-55-39Z/manifest.json",
-      "sha256": "5f6d79d565bd8639e5fb663244110f2ae7ed667a7b6d4cb45f1f3a9af99388e7",
-      "bytes": 262
-    },
-    {
-      "path": ".curator_backups/2026-06-20T02-55-39Z/skills.tar.gz",
-      "sha256": "0b687c866a763747eaf2291cb3a17036343be079605b87a8e67e9f35dd4ae46a",
-      "bytes": 2903221
-    },
-    {
-      "path": ".curator_backups/2026-06-27T03-50-31Z/cron-jobs.json",
-      "sha256": "7856ccff09003656e76ca978d1e72444f65ef85f13f3c9660cbbce59eccd16d9",
-      "bytes": 46917
-    },
-    {
-      "path": ".curator_backups/2026-06-27T03-50-31Z/manifest.json",
-      "sha256": "7015722e24d70c813a612401f17d41795e88d660e324059fffee4a4c5867ac0f",
-      "bytes": 262
-    },
-    {
-      "path": ".curator_backups/2026-06-27T03-50-31Z/skills.tar.gz",
-      "sha256": "750a91fb65890b15f918661b0b9a1ea0f1c6940cfb20e01661405b972b658e75",
-      "bytes": 2952707
-    },
-    {
-      "path": ".curator_backups/2026-07-04T04-45-12Z/cron-jobs.json",
-      "sha256": "1b0fece38071e4fc2e4663ad2c6b73df2185977af6e285bf3faff6ba237a46d6",
-      "bytes": 46567
-    },
-    {
-      "path": ".curator_backups/2026-07-04T04-45-12Z/manifest.json",
-      "sha256": "d5e8b945d49d4beb52009f78bf3ef4091e37341ead10b35f8929960f8bbeef2a",
-      "bytes": 262
-    },
-    {
-      "path": ".curator_backups/2026-07-04T04-45-12Z/skills.tar.gz",
-      "sha256": "12bcf712ec8ab7c2241836fafd2fdc33ab804152ad7a316c1b77fa800483b5ee",
-      "bytes": 2961125
-    },
-    {
-      "path": ".curator_backups/2026-07-11T04-45-39Z/cron-jobs.json",
-      "sha256": "dd7758c755513d4259eebefd32cf784e76f220775a29a1d854dceaf3ac930193",
-      "bytes": 46404
-    },
-    {
-      "path": ".curator_backups/2026-07-11T04-45-39Z/manifest.json",
-      "sha256": "793723483f1e90e4e6fe4efe8c7c0769016de5a6dc472f9219b8ffe1b74fb9ed",
-      "bytes": 262
-    },
-    {
-      "path": ".curator_backups/2026-07-11T04-45-39Z/skills.tar.gz",
-      "sha256": "0d20533e38bcd09f2d0364ece655f31b6dfba7f6c267bd9a4e309a3975b19cd5",
-      "bytes": 2968036
-    },
-    {
-      "path": ".curator_state",
-      "sha256": "a49d9858a475d2a962138ff19846b0e21cb74deadfbd15338545fd1633883e9f",
-      "bytes": 358
-    },
-    {
-      "path": ".hub/.ignore",
-      "sha256": "54cb5d16a0e92aa99d33526c5fdedb86d593ad09821600e636cb67e6a72dd913",
-      "bytes": 44
-    },
-    {
-      "path": ".hub/audit.log",
-      "sha256": "da6aa2d21ef971ed2fcd9c119a15726cb175be4064aa6fbe2d8acb5ba646ae09",
-      "bytes": 182
-    },
-    {
-      "path": ".hub/index-cache/anthropics_skills_skills_.json",
-      "sha256": "244ee2aed39be106de276caa0b782d995aad676546cd0d70f8796a74afe44cb3",
-      "bytes": 5909
-    },
-    {
-      "path": ".hub/index-cache/claude_marketplace_anthropics_skills.json",
-      "sha256": "718126d55b456347552523cdcc6443a3d73aceabbce5de58f9b09ea1aab9db39",
-      "bytes": 1089
-    },
-    {
-      "path": ".hub/index-cache/clawhub_catalog_v1.json",
-      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "bytes": 2
-    },
-    {
-      "path": ".hub/index-cache/clawhub_search_listing_v1_1bc61c4ddc7f770e8057008835eaaad1_20.json",
-      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "bytes": 2
-    },
-    {
-      "path": ".hub/index-cache/garrytan_gstack_.json",
-      "sha256": "43fe12adc34a3372be106bc28f5dfface5aad41cb28cd68cd41fac9ff5211c5d",
-      "bytes": 21137
-    },
-    {
-      "path": ".hub/index-cache/lobehub_index.json",
-      "sha256": "6a51d5c10d92eeaa4c98769b2aec0223bf373a614218fa8222d41de66ab172f9",
-      "bytes": 251446
-    },
-    {
-      "path": ".hub/index-cache/openai_skills_skills_.curated_.json",
-      "sha256": "7d7407894000b9b2f547d59e983d08707c1e2b523eba6801c13dd481fac22372",
-      "bytes": 21584
-    },
-    {
-      "path": ".hub/index-cache/openai_skills_skills_.json",
-      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "bytes": 2
-    },
-    {
-      "path": ".hub/index-cache/openai_skills_skills_.system_.json",
-      "sha256": "9b8843e00fe56d61593cb839fb466dacb743d610da8d1e3b265fc8a0e1634e18",
-      "bytes": 3062
-    },
-    {
-      "path": ".hub/index-cache/skills_sh_detail_d61abc30f8cd92483328dc6e600d6dbd.json",
-      "sha256": "8fb1b0fdb40a03897dbb1188c4846b6ffdd5ed59f2fe202e5661ec0f2740e868",
-      "bytes": 574
-    },
-    {
-      "path": ".hub/index-cache/skills_sh_search_b34f24e48f936c08c4e1020f1730e895.json",
-      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "bytes": 2
-    },
-    {
-      "path": ".hub/index-cache/skills_sh_search_bb4faa51738bf2ab6492d5f7b2ada4b3.json",
-      "sha256": "716b84bcd8752a7d4d56560295c4476959a2b84548ebb4ba163671b7c51cccbc",
-      "bytes": 1935
-    },
-    {
-      "path": ".hub/index-cache/skills_sh_search_f1f82b8f057f99a329275d81ff7bcbd6.json",
-      "sha256": "c3f0dc25f754305b08ebb2e2b13747011649ebfe739a654743444c3c4acc9785",
-      "bytes": 10439
-    },
-    {
-      "path": ".hub/lock.json",
-      "sha256": "bab5d7ba33721edddf2585de5dd544fd9ac89873dc1be66629f60287050c2798",
-      "bytes": 6803
-    },
-    {
-      "path": ".hub/taps.json",
-      "sha256": "236790504ec208f58f1e49e361b2dc5a64cfcc773730f645991b4e4de02d9cbc",
-      "bytes": 13
-    },
-    {
-      "path": ".usage.json.lock",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
-    },
     {
       "path": "README.md",
       "sha256": "64d5e91af532d15be618f3648d42bad34e94f90c581ac29ab7d9909601a6295c",
@@ -2099,8 +1924,8 @@
     },
     {
       "path": "software-development/software-dev-workflow/SKILL.md",
-      "sha256": "3e3044eba8889d7d3d4d30dc99e9dd1c6f9c96ea00c74498097421ec7bdfa2e5",
-      "bytes": 20605
+      "sha256": "253f69a66ce65d38c9965a1b0520003e42cde2c94d36732ec2ff385ca1f0e83e",
+      "bytes": 22759
     },
     {
       "path": "software-development/software-dev-workflow/references/acadie-directory-entry-contract.md",
@@ -2141,6 +1966,11 @@
       "path": "software-development/software-dev-workflow/references/permanent-shared-dock-and-memorial-page.md",
       "sha256": "48b6843b1d319e82638ae05c0a203c4663d621d229f0e9788a311e048a475316",
       "bytes": 1430
+    },
+    {
+      "path": "software-development/software-dev-workflow/references/recovery-mirror-maintenance.md",
+      "sha256": "6e01837aba9f683eadb7f4853ca47780563a0dd459772c25770bba359b8f43fa",
+      "bytes": 1477
     },
     {
       "path": "software-development/software-dev-workflow/references/shared-shell-menu-regression-checks.md",
@@ -4674,10 +4504,15 @@
     "weatherAPI-home"
   ],
   "excluded": [
+    ".bundled_manifest",
+    ".curator_backups",
+    ".curator_state",
     ".git",
+    ".hub",
     ".pyc",
     ".pyo",
     ".usage.json",
+    ".usage.json.lock",
     ".usage.json.runtime",
     ".weather_cache",
     "__pycache__"

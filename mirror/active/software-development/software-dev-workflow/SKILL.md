@@ -249,6 +249,34 @@ Reference: see `references/static-site-audit-checklist.md` for a reusable checkl
 
 ---
 
+## Phase 4: Recovery-Mirror Maintenance
+
+Use this phase when maintaining a backup repository for agent skills, workflows, configuration artifacts, or other operational knowledge.
+
+### Source-first mirror workflow
+
+1. Inspect the live source tree and its repository state before copying anything.
+2. Separate the recovery layers explicitly:
+   - curated copies for high-value human workflows
+   - a broad active mirror for disaster recovery
+   - an optional archive mirror for pruned or historical material
+3. Match skills by stable frontmatter identity (`name`), not only by directory name. Historical folder renames and category moves are common.
+4. Preserve external operational dependencies explicitly. If a cron job depends on a wrapper outside the skill directory, back up that wrapper in a clearly labeled recovery location.
+5. Exclude runtime state and generated noise: credentials, usage metadata, caches, `__pycache__`, bytecode, `.git`, and temporary outputs.
+6. Generate a machine-readable manifest with file hashes and a human-readable recovery guide.
+7. Verify the mirror after writing it: file presence, hashes, excluded-artifact checks, syntax checks for helper scripts, and whitespace/error checks before review.
+8. Report unresolved gaps separately from successful sync results. Do not imply that a backup contains a skill merely because an old manifest names it.
+
+### Recovery-mirror pitfalls
+
+- A “curated backup” is not a full mirror; state the coverage boundary instead of presenting it as complete.
+- A loose markdown note named after a skill is not a restorable skill. Recovery copies should preserve the normal `SKILL.md` plus `references/`, `scripts/`, and `templates/` layout.
+- Do not blindly copy the whole live directory when it contains caches, bytecode, usage metadata, or secrets.
+- Do not use folder-name intersection as the sync key; it silently misses renamed skills.
+- Do not commit or push a large generated mirror without showing its size, scope, verification result, and any user decision points first.
+
+Reference: see `references/recovery-mirror-maintenance.md` for the reusable checklist and manifest shape.
+
 ## Phase 4: Pre-Commit Code Review
 
 ### 8-Step Pipeline
