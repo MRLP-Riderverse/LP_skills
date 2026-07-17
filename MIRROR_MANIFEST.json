@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-17T00:39:02+00:00",
+  "generated_at_utc": "2026-07-17T01:12:00+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -48,7 +48,6 @@
     "mlops/training/trl-fine-tuning",
     "mlops/training/unsloth",
     "note-taking-gpt-transfer-report",
-    "note-taking-note-capture-workflow",
     "note-taking/gbrain-operations",
     "note-taking/gpt-transfer-report",
     "note-taking/note-capture-workflow",
@@ -649,8 +648,8 @@
     },
     {
       "path": "github/github/SKILL.md",
-      "sha256": "d9535e87e0d021f05c1921341d10c9fd402d65f2763fde9a68318ed9953cc3e1",
-      "bytes": 18428
+      "sha256": "72c2c845e420e93f1c1b639c024d015461528cba567d434d39dab23d0940f335",
+      "bytes": 19484
     },
     {
       "path": "github/github/references/ci-troubleshooting.md",
@@ -1144,8 +1143,8 @@
     },
     {
       "path": "note-taking/gbrain-operations/references/curator-prune-safety.md",
-      "sha256": "3569801e506366d9fbf3d47c2e7ffccc688992e8d1371d9683b8e7001dbc829d",
-      "bytes": 11913
+      "sha256": "1234a25234f9c8f64eb6e22fa1b56abbf2cb075a8f04308454eaa8d2d0309d25",
+      "bytes": 11920
     },
     {
       "path": "note-taking/gbrain-operations/references/ollama-thinking-tokens.md",
@@ -1164,8 +1163,8 @@
     },
     {
       "path": "note-taking/note-capture-workflow/SKILL.md",
-      "sha256": "2bbc2c5b8ca83012168d54f8472b0b36aef65c6eeb6c1a28d848174518927231",
-      "bytes": 26721
+      "sha256": "c0c88430fc1cc7c61e392ee2ef6e35c06e55137ebc306afbf5dafb6452736493",
+      "bytes": 25576
     },
     {
       "path": "note-taking/note-capture-workflow/references/direct-edit-incident-may-2026.md",
@@ -1174,8 +1173,8 @@
     },
     {
       "path": "note-taking/note-capture-workflow/references/echo-optimization-june-2026.md",
-      "sha256": "ae2e2eed62e4a67131c18636bf8f18fb031173b55219818cc370ac96f043452c",
-      "bytes": 2368
+      "sha256": "6035dcd5214111c232b2484a8f6802b2fc2b14a28029cda121225a48b899efaa",
+      "bytes": 2356
     },
     {
       "path": "note-taking/note-capture-workflow/references/file-overwrite-incident-may-2026.md",
@@ -1226,31 +1225,6 @@
       "path": "note-taking-gpt-transfer-report/_meta.json",
       "sha256": "846872c1b3a493dc45f63ed201f8767246d3d2ba8be4cd4417f3578799e40809",
       "bytes": 74
-    },
-    {
-      "path": "note-taking-note-capture-workflow/SKILL.md",
-      "sha256": "7643b9f1e0317b843421cf55d2e06288af10b80554bc3a2e76832556f72a2e62",
-      "bytes": 21693
-    },
-    {
-      "path": "note-taking-note-capture-workflow/_meta.json",
-      "sha256": "846872c1b3a493dc45f63ed201f8767246d3d2ba8be4cd4417f3578799e40809",
-      "bytes": 74
-    },
-    {
-      "path": "note-taking-note-capture-workflow/references/direct-edit-incident-may-2026.md",
-      "sha256": "836f39052210b119aede8dfe25f57b95ab82e1c64adb88d7fcba959d3bb955d5",
-      "bytes": 3007
-    },
-    {
-      "path": "note-taking-note-capture-workflow/references/file-overwrite-incident-may-2026.md",
-      "sha256": "066f1455138ad93ea13b4ce28dc8843c82b83a84c012cb8b9186ef04f79a5306",
-      "bytes": 4765
-    },
-    {
-      "path": "note-taking-note-capture-workflow/references/tail-vs-read-scaling.md",
-      "sha256": "0a9db7bbea3b802004593a370a76e77e3e2efa5f652bb37fdffcf29412d41253",
-      "bytes": 1348
     },
     {
       "path": "productivity/DESCRIPTION.md",

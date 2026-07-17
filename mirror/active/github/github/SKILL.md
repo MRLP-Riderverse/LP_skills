@@ -202,12 +202,17 @@ Use this when a sibling repo is the restore point for agent-made Hermes skills.
 3. Normalize skill names before matching so hyphenated and underscored layouts line up.
 4. Compare the whole skill directory, not just `SKILL.md`.
 5. Verify support files under `references/`, `templates/`, and `scripts/` with hashes or `diff -qr`.
-6. If the backup includes shared runtime helpers, verify those files too.
-7. Commit the mirror refresh as a single chore, then push.
-8. Re-run a read-only verification after push and expect a clean tree.
+6. Explicitly exclude runtime state and generated artifacts from a broad filesystem mirror, including curator backups, hub indexes, usage locks, manifests, caches, bytecode, and VCS directories. Keep curated recovery helpers separately when they are intentionally restorable.
+7. Run the sync and verifier before staging; scan the resulting tree for excluded artifacts, not only the source copy routine.
+8. Stage and inspect the complete diff, including newly created files and deletions. Treat whitespace warnings from verbatim upstream documentation as informational unless the project requires normalization.
+9. Commit the mirror refresh as a single chore, then push.
+10. Re-run a read-only verification after push and expect a clean tree and zero local/remote divergence.
 
-Pitfall:
-- `SKILL.md` parity alone is not enough; support files can drift independently.
+Pitfalls:
+- **SKILL.md parity alone is not enough; support files can drift independently.**
+- A successful copy can still include Hermes runtime state if exclusion rules are too narrow; verify the destination after synchronization.
+- A staged secret scan may flag documentation examples. Review whether matches are obvious placeholders before treating them as credentials, without exposing real values.
+- If the first push reveals an omitted exclusion, correct the sync script and push a follow-up fix rather than leaving the mirror inconsistent with its documented policy.
 
 ### Two-repo Pages sync pattern
 

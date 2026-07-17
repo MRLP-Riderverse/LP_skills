@@ -1,6 +1,6 @@
 ---
 name: note-capture-workflow
-description: "MANDATORY — activate whenever the user starts a message with note, remember, capture, or log, or explicitly asks to save/note/record something. On trigger: immediately run the echo wrapper script, then present the captured proof block in a code block — optionally including 'Captured entry:' if that is the wrapper output. No conversational preamble, no Logged., no markdown bullets, no duplicated timestamp/content line. The stored entry block is the reply."
+description: "Use for QuickThoughts capture, note routing, or audits of the local append-only note flow. Route normal captures through the canonical note CLI; use the echo wrapper when exact persisted readback is requested or verification is needed."
 category: note-taking
 aliases: [note-capture, note-capture-flow-audit, note-routing-policy]
 ---
@@ -11,38 +11,24 @@ This skill defines the reliable Hermes protocol for capturing notes into the use
 
 The goal is simple: preserve `QuickThoughts.txt` as an append-only running log, and always route capture through the user's `note` CLI.
 
-## ⚡ TRIGGER + RESPONSE PROTOCOL (READ FIRST)
+## Capture Protocol
 
-**When to capture:** Anytime the user starts a message with "note", "remember", "capture", "log", or explicitly asks to save/record something. This is NOT optional — it is a mandatory action.
+When a user asks to save, note, remember, log, or capture something:
 
-**What to do on trigger:**
-1. Run the echo wrapper: `NOTE_SOURCE_LABEL=Hermes ~/.hermes/skills/note-taking/note-capture-workflow/scripts/note_capture_echo.sh "..."`
-2. Present the echo wrapper output as a **code block** — that IS your entire response.
-3. `Captured entry:` is acceptable when it comes from the wrapper and helps the readback feel like proof, but the stored `⁜ ...` line must appear only once.
-4. **DO NOT** add conversational text before or after (no "Logged.", no "Captured as:", no "Done.", no bullet summary).
-5. **DO NOT** save to Hermes memory instead of running the note CLI — memory ≠ note capture.
-6. The stored entry block in the code block is the single source of truth for the user's visual review.
+1. Treat it as an explicit QuickThoughts capture request.
+2. Route the content through the canonical `note` CLI with `NOTE_SOURCE_LABEL=Hermes` unless the user requests another source label.
+3. Never write to `QuickThoughts.txt` directly.
+4. Use `scripts/note_capture_echo.sh` when exact persisted readback, formatting verification, or debugging is requested.
+5. Keep routine captures lean; the CLI confirmation is sufficient unless readback is needed.
 
-**Correct Telegram response shape:**
+For exact readback, show the wrapper's stored entry in a code block without duplicating the timestamp/content line or adding unrelated confirmation text.
+
+**Correct readback shape:**
 ```text
 Captured entry:
 ⁜ HH:MM:SS | DD.MM.YY > Notes, by Hermes : the note content
   ########
 ```
-
-Acceptable variant:
-- omit `Captured entry:` and show only the stored block if needed
-
-Non-negotiable rules:
-- the stored `⁜ ...` line must appear only once
-- do **not** duplicate the timestamp/content line in the reply
-- do **not** include extra CLI confirmation chatter around the proof block
-
-**WRONG — do not do this:**
-- "Logged. ⁜ ..." (redundant preamble)
-- echoing both `Captured entry:` *and* a second paraphrased or repeated timestamp line
-- "Captured as: • Notes, by Hermes : ..." (markdown bullets instead of code block)
-- Saving to Hermes memory and replying conversationally without running note CLI at all
 
 ## Core Rule
 

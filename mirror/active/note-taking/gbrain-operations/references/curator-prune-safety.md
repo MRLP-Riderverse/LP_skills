@@ -168,10 +168,7 @@ with open(path, 'w') as f:
 "
 ```
 
-**⚠️ Why this matters:** When restoring from archive with `hermes curator restore`, the restored directory keeps the archive naming (e.g., `note-taking-note-capture-workflow`) but the curator matches skills by the `name:` field in `SKILL.md` (e.g., `note-capture-workflow`). You must pin BOTH keys:
-- `hermes curator pin note-capture-workflow` (the SKILL.md name — what the curator actually scans)
-- The archive-name entry in `.usage.json` (`note-taking-note-capture-workflow`) may already be pinned from before — that's fine, it's a harmless duplicate
-
+**⚠️ Archive-restore naming note:** When restoring an old archive entry with `hermes curator restore`, the restored directory may keep a historical path such as `note-taking-note-capture-workflow`, while the curator matches the `name:` field in `SKILL.md` (`note-capture-workflow`). For the current installation, keep only the canonical `note-capture-workflow` skill pinned. Do not recreate or separately pin the retired archive-name duplicate unless performing a deliberate forensic restore; verify the restored files before merging them into the canonical skill.
 **Skills without SKILL.md are invisible:** If a skill is just Python scripts with no SKILL.md (e.g., `weatherAPI-home`), the curator's `SKILL.md.rglob()` scan won't find it at all. Create a minimal SKILL.md so the curator can see and respect the pin. Without one, the skill is invisible to both the automated path AND the status display.
 
 ### Current Pinned Skills (June 8, 2026)

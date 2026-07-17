@@ -58,6 +58,6 @@ User preference: the echo wrapper should stay lean. The `note` CLI is near-perfe
 ## LP_skills Mirror
 
 The echo script also exists at:
-`/home/midnight/ExoCortex/websites/projects/LP_skills/agent-created/note-taking-note-capture-workflow/scripts/note_capture_echo.sh`
+`/home/midnight/ExoCortex/websites/projects/LP_skills/agent-created/note-capture-workflow/scripts/note_capture_echo.sh`
 
 Both copies were patched in the same session. Committed as `908afd7` with message "optimized latency" and pushed to `origin/main`.
