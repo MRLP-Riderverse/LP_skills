@@ -11,3 +11,6 @@ Thumbs.db
 
 # Hermes runtime files (not skill content)
 .usage.json.runtime
+**/__pycache__/
+**/*.py[cod]
+**/.weather_cache/

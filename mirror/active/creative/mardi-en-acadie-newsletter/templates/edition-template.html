@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mardi en Acadie! — __EDITION_DATE_RANGE__</title>
+  <meta name="description" content="Acadian diaspora newsletter — Acadie.sol" />
+  <meta name="theme-color" content="#0a1628" />
+  <meta name="author" content="Acadie.sol" />
+  <style>
+/* ═══ Paste full CSS from latest edition ═══ */
+/* Copy the inline <style> block from the most recent published edition  */
+/* to ensure this template always has current styles                    */
+  </style>
+</head>
+<body>
+
+<div class="tricolore" aria-hidden="true">
+  <span class="blue"></span>
+  <span class="white"></span>
+  <span class="red"></span>
+</div>
+
+<header class="newsletter-header">
+  <h1>Mardi en Acadie!</h1>
+  <p class="author-line">created by : Acadie.sol</p>
+  <p class="date-line">Edition __EDITION_NUMBER__ · __CREATION_DATE__ · Covering __EDITION_DATE_RANGE__</p>
+</header>
+
+<nav class="toc" aria-label="Table of Contents">
+  <p class="toc-title">In This Edition</p>
+  <ul class="toc-list">
+    <li><a href="#section-1">__SECTION_1_TITLE__</a></li>
+    <li><a href="#section-2">__SECTION_2_TITLE__</a></li>
+  </ul>
+</nav>
+
+<main class="content">
+
+  <section class="section" id="section-1">
+    <h2><span class="sec-num">01</span> __SECTION_1_TITLE__</h2>
+    <p>Content here.</p>
+  </section>
+
+  <section class="section" id="section-2">
+    <h2><span class="sec-num">02</span> __SECTION_2_TITLE__</h2>
+    <p>Content here.</p>
+  </section>
+
+</main>
+
+<footer class="newsletter-footer">
+  <p>
+    <strong>Mardi en Acadie!</strong> · created by : <a href="#">Acadie.sol</a><br>
+    Edition __EDITION_NUMBER__ · __CREATION_DATE__ · Covering __EDITION_DATE_RANGE__<br>
+    <span style="color: var(--text-dim);">Acadie ↔ Acadiana ↔ Nouvelle-Aquitaine ↔ Québec — One people, four branches.</span>
+  </p>
+</footer>
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('back-to-top');
+  if (btn) {
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const sections = document.querySelectorAll('.section[id]');
+  if (tocLinks.length && sections.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(link => {
+            if (link.getAttribute('href') === '#' + entry.target.id) {
+              link.style.color = 'var(--gold-bright)';
+              link.style.paddingLeft = '0.25rem';
+            } else {
+              link.style.color = '';
+              link.style.paddingLeft = '';
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => observer.observe(s));
+  }
+});
+</script>
+</body>
+</html>

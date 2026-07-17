@@ -1,0 +1,19 @@
+# 2026-06-09 session notes
+
+## Source behavior observations
+- Solana news RSS: 2 items in window — May 2026 Ecosystem Roundup (Jun 5), Subscriptions & Allowances (Jun 2). No new items since Jun 5.
+- Agave: v4.0.2 (Jun 5, stable) — XDP TxLoopBuilder error propagation fix + SIMD-0340 secondary feature flag. v4.1.0-beta.3 (Jun 5, prerelease) — RPC perf fix for stakes. Jun 8-9 commits: bounded test channels, SVM callback decoupling, wincode serialization for SlotHashes sysvar, geyser plugin-manager metrics removal, docs workflow trigger.
+- Ollama: v0.30.7 (Jun 7, stable) — Hermes Desktop via `ollama launch hermes-desktop`, OpenAI API model list alignment, llama.cpp update docs, Zod schema examples. v0.30.6 (Jun 5) — Gemma 4 QAT weights. Blog: GGUF compatibility post (Jun 5). Jun 9 commits: MTP speculation via cache snapshots in MLX runner, KVCache refactor, gated-delta recurrent kernels, AGENTS.md/CLAUDE.md added to repo root.
+- LangGraph: v1.2.4 (Jun 2) latest — backward-compat _on_started fix, factory-graph integration test. Cadence continues as hardening/maintenance.
+- x402: Very active Jun 5-8. Key: Builder-code extension for Go SDK (#2575, merged Jun 8) — parity with TypeScript builder-code from #2329. Also: Python SDK release workflow (#2577), verified commits workflow (#2576), extension echo fix (#2561), builder-code docs (#2546), buyer quickstart update (#2560), client error surfacing (#2558), reject EOAs as assets (#2554).
+- OWF: Previously dormant — broke silence on Jun 5 with 3 commits: x402 payment/agent policy examples (#207), policy engine implementation docs (#206), x402 examples driven through ows CLI (#231). Last release still v1.3.2 (Apr 20). NEAR chain support added May 5.
+- OpenJarvis: TraceCollector wired into server chat endpoints (#513, merged Jun 9) — fixes empty traces.db, unblocks spec_search cold start. HF Hub download test gating (#507, Jun 6). Discord link update.
+- Simon Willison: Siri AI at WWDC 2026 (Jun 8) — Apple licensing custom Gemini for PCC, Core AI library with PyTorch bridge, vision LLMs for screen extraction. datasette-agent-edit 0.1a0 (Jun 7) — reusable agentic text editing base plugin. MicroPython sandbox with WASM (Jun 6) — sandboxed plugin execution for Datasette. OpenAI Lockdown Mode (Jun 5) — attacks the exfiltration leg of the Lethal Trifecta deterministically.
+- Matt Webb: "Self-driving legs to walk me to the office" (Jun 5) — EMS-driven human augmentation (Human Operator at MIT Hard Mode 2026), AI directly driving muscles via electrical stimulation. Continues his personal agents theme but now physical embodiment.
+- Oxide: Still dormant since Feb 2026. Not re-fetched.
+
+## Synthesis
+- Dominant theme: **"The sandbox converges"** — Simon's MicroPython+WASM sandbox, OpenAI's Lockdown Mode (deterministic network egress restriction), and Ollama's MTP speculation work all point to the same pressure: LLM systems need provable execution boundaries. The sovereign builder pattern: run your own sandboxed agent, not someone else's unsandboxed one.
+- Second theme: **"Builder-code as identity rail"** — x402's builder-code extension now in Go (parity with TS) is a payment-identity primitive. OWF waking up to add x402 examples and policy engine docs means the wallet standard is converging on x402 as its payment layer. For sovereign builders, this is the "who pays and what they're allowed to do" stack crystallizing.
+- Third theme: **"Local inference gets speculative"** — Ollama's MTP (multi-token prediction) speculation via cache snapshots in the MLX runner is real throughput work. Combined with Gemma 4 QAT weights (v0.30.6) and Hermes Desktop integration (v0.30.7), the local inference stack is actively closing the latency gap with cloud.
+- Agave v4.0.2 (stable) fixes a panic-on-socket-creation bug in XDP — production-relevant for validators. v4.1.0-beta.3 continues Alpenglow hardening.

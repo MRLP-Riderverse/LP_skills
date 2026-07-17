@@ -1,0 +1,13 @@
+{
+  "fetched_at": 1781522759.1782544,
+  "data": {
+    "location": "Bathurst, NB",
+    "temperature_c": 13.6,
+    "conditions": "Overcast",
+    "emoji": "\u2601\ufe0f",
+    "summary": "Crisp and cool \u2014 a great day for a walk.",
+    "precipitation_mm": 0.0,
+    "wind_speed_kmh": 3.3,
+    "observed_at": "2026-06-15T08:15"
+  }
+}

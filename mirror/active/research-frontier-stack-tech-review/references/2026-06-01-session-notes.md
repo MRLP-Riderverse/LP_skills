@@ -1,0 +1,24 @@
+# 2026-06-01 session notes
+
+## Source behavior observations
+- Solana news RSS: Latest item still May 27 (Chiliz/sports). No new posts in 7-day window. Quiet for Solana ecosystem news.
+- Agave: v4.0.1 promoted to stable (May 29, prerelease=False). Previous session saw it as prerelease — now confirmed stable. v4.1.0-beta.1 still testnet only. June 1 commits: refactor TLS utils, remove unbounded gossip channel, bump solana-message to 4.2.0. May 31: streamer dependency cleanup, epoch rewards AG fix, RPC perf fix for stakes, Alpenglow replay root progress map, bank switch metrics, PoH speed check disable.
+- Ollama: No new stable release since v0.24.0 (May 14). v0.30.0-rc31 is the latest prerelease (May 13) — major architecture change to direct llama.cpp support. Blog RSS returned 49 items this time (not empty); latest is OpenJarvis announcement (May 28). No new Ollama-specific blog posts in window.
+- LangGraph: Three releases in window — SDK 0.4.0, CLI 0.4.27 (both May 28), and core 1.2.2 (May 26). SDK 0.4.0 adds websocket stream transports, hardened reconnects, sync scoped subgraphs, sync messages/tool calls. Core 1.2.2 fixes stable IDs for BaseMessages before checkpoint writes.
+- x402: Massive May 29 release day — Go v2.13.0, v2.14.0 (with /v2 module path migration for major version compliance), TypeScript package release, Python package versioning, auth-capture client scheme (TypeScript, #2486), Concordium exact scheme docs, Bazaar service metadata plumbing. No commits since May 29.
+- Open Wallet Standard: No new releases (v1.3.2 Apr 20) or commits (last May 5 — NEAR Protocol chain support). Quiet.
+- OpenJarvis: Extremely active. Desktop v1.0.2 (May 25, stable). May 31: fix server tool_calls streaming (#460), bypass agent for direct tool calls (#454), single default model + custom OpenAI-compatible endpoints (#453), stop auto-pulling Qwen3.5 model ladder (#446), Windows install.ps1 fix (#445). May 30: install.sh zero-friction on fresh laptop (#444), README cleanup. May 29: Windows Phase-1 native install + scheduled-task service (#438), demo reel.
+- Simon Willison: Very high volume. Key items: May newsletter (Jun 1), datasette 1.0a32 bugfix (May 31), "The solution might be cancelling my AI subscription" — David Wilson's ADHD amplifier essay (May 31), Anthropic run-rate $47B (May 31), How Anthropic contains Claude across products — gVisor/Seatbelt/Bubblewrap/VMs (May 30), Pyodide ASGI service worker (May 30), markdown-svg-renderer tool (May 28), Claude Opus 4.8 "modest but tangible improvement" + honesty focus (May 28), sqlite AGENTS.md — project refuses agentic code, strengthens stance (May 27), "The pressure" — curl deluge of AI-assisted security reports (May 26), Copilot Cowork file exfiltration (May 26), Anthropic/OpenAI product-market fit discussion (May 27).
+- Matt Webb: "How global logistics got me over my fear of personal agents" (May 30) — built autonomous agent for FedEx customs clearance, explores AI psychosis risk. "Resident: vibe coding firmware" (May 20) — open-sourced library for AI-authored code on ESP32 microcontrollers, no compile step, sandbox on device. Envisions agents controlling desk clocks and pocket devices.
+- Oxide: Blog dormant since Feb 2026. No new content. Skipped feed fetch (confirmed dormant by previous 3 briefings).
+- Yjs: v13.6.31 stable (May 28), v14.0.0-rc.17 (May 26).
+- Automerge: js/automerge-3.3.0-fragments.0 and .1 (May 20-21). Pre-release.
+- Jupiter: "Building the Most AI-Friendly Developer Resource" (May 25) — but SPA-rendered, couldn't extract body. Not critical.
+
+## Synthesis
+- Dominant cross-stack theme: **"The containment imperative"** — as agents cross the autonomy threshold, every layer is converging on sandboxing, boundaries, and explicit refusal. SQLite refuses agentic code. Anthropic publishes containment docs. curl drowns in AI-generated reports. Microsoft Copilot exfiltrates files. The pattern: more autonomy → more need for hard boundaries.
+- Second theme: **"Local-first maturity"** — OpenJarvis desktop at v1.0.2 with custom endpoints, Windows native install. Matt Webb's Resident sandbox runs AI code on ESP32. Datasette Lite runs full ASGI in browser. The sovereign stack is getting real installers and real sandboxes.
+- Third theme: **"ADHD amplifier / project sprawl"** — David Wilson's essay resonated with Willison. Agents generate projects faster than humans can curate them. The sovereign builder's answer: maintain fewer, deeper tools rather than spinning up throwaway projects.
+- Agave v4.0.1 is now stable — mainnet validators should upgrade from v4.0.0.
+- x402 May 29 was a landmark release day with multi-language updates and new schemes. Now in absorption period.
+- LangGraph SDK 0.4.0's websocket transport and reconnect hardening is directly relevant for long-running agent workflows.

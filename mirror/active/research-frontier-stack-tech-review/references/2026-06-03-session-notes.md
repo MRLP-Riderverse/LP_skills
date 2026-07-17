@@ -1,0 +1,21 @@
+# 2026-06-03 session notes
+
+## Source behavior observations
+- Solana news RSS: New item Jun 2 — "Solana Now Has Native Subscriptions & Allowances" (significant infra feature). Jun 1 onchain perps, May 28 gold tokenization. Ecosystem shifting from use-case content back to infra capabilities.
+- Agave: v4.1.0-beta.2 (Jun 1, prerelease) remains latest release. Master commits Jun 3: scheduler priority floor/load-shedding (#12263), vote+zk-elgamal proof builtins (#12906), Alpenglow CLI support (#12872), zero-lamport account set for snapshot shrinking (#12665), memo program v4 (#12658), vote_history_file error bubbling (#12905), VM serialization harness (#12891).
+- Ollama: v0.30.2 released Jun 3 (stable, breaks 21-day quiet period). Key changes: Cline CLI auto-install/show (#16402), Qwen code integration (#15900), llama-server cached prompt token counting (#16428), load stall detection (#16427), Radeon 8060S iGPU support (#16429), markdown URL hardening (#16380, #16436), opencode local model limits fix (#16425).
+- LangGraph: v1.2.4 (Jun 2) — backward-compatible _on_started fix, factory-graph integration test. Rapid cadence continues but shifting from feature additions to hardening.
+- x402: Very active Jun 2-3. Schema v2 support for x402 (#2329, significant), SVM smart wallet e2e test (#2504), Swig smart wallet allowlist fix (#2509), retry fix (#1332), wildcard pattern hardening (#2541), Python failure hook fix (#2540), EVM batch-settlement gas limit (#2375), partial money string rejection (#2530), integration-test env docs (#2045/2078). No tagged releases — all commit-driven.
+- Open Wallet Standard: Still quiet. No releases since v1.3.2 (Apr 20), no commits since May 5.
+- OpenJarvis: Active Jun 2-3. Jun 3: system_prompt.prefix config fix (#482), real tool calls in REPL (#481), web_search labeled page content (#480), SystemPromptBuilder.sections() API (#457). Jun 1: Bearer token auth fix (#471), parallelized engine discovery (#470), MSRV pinned to 1.88 (#469).
+- Simon Willison: Jun 2 — datasette-agent-micropython 0.1a0 (MicroPython sandbox for safe code execution, "GPT-5.5 has so far failed to break out"), micropython-wasm 0.1a0/0.1a1, Microsoft MAI models analysis (MAI-Thinking-1 1T/35B active, MAI-Code-1-Flash 137B/5B active, both trained on licensed+public web crawl with AI-content filtering — not clean-licensed as claimed), Pasted File Editor (Codex desktop tool). Jun 1 — Meta AI hack post, May newsletter.
+- Matt Webb: May 20 — "Resident" (open-source sandbox library for ESP32 microcontrollers, AI-authored code on-device with no compile step, sandboxed user code pushed over Wi-Fi). No new posts since. This is significant for local-first/DIY automation.
+- Oxide: Dormant since Feb 2026. Not re-fetched (confirmed by 3+ prior briefings).
+- OWF blog: No new posts in 7-day window.
+
+## Synthesis
+- Dominant theme: **"Local inference goes ambient"** — Ollama v0.30.2 breaks the quiet period with Cline CLI integration and Qwen code support (agents talking to agents), while Matt Webb's Resident library puts AI-authored code on ESP32 microcontrollers. The inference layer is spreading from laptops to CLI agents to microcontrollers.
+- Second theme: **"Payment infra gets schema-native"** — x402's Schema v2 support (#2329) is the most significant commit since the multi-language release. Combined with SVM smart wallet e2e tests and Swig allowlist fixes, the protocol is deepening multi-chain payment support with real test coverage.
+- Third theme: **"Sandboxing as a universal primitive"** — Simon Willison's datasette-agent-micropython runs AI-generated code in a MicroPython sandbox, Matt Webb's Resident sandboxes code on ESP32, Ollama hardens markdown URL handling, OpenJarvis adds SSRF protection. Sandboxing is becoming the first-class concern across the stack.
+- Solana's native subscriptions & allowances (Jun 2) brings recurring payment primitives on-chain — directly relevant to x402's payment protocol evolution and sovereign builder workflows.
+- Microsoft's MAI models (35B/5B active MoE) show the industry converging on small active-parameter MoE for edge — Simon Willison correctly notes these could run on laptops, aligning with the local inference trend.

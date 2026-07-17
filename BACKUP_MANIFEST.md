@@ -1,38 +1,68 @@
-# Backup Manifest — 2026-06-30
+# Backup Manifest — Hermes Mirror
 
-## Tier 1: Cron-Critical
-- weatherAPI-home ✅
-- quickthoughts-daily-sync ✅
-- leisure-music-artist-monitor ✅
-- acadian-community-tech ✅
-- research-frontier-stack-tech-review ✅
-- mardi-en-acadie-newsletter ✅
+Generated from the active Hermes profile at `~/.hermes/skills/`.
 
-## Tier 2: Pinned, Important
-- gbrain-operations ✅
-- gpt-transfer-report ✅
-- note-taking-note-capture-workflow ✅
-- note-capture-workflow ✅
-- note-taking-gpt-transfer-report ✅
-- software-development-opencode-delegation-pattern ✅
-- local-browser-accessibility-automation ✅
+Canonical machine-readable inventory:
 
-## Tier 3: Agent-Created, Nice to Have
-- frontier-stack-evaluation ✅
-- acadie-sol-website ✅
-- community-event-directory-linking ✅
-- cron-job-reliability ✅
-- git-secrets-hygiene ✅
-- hermes-provider-config ✅
-- mcp ✅
-- mcp-mcporter ✅
-- mcp-native-mcp ✅
-- acadie-sol-gallery ✅
+- `MIRROR_MANIFEST.json`
 
-## Ghost Entries (pruned before backup, unrecoverable)
-- frontier-stack-tech-review
-- mcporter
-- music-artist-monitor (likely alias for leisure-music-artist-monitor)
-- native-mcp (likely alias for mcp-native-mcp)
-- opencode-delegation-pattern (likely alias for software-development-opencode-delegation-pattern)
-- person-monitor
+Human-readable inventory:
+
+- `MIRROR_MANIFEST.md`
+
+## Current coverage
+
+- Active skills: 70 unique frontmatter names
+- Active mirrored files: 469
+- Archived mirrored files: 445
+- Curated recovery copies refreshed: 21
+- Mirror size: approximately 28 MB
+
+## Recovery layers
+
+### Broad mirror
+
+- Active skills: `mirror/active/`
+- Archived skills: `mirror/archive/`
+- Verification: `python3 scripts/verify_mirror.py`
+
+### Curated recovery layer
+
+The curated copies under `agent-created/` prioritize cron-critical and user-specific workflows:
+
+- Weather delivery and QuickThoughts sync
+- Music and Acadian briefings/newsletter
+- GBrain and note capture
+- Website and directory workflows
+- Hermes/provider/MCP troubleshooting
+- Git hygiene and Opencode delegation
+
+## Naming note
+
+Some backup folder names are historical paths while Hermes loads the frontmatter name. Examples:
+
+- `leisure-music-artist-monitor` → `music-artist-monitor`
+- `mcp-mcporter` → `mcporter`
+- `mcp-native-mcp` → `native-mcp`
+- `research-frontier-stack-tech-review` → `frontier-stack-tech-review`
+- `software-development-opencode-delegation-pattern` → `opencode-delegation-pattern`
+
+The sync script matches these by frontmatter name to avoid silent drift.
+
+## External recovery artifact
+
+The Bathurst cron also uses:
+
+```text
+~/.hermes/scripts/bathurst_weather_telegram.sh
+```
+
+A recovery copy is retained at:
+
+```text
+agent-created/weatherAPI-home/bathurst_weather_telegram.sh
+```
+
+## Exclusions
+
+Runtime metadata, credentials outside the skills tree, `.git` directories, caches, `__pycache__`, and Python bytecode are excluded.

@@ -1,0 +1,841 @@
+{
+  "jobs": [
+    {
+      "id": "678966b39112",
+      "name": "weekly-music-artist-brief",
+      "prompt": "Load the music-artist-monitor skill and perform a weekly music industry briefing covering artist updates, distribution innovations, web3 music adoption, and creator economy trends with focus on the user's specific interests.\n\nFocus on:\n- Specific artist news: Green Day, Bring Me The Horizon (BMTH), Jaden, Joji\n- Music distribution platform developments and innovations\n- Web3 music adoption (Audius, Royal, Sound.xyz, NFT music, etc.)\n- Creator ecommerce solutions (Fourthwall, Shopify for artists, etc.)\n- Practical music technology that actually works\n- Meaningful trends vs hype in the music industry\n\nProvide updates on:\n1. Artist-specific activities: New releases, tours, collaborations, announcements\n2. Distribution innovations: What's actually changing how music is distributed/monetized\n3. Web3 music: Real adoption beyond experiments - who's using it and for what\n4. Creator tools: Platforms that help independent artists sustainably\n5. Music tech: Practical tools for creation, distribution, or fan engagement\n\nFormat with clear sections and end with:\n- Most meaningful music development this week\n- Biggest concern or caution for artists/fans\n- One concrete action artists/fans could consider this week\n- Plain-language summary of what actually matters in music right now\n\nCRITICAL DELIVERY RULES:\n- Write the ENTIRE briefing in English ONLY. Never duplicate sections in other languages (Dutch, German, French, etc.). If source material is in another language, translate it to English before including.\n- Your briefing IS your final response. Do NOT add any follow-up, summary, or closing message after the briefing.\n- The LAST thing you output must be the key takeaways section. Any post-briefing message will replace the briefing in delivery.\n- Use bullet lists instead of tables \u2014 Telegram strips markdown tables and they render as garbled text.",
+      "skills": [
+        "music-artist-monitor"
+      ],
+      "skill": "music-artist-monitor",
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * 3",
+        "display": "0 10 * * 3"
+      },
+      "schedule_display": "0 10 * * 3",
+      "repeat": {
+        "times": null,
+        "completed": 11
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-07T05:48:47.895128-03:00",
+      "next_run_at": "2026-06-24T10:00:00-03:00",
+      "last_run_at": "2026-06-17T10:04:30.616691-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "deliver": "telegram",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "last_delivery_error": null,
+      "enabled_toolsets": [
+        "web",
+        "terminal"
+      ]
+    },
+    {
+      "id": "30265e2e5fc7",
+      "name": "daily-bathurst-weather",
+      "prompt": "Source ~/.hermes/.env first, then run the weather Telegram script from /home/midnight/.hermes/skills/weatherAPI-home/weather_telegram.py and return exactly the script output for delivery. Do not search the repo for the script; use the explicit path. If the script fails, report the failure clearly. If it succeeds, deliver the weather message as the final response.",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": "bathurst_weather_telegram.sh",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "display": "0 8 * * *"
+      },
+      "schedule_display": "0 8 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 79
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-07T12:25:04.132349-03:00",
+      "next_run_at": "2026-06-20T08:00:00-03:00",
+      "last_run_at": "2026-06-19T08:00:34.544447-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "deliver": "telegram",
+      "origin": null,
+      "last_delivery_error": null,
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "no_agent": true
+    },
+    {
+      "id": "801ddb3a905f",
+      "name": "frontier-stack-morning-brief",
+      "prompt": "Load the frontier-stack-tech-review skill. Then perform a DELTA-ONLY daily technology briefing.\n\n## MANDATORY: Dedup Protocol\n\nBefore writing the brief, you MUST check what has already been reported. Use `session_search` to find the most recent frontier-stack briefing session (query: \"frontier stack daily briefing\"). Read the last delivered brief's content. Then:\n\n- Any item that appeared in the LAST 3 briefings is STALE \u2014 do NOT include it unless there is a NEW development on that exact topic (e.g. a new version bump, a new follow-up post, a status change).\n- If a source is confirmed quiet/dormant (e.g. \"Oxide dormant since Feb 2026\"), do NOT re-confirm it. State it once and skip until it actually changes.\n- If a topic has no verified new item in the window, report SILENCE for that section \u2014 do NOT pad with re-explained old news.\n\nThe brief should ONLY contain:\n1. Items that are genuinely NEW since the last briefing (new releases, new posts, new commits, status changes)\n2. NEW angles or implications on previously reported items (e.g. a follow-up post that changes the assessment)\n3. Cross-stack patterns that emerged from THIS cycle's new data specifically\n\n## Source areas\n1. Solana ecosystem updates (RSS + GitHub releases/commits)\n2. AI/Agent infrastructure: Ollama, LangGraph, x402, Open Wallet Standard/Foundation, OpenJarvis\n3. Sovereign Builder Intelligence: Simon Willison (simonwillison.net), Oxide/Bryan Cantrill, Matt Webb (interconnected.org)\n4. Local-first and DIY automation trends\n\n## Output format\n- **What's new:** Only genuinely new items, with dates and URLs\n- **What changed:** Updates to previously reported items (if any)\n- **Cross-stack signal:** One pattern that emerged from today's new data\n- **Actionable:** 1-3 concrete moves based ONLY on new information\n\nIf nothing meaningful is new across ALL sources, respond with exactly \"[SILENT]\" \u2014 no padding, no rehash.\n\n## CRITICAL DELIVERY RULES\n- Your briefing IS your final response. Do NOT add any follow-up, summary, or \"Briefing delivered\" message after the briefing.\n- The LAST thing you output must be the briefing itself (or [SILENT]).\n- Write in English ONLY. No duplicate sections in other languages.\n- Use bullet lists, NOT markdown tables (Telegram strips tables).\n- Be concise. A true delta-only brief should be 30-60% shorter than a full sweep.",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 5 * * *",
+        "display": "45 5 * * *"
+      },
+      "schedule_display": "45 5 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 77
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-08T02:56:52.949257-03:00",
+      "next_run_at": "2026-06-20T05:45:00-03:00",
+      "last_run_at": "2026-06-19T05:47:58.886615-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "deliver": "telegram",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "last_delivery_error": null
+    },
+    {
+      "id": "71ad1ca31f07",
+      "name": "cat-feed-daily",
+      "prompt": "Output the exact text to user's telegram channel: don't forget to feed the cat",
+      "skills": [],
+      "skill": null,
+      "model": "z-ai/glm-5.1",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * *",
+        "display": "0 21 * * *"
+      },
+      "schedule_display": "0 21 * * *",
+      "repeat": {
+        "times": 120,
+        "completed": 74
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-08T02:57:50.868935-03:00",
+      "next_run_at": "2026-06-20T21:00:00-03:00",
+      "last_run_at": "2026-06-19T21:00:40.945253-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "deliver": "telegram",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "last_delivery_error": null,
+      "enabled_toolsets": [
+        "terminal"
+      ]
+    },
+    {
+      "id": "2c334f1c0227",
+      "name": "project-lp-daily-prompt",
+      "prompt": "Paused since April 18. This was the daily OpenCode reliability coach. Keeping paused for now \u2014 user may want to revisit with OpenJarvis integration later.",
+      "skills": [
+        "autonomous-ai-agents/opencode",
+        "software-development/opencode-delegation-pattern"
+      ],
+      "skill": "autonomous-ai-agents/opencode",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "display": "0 9 * * *"
+      },
+      "schedule_display": "0 9 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 3
+      },
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-04-18T12:09:40.931293-03:00",
+      "paused_reason": null,
+      "created_at": "2026-04-17T21:21:51.295282-03:00",
+      "next_run_at": "2026-04-19T09:00:00-03:00",
+      "last_run_at": "2026-04-18T09:02:05.145270-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      }
+    },
+    {
+      "id": "2cde43188eff",
+      "name": "daily-quickthoughts-sync",
+      "prompt": "Run the QuickThoughts daily sync skill. Execute: cd ~/.hermes/skills/note-taking/quickthoughts-daily-sync && python3 scripts/sync.py\n\nThis should:\n1. Check last sync date from ~/.hermes/state/quickthoughts-sync-state.json\n2. Extract new QuickThoughts entries since last sync\n3. Create markdown files in ~/brain/sources/\n4. Run gbrain import --no-embed\n5. Send Telegram report\n\nIf the script fails, log the error to QuickThoughts and create an Opencode session to diagnose. Then send a failure report to Telegram.",
+      "skills": [
+        "quickthoughts-daily-sync"
+      ],
+      "skill": "quickthoughts-daily-sync",
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 2 * * *",
+        "display": "0 2 * * *"
+      },
+      "schedule_display": "0 2 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 61
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-20T21:41:45.060728-03:00",
+      "next_run_at": "2026-06-20T02:00:00-03:00",
+      "last_run_at": "2026-06-19T02:01:13.658717-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "telegram",
+      "origin": null
+    },
+    {
+      "id": "ed316a73da63",
+      "name": "Mardi en Acadie - Weekly Brief",
+      "prompt": "Fetch Acadian news (P\u00e9ninsule acadienne, Caraquet, Bathurst, Nouveau-Brunswick) in both French and English. Search for terms: \"Acadie\", \"Acadien\", \"P\u00e9ninsule acadienne\", \"Caraquet\", \"Bathurst\", \"Nouveau-Brunswick\". \n\nSummarize the top 3-5 stories of the week focusing on:\n1. Economic developments (fisheries, tourism, local business)\n2. Infrastructure issues (connectivity, water, energy)\n3. Cultural/Identity shifts\n4. Environmental concerns (weather, fisheries, forestry)\n\nFormat the output as:\n- Date header\n- Bullet points for each story\n- A \"Consulting Opportunity\" section identifying tech gaps (e.g., connectivity, traceability, data management)\n\nAppend this summary to: /home/midnight/Documents/Notes/notecore/inbox/acadian-lore/highlights.txt\n\nAlso send a brief Telegram message to the user with the top headline and a link to the full archive.",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 6 * * 2",
+        "display": "0 6 * * 2"
+      },
+      "schedule_display": "0 6 * * 2",
+      "repeat": {
+        "times": null,
+        "completed": 9
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-21T11:33:14.837782-03:00",
+      "next_run_at": "2026-06-23T06:00:00-03:00",
+      "last_run_at": "2026-06-16T06:04:48.946715-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "web",
+        "terminal"
+      ]
+    },
+    {
+      "id": "b12143ed4ced",
+      "name": "midday-bathurst-weather",
+      "prompt": "Source ~/.hermes/.env first, then run the weather Telegram script from /home/midnight/.hermes/skills/weatherAPI-home/weather_telegram.py and return exactly the script output for delivery. Do not search the repo for the script; use the explicit path. If the script fails, report the failure clearly. If it succeeds, deliver the weather message as the final response.",
+      "skills": [],
+      "skill": null,
+      "model": "z-ai/glm-5.1",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "bathurst_weather_telegram.sh",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 14 * * *",
+        "display": "0 14 * * *"
+      },
+      "schedule_display": "0 14 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 58
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-22T13:01:43.052131-03:00",
+      "next_run_at": "2026-06-20T14:00:00-03:00",
+      "last_run_at": "2026-06-19T14:00:37.904973-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "telegram",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "no_agent": true
+    },
+    {
+      "id": "a39e977fa5b0",
+      "name": "daily-gbrain-sync-status",
+      "prompt": "Run the GBrain sync status report for yesterday.\n\nTask:\n1. Execute exactly: /home/midnight/.hermes/scripts/daily_session_review_notes.py\n2. The script will check: sync file presence, GBrain stats, doctor health, and search test\n3. No local model is needed \u2014 this is a deterministic status check only\n4. Return the status report as your final response\n\nThis cron replaces the old local-model session review. GBrain IS the review now.",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 2 * * *",
+        "display": "20 2 * * *"
+      },
+      "schedule_display": "20 2 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 50
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-01T21:50:41.257244-03:00",
+      "next_run_at": "2026-06-20T02:20:00-03:00",
+      "last_run_at": "2026-06-19T02:20:38.346629-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "telegram",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": null
+    },
+    {
+      "id": "241d32de4763",
+      "name": "quickthoughts-daily-highlight-card",
+      "prompt": "Run the local QuickThoughts daily highlight card workflow.\n\nExecute exactly:\n/home/midnight/.hermes/scripts/quickthoughts_daily_highlight_card.py\n\nThe script reviews yesterday's QuickThoughts.txt entries, uses local Ollama qwen3:8b with think:false, and prints a compact Telegram-ready highlight card. Do not call send_message manually; this cron job's final response is auto-delivered to Telegram. Return only the script output, or a concise error if the script fails.",
+      "skills": [],
+      "skill": null,
+      "model": "z-ai/glm-5.1",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "display": "0 9 * * *"
+      },
+      "schedule_display": "0 9 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 50
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-01T22:08:27.048968-03:00",
+      "next_run_at": "2026-06-20T09:00:00-03:00",
+      "last_run_at": "2026-06-19T09:01:26.119551-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "telegram",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": null
+    },
+    {
+      "id": "d78378fd072c",
+      "name": "alt-chain-brief",
+      "prompt": "Research and synthesize the latest developments in Ethereum, Bitcoin, and alternative Layer 1/Layer 2 protocols for the past 7 days. Focus on:\n\n1. **Protocol Upgrades**: EIPs, Bitcoin Improvement Proposals, network upgrades, hard forks\n2. **DeFi & Infrastructure**: New protocols, major TVL shifts, lending/borrowing innovations, oracle updates\n3. **Scaling Solutions**: L2 developments (Arbitrum, Optimism, Base, Polygon, zkSync, etc.), rollup tech, bridging\n4. **Regulatory & Institutional**: ETF news, regulatory rulings, major institutional adoption, custody solutions\n5. **Security**: Exploits, hacks, audit findings, vulnerability disclosures\n6. **Developer Tools**: New SDKs, frameworks, testing tools, account abstraction updates\n\nSources to check:\n- Ethereum Foundation blog, EthResearch, Vitalik's blog\n- Bitcoin Magazine, Bitcoin Core mailing list\n- The Block, Coindesk, Decrypt (technical sections only)\n- L2Beat for scaling metrics\n- DeFiLlama for TVL shifts\n- GitHub repos: ethereum/go-ethereum, bitcoin/bitcoin, key L2 repos\n\nOutput format:\n- Date range covered\n- Top 3-5 critical developments (with impact assessment)\n- One \"watch this space\" emerging trend\n- Links to primary sources (avoid paywalls when possible)\n- Keep it technical but accessible (builder-focused)\n- Length: 400-600 words max\n\nEnd with a brief \"action items\" section if there are urgent upgrades, migrations, or security patches developers should know about.",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 7 * * 1",
+        "display": "45 7 * * 1"
+      },
+      "schedule_display": "45 7 * * 1",
+      "repeat": {
+        "times": null,
+        "completed": 8
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-08T09:46:33.993898-03:00",
+      "next_run_at": "2026-06-22T07:45:00-03:00",
+      "last_run_at": "2026-06-15T08:06:04.928637-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "2dc9e72f1e16",
+      "name": "weekly-outside-echo-digest",
+      "prompt": "Every Friday at 9:00 AM Atlantic time, produce a short weekly report of recent online activity that the user is likely to have missed.\n\nGoals:\n1) Gather headline candidates from the past 7 days using online sources (Google News RSS and/or major outlets). Prioritize:\n- Canada and Atlantic Canada / New Brunswick\n- technology, internet/platform changes, AI, browsers, bots, verification, privacy\n- public policy / security / law / regulation\n- energy / electricity grid / infrastructure\n- weather / climate / drought / wildfire / agriculture\n2) Compare those candidate headlines against local knowledge to identify what seems new:\n- Search the user's raw notes at ~/Documents/Notes/notecore/inbox/QuickThoughts.txt with grep or equivalent keyword search.\n- Search the local GBrain index with: PATH=\"$HOME/.bun/bin:$PATH\" gbrain search \"<keywords>\"\n- Use basic keyword searches. If a search returns no result, treat that as a strong signal the topic has not been discussed before.\n- If a search returns only weak or irrelevant matches, mention that as such.\n- Do not modify any notes or the brain.\n3) Summarize only the most interesting items that appear genuinely new or newly important.\n\nOutput format:\n- Title/date\n- 4\u20138 bullets max\n- For each item: headline, 1\u20132 sentence explanation, why it matters, and a note on whether notes/gbrain had no hit / weak hit / clear hit.\n- If there is a strong Atlantic/New Brunswick angle, call it out.\n- Keep it concise and readable for Telegram.\n\nStyle:\n- Be practical and skeptical.\n- Prefer signal over noise.\n- If nothing stands out, say so plainly rather than padding the report.\n- Do not ask the user questions; make the best report you can from the available sources.",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 5",
+        "display": "0 9 * * 5"
+      },
+      "schedule_display": "0 9 * * 5",
+      "repeat": {
+        "times": null,
+        "completed": 5
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-15T09:37:32.175320-03:00",
+      "next_run_at": "2026-06-26T09:00:00-03:00",
+      "last_run_at": "2026-06-19T09:04:30.718165-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "web",
+        "terminal"
+      ],
+      "workdir": null
+    },
+    {
+      "id": "9d4adae443fe",
+      "name": "thenewstack-weekly-refresh",
+      "prompt": "Create a concise Monday morning weekly refresh covering The New Stack articles published in the last 7 days.\n\nScope:\n- Source: https://thenewstack.io/blog/feed/\n- Focus especially on themes around AI agents, AI engineering, AI strategy, software development workflow change, model/tooling/platform shifts, and enterprise adoption.\n- The user likes The New Stack for the topics they touch on, but does NOT want to mirror their whole editorial flow. Be selective.\n\nMethod:\n1. Use terminal tools to fetch and inspect the RSS feed and article metadata/links.\n2. Only consider articles from the last 7 days.\n3. Exclude sponsored posts, contributed sponsored posts, podcasts, and video-only items unless they are unusually important.\n4. Identify the most relevant items.\n5. Prioritize signal over volume. Ignore low-signal or off-theme items.\n6. Produce a short human digest, not a database dump.\n\nOutput format:\n- Start with a 1-2 sentence overview of the week's pattern.\n- Then 3-6 bullet points, each with:\n  - article title\n  - why it matters in one sentence\n  - link\n- End with a short \"Why this matters for your stack\" section with 2-4 bullets translating the week's coverage into implications for the user's brief stack / positioning / artifact-building lens.\n\nTone:\n- crisp, thoughtful, lightly conversational\n- avoid hype and avoid copying The New Stack's framing\n- optimize for useful signal the user can scan quickly on Monday morning",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 8 * * 1",
+        "display": "45 8 * * 1"
+      },
+      "schedule_display": "45 8 * * 1",
+      "repeat": {
+        "times": null,
+        "completed": 5
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-23T21:30:52.000865-03:00",
+      "next_run_at": "2026-06-22T08:45:00-03:00",
+      "last_run_at": "2026-06-15T08:46:49.145872-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": null
+    },
+    {
+      "id": "588d59ec4bf2",
+      "name": "Jaron Lanier Weekly Monitor",
+      "prompt": "You are a Jaron Lanier news monitor. Your job is to check two sources for new Jaron Lanier content and deliver a compact briefing.\n\nSOURCE 1 \u2014 Google News RSS (primary):\nFetch via terminal: curl -sL --max-time 30 \"https://news.google.com/rss/search?q=Jaron+Lanier&hl=en-US&gl=US&ceid=US:en\"\nParse the XML for <item> entries. Compare publish dates to find items from the last 7 days only.\n\nSOURCE 2 \u2014 jaronlanier.com site check (secondary):\nFetch via terminal: curl -sL --max-time 30 \"https://jaronlanier.com/general.html\"\nLook for any links or text that appear new or updated. This site is manually maintained so changes are rare but notable.\n\nDELIVERY FORMAT:\n- Lead with any NEW items (talks, interviews, podcast appearances, articles, music releases, arXiv papers) from the past 7 days\n- For each item: title, source, date, 1-sentence summary\n- If nothing new: say \"No new Jaron Lanier appearances this week\" \u2014 don't pad\n- Tag items relevant to these themes if present: data dignity, \"there is no AI\", human collaboration endpoints, AI accountability, cultural resilience, music/VR\n- End with a count: \"X new items this week\"\n\nIMPORTANT: If the Google News RSS fetch fails, say so explicitly rather than making up content. Never hallucinate items.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 10080,
+        "display": "every 10080m"
+      },
+      "schedule_display": "every 10080m",
+      "repeat": {
+        "times": null,
+        "completed": 2
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-31T14:20:28.251267-03:00",
+      "next_run_at": "2026-06-21T14:22:46.330741-03:00",
+      "last_run_at": "2026-06-14T14:22:46.330741-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "b2944e69c347",
+      "name": "Mardi en Acadiana - Weekly Cajun Brief",
+      "prompt": "You are a Louisiana Cajun / Acadiana news monitor. Every Tuesday, produce a surface-level weekly briefing on what's happening with Cajuns in Louisiana. Cover the past 7 days.\n\nResearch method (follow exactly):\n1. Use curl to fetch Google News RSS feeds in English:\n   - \"Cajuns Louisiana after:YYYY-MM-DD\" (compute date = 7 days ago from today)\n   - \"Acadiana Lafayette Louisiana after:YYYY-MM-DD\"\n   - Also try French: \"Cadiens Louisiane after:YYYY-MM-DD\" (hl=fr)\n2. Extract article titles, sources, and dates from the RSS items\n3. Cross-check for novelty: grep QuickThoughts at ~/Documents/Notes/notecore/inbox/QuickThoughts.txt for \"louisiana|cajun|cadien|acadiana|lafayette\" to avoid repeating stale items\n4. Synthesize findings into a categorized briefing with these sections when items exist:\n   - Culture & Identity (festivals, music like Zydeco/Cajun, language, heritage)\n   - Education & Workforce (universities, training, economic development)\n   - Community & Growth (demographics, local government, infrastructure)\n   - Weather & Environment (flooding, storms, coastal issues)\n   - Sports (Ragin' Cajuns, regional sports)\n   - Food & Business (Cajun dining, agriculture, local economy)\n5. Add a \"Cross-Relation: Acadie \u2194 Acadiana\" section noting any parallels to Acadian concerns (language preservation, rural connectivity, cultural festivals, self-sovereignty, diaspora identity)\n6. Note: French-language coverage for Louisiana Cadiens is typically thin to non-existent \u2014 flag this gap when observed\n\nFormat: Clean, scannable Telegram-friendly briefing. Use bullet lists, bold section headers. Keep it surface-level \u2014 the user wants to stay in touch, not read a thesis. Timestamp the report.\n\nAfter producing the briefing, capture key findings to QuickThoughts using the note CLI:\nNOTE_SOURCE_LABEL=Hermes note $'LOUISIANA CAJUNS \u2014 Week of [date range]\\n-- | [key items in multiline format]\\n-- | *** end of multiline ***'\n\nThis ensures the data persists for GBrain sync.",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 6 * * 2",
+        "display": "15 6 * * 2"
+      },
+      "schedule_display": "15 6 * * 2",
+      "repeat": {
+        "times": null,
+        "completed": 2
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-05T10:34:27.147845-03:00",
+      "next_run_at": "2026-06-23T06:15:00-03:00",
+      "last_run_at": "2026-06-16T06:16:26.006272-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "web",
+        "terminal"
+      ],
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "6efc7fe740ed",
+      "name": "Mardi en Nouvelle-Aquitaine - Weekly Old Roots Brief",
+      "prompt": "You are a Nouvelle-Aquitaine / Southwest France news monitor focused on the regions connected to Acadian ancestral roots: Dax, Landes, Tarbes, Hautes-Pyr\u00e9n\u00e9es, Pau, B\u00e9arn, Basque Country, and the wider Nouvelle-Aquitaine region. Every Tuesday, produce a surface-level weekly briefing on what's happening in the old roots territory. Cover the past 7 days.\n\nThe user frames these peoples as \"from the same patch\" \u2014 they share ancestry with the Acadians who were expelled from this region (Grand D\u00e9rangement). This briefing keeps the user connected to what their ancestral homeland is dealing with today.\n\nResearch method (follow exactly):\n1. Use curl to fetch Google News RSS feeds in French (hl=fr, gl=FR, ceid=FR:fr):\n   - \"Dax Landes after:YYYY-MM-DD\"\n   - \"Tarbes Hautes-Pyr\u00e9n\u00e9es after:YYYY-MM-DD\"\n   - \"B\u00e9arn Basque Pau after:YYYY-MM-DD\"\n   - \"Nouvelle-Aquitaine after:YYYY-MM-DD\"\n   - Also try: \"Gascon Gascogne Occitan after:YYYY-MM-DD\" (typically returns nothing \u2014 flag the gap)\n2. Extract article titles, sources, and dates from the RSS items\n3. Cross-check for novelty: grep QuickThoughts at ~/Documents/Notes/notecore/inbox/QuickThoughts.txt for \"nouvelle-aquitaine|dax|tarbes|b\u00e9arn|gascon|landes|pau\" to avoid repeating stale items\n4. Synthesize findings into a categorized briefing with these sections when items exist:\n   - Dax / Landes (US Dax rugby, feria culture, Toros y Salsa, thermal/tech development)\n   - Tarbes / Hautes-Pyr\u00e9n\u00e9es (rural development, d\u00e9senclavement, polyphonic singing traditions, local institutions)\n   - B\u00e9arn / Pau / Basque Country (digital sovereignty, economic development, cross-border tourism, university life)\n   - Nouvelle-Aquitaine Regional (major infrastructure, semiconductor fab, energy policy, education cuts, tech investment)\n   - Culture & Language (Gascon/Occitan visibility, festivals, food/gastronomy, living traditions)\n5. Add a \"Cross-Relation: Old Roots \u2194 Acadie\" section noting parallels to Acadian/Cajun concerns:\n   - Language erosion (Gascon/Occitan is the thinnest \u2014 note media gap)\n   - Rural d\u00e9senclavement vs. Maritime NB connectivity fights\n   - Cultural festivals as identity anchors (Toros y Salsa \u2194 Cajun-Zydeco \u2194 F\u00eate de l'Acadie)\n   - Self-sovereignty instincts (digital sovereignty, semiconductor fabs, data centers)\n   - Education access in rural spaces\n   - French-language media health gradient: Acadie (healthy) > Louisiana (thin) > Nouvelle-Aquitaine (near-zero for regional languages)\n6. Highlight items of specific user interest: anything about \"Tarbelles\" (Gascon ethnonym), sovereign infrastructure (data centers, semiconductor fabs), AI-assisted rural education potential, or cultural bridge opportunities between the old roots region and the diaspora branches\n\nFormat: Clean, scannable Telegram-friendly briefing. Use bullet lists, bold section headers. Keep it surface-level \u2014 the user wants to stay in touch, not read a thesis. Write cultural terms in their original form (French/Gascon/Basque) with English context where helpful. Timestamp the report.\n\nAfter producing the briefing, capture key findings to QuickThoughts using the note CLI:\nNOTE_SOURCE_LABEL=Hermes note $'NOUVELLE-AQUITAINE / OLD ROOTS REGION \u2014 Week of [date range]\\n-- | [key items in multiline format]\\n-- | *** end of multiline ***'\n\nThis ensures the data persists for GBrain sync.",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 6 * * 2",
+        "display": "30 6 * * 2"
+      },
+      "schedule_display": "30 6 * * 2",
+      "repeat": {
+        "times": null,
+        "completed": 3
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-05T10:34:28.156482-03:00",
+      "next_run_at": "2026-06-23T06:30:00-03:00",
+      "last_run_at": "2026-06-16T10:19:49.451062-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "web",
+        "terminal"
+      ],
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "2d22b8433a28",
+      "name": "Mardi en Qu\u00e9bec-Acadie - Weekly Bridge Brief",
+      "prompt": "You are a Qu\u00e9bec-Acadian news monitor. This is the \"bridge branch\" \u2014 it connects the old roots (Nouvelle-Aquitaine) to maritime Acadie (NB/NS) to the southern diaspora (Louisiana). The user considers this the keystone branch of the Acadian roots triangle (now four-branch circuit: NA \u2192 QC \u2192 NB/NS \u2192 LA).\n\nEvery Tuesday, produce a surface-level weekly briefing on what's happening at the Qu\u00e9bec\u2013Acadie intersection. Cover the past 7 days.\n\nFocus areas (in priority order):\n1. Montr\u00e9al/Qu\u00e9bec Acadian community \u2014 cultural events, political representation (especially circonscription d'Acadie), diaspora gatherings, Acadian identity in QC public life\n2. Gasp\u00e9sie / \u00celes-de-la-Madeleine \u2014 the Madelinots, infrastructure, cultural projects, any film/media production on the islands, community fundraising\n3. Congr\u00e8s mondial acadien \u2014 updates on CMA activities, global Acadian gatherings\n4. Qu\u00e9bec\u2013Acadie cultural exchange \u2014 Qu\u00e9b\u00e9cois artists performing in Acadie, Acadian artists in QC, Mobilisation franco, francophone solidarity events\n5. Media & information sovereignty \u2014 Radio-Canada Acadie coverage, language rights, francophone media fights, any cuts or changes to Acadian-language broadcasting (the user considers this a critical informational infra gap)\n6. Energy & infrastructure \u2014 Hydro-Qu\u00e9bec expansion into Atlantic provinces, Churchill Falls, grid modernization in Acadian regions\n7. Language & identity \u2014 any coverage of Acadian French, minority francophone rights, community resilience\n\nResearch method (follow exactly):\n1. Use curl to fetch Google News RSS feeds in French (hl=fr, gl=CA, ceid=CA:fr):\n   - \"Acadiens Qu\u00e9bec after:YYYY-MM-DD\"\n   - \"Acadie Qu\u00e9bec after:YYYY-MM-DD\"\n   - \"\u00celes-de-la-Madeleine Madelinots after:YYYY-MM-DD\"\n   - \"Congr\u00e8s mondial acadien after:YYYY-MM-DD\"\n   - \"Radio-Canada Acadie t\u00e9l\u00e9journal after:YYYY-MM-DD\"\n2. Extract article titles, sources, and dates from the RSS items\n3. Cross-check for novelty: grep QuickThoughts at ~/Documents/Notes/notecore/inbox/QuickThoughts.txt for \"qu\u00e9bec|acadie|acadien|gasp\u00e9sie|madeleine|madelinot|mobilisation|circonscription\" to avoid repeating stale items\n4. Synthesize into a categorized briefing using the focus areas above as section headers\n5. Add a \"Cross-Relation: Four-Branch Circuit\" section noting how items connect to the other three branches (Acadie NB/NS, Acadiana LA, Nouvelle-Aquitaine). Key patterns to flag:\n   - QC as bridge between old roots and diaspora\n   - Media sovereignty fights (same informational infra gap as NA campus cuts, LA French-language gap)\n   - Energy infrastructure (Hydro-Qu\u00e9bec \u2194 Dax data center \u2194 NA semiconductor fab \u2014 sovereign infrastructure thread)\n   - Cultural exchange flowing both directions on the QC\u2194Acadie highway\n   - Language survival across all four branches\n\nFormat: Clean, scannable Telegram-friendly briefing. Use bullet lists, bold section headers. Keep it surface-level. Write cultural/political terms in original French with English context where helpful. Timestamp the report.\n\nAfter producing the briefing, capture key findings to QuickThoughts using the note CLI:\nNOTE_SOURCE_LABEL=Hermes note $'QU\u00c9BEC-ACADIAN BRETHREN \u2014 Week of [date range]\\n-- | [key items in multiline format]\\n-- | *** end of multiline ***'\n\nThis ensures the data persists for GBrain sync.",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.4-mini",
+      "provider": "openai-codex",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 6 * * 2",
+        "display": "45 6 * * 2"
+      },
+      "schedule_display": "45 6 * * 2",
+      "repeat": {
+        "times": null,
+        "completed": 3
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-05T11:27:41.080299-03:00",
+      "next_run_at": "2026-06-23T06:45:00-03:00",
+      "last_run_at": "2026-06-16T10:18:56.222875-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "web",
+        "terminal"
+      ],
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "3b33448ce105",
+      "name": "QuickThoughts Daily Tail Check",
+      "prompt": "Tail the last 40 lines of /home/midnight/Documents/Notes/notecore/inbox/QuickThoughts.txt using the local script. Do not send to Telegram. Keep the job quiet and local-only.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "quickthoughts_daily_tail40.sh",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 4 * * *",
+        "display": "0 4 * * *"
+      },
+      "schedule_display": "0 4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 12
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-07T08:48:59.674580-03:00",
+      "next_run_at": "2026-06-20T04:00:00-03:00",
+      "last_run_at": "2026-06-19T04:00:28.723526-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "5ec36cf4fc6f",
+      "name": "brunch-bathurst-weather",
+      "prompt": "Source ~/.hermes/.env first, then run the weather Telegram script from /home/midnight/.hermes/skills/weatherAPI-home/weather_telegram.py and return exactly the script output for delivery. Do not search the repo for the script; use the explicit path. If the script fails, report the failure clearly. If it succeeds, deliver the weather message as the final response.",
+      "skills": [],
+      "skill": null,
+      "model": "z-ai/glm-5.1",
+      "provider": "nvidia",
+      "base_url": null,
+      "script": "bathurst_weather_telegram.sh",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 10 * * *",
+        "display": "30 10 * * *"
+      },
+      "schedule_display": "30 10 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 9
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-10T23:46:50.262774-03:00",
+      "next_run_at": "2026-06-20T10:30:00-03:00",
+      "last_run_at": "2026-06-19T10:30:35.636062-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "telegram",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "f7b79c62da94",
+      "name": "QuickThoughts Weekly Snapshot",
+      "prompt": "Take a full QuickThoughts snapshot to the local snapshots folder near the inbox every Saturday at 3:00 AM Atlantic time. Do not send to Telegram. Keep output local-only.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "quickthoughts_weekly_snapshot.sh",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * 6",
+        "display": "0 3 * * 6"
+      },
+      "schedule_display": "0 3 * * 6",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-11T09:28:01.645264-03:00",
+      "next_run_at": "2026-06-20T03:00:00-03:00",
+      "last_run_at": "2026-06-13T03:00:47.659880-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "7537206121",
+        "chat_name": "MR LP",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": null,
+      "profile": null
+    }
+  ],
+  "updated_at": "2026-06-19T21:00:40.946580-03:00"
+}

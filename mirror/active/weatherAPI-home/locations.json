@@ -1,0 +1,26 @@
+{
+  "bathurst_nb": {
+    "name": "Bathurst, NB",
+    "latitude": 47.6167,
+    "longitude": -65.65,
+    "timezone": "America/Moncton"
+  },
+  "moncton_nb": {
+    "name": "Moncton, NB",
+    "latitude": 46.1232,
+    "longitude": -64.7776,
+    "timezone": "America/Moncton"
+  },
+  "montreal_qc": {
+    "name": "Montreal, QC",
+    "latitude": 45.5017,
+    "longitude": -73.5673,
+    "timezone": "America/Toronto"
+  },
+  "long_island_ny": {
+    "name": "Long Island, NY",
+    "latitude": 40.7891,
+    "longitude": -73.135,
+    "timezone": "America/New_York"
+  }
+}

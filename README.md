@@ -1,48 +1,96 @@
-# LP_skills — Pinned & Cron-Critical Backup
+# LP_skills — Hermes Skills Recovery Mirror
 
-Backup of MidnightRider.sol's crucial Hermes skills — the ones that keep the machine running.
+Backup and recovery repository for MidnightRider.sol's Hermes Agent skills.
 
-## Why This Exists
+This repo now has two layers:
 
-The Hermes curator has pruned skills twice (June 5, June 8 2026) — including cron-critical ones.
-This repo is the restore point. If something gets pruned, copy it back.
+- `agent-created/` — curated, human-oriented copies of important workflows.
+- `mirror/` — broad deterministic mirror of the active Hermes skills plus the Hermes archive.
 
-## Tier 1 — Cron-Critical (will break scheduled jobs if pruned)
-- weatherAPI-home — daily Bathurst weather → Telegram
-- quickthoughts-daily-sync — daily QT sync to GBrain
-- leisure-music-artist-monitor — music industry monitoring
-- acadian-community-tech — Acadian community briefing
-- research-frontier-stack-tech-review — daily frontier stack tech briefing
-- mardi-en-acadie-newsletter — periodic Acadian newsletter
+The broad mirror is the safety net. The curated layer is the short list worth restoring first.
 
-## Tier 2 — Pinned, Important (breaks workflows if pruned)
-- gbrain-operations — GBrain infra + curator prune safety docs
-- gpt-transfer-report — GPT session transfer pattern
-- note-taking-note-capture-workflow — note capture routing
-- note-capture-workflow — current live note capture skill path/name
-- note-taking-gpt-transfer-report — variant of transfer report
-- software-development-opencode-delegation-pattern — opencode delegation
-- local-browser-accessibility-automation — browser automation
+## Current mirror
 
-## Tier 3 — Agent-Created, Nice to Have
-- frontier-stack-evaluation — research evaluation
-- acadie-sol-website — Acadie.sol site workflow and references
-- community-event-directory-linking — event ↔ directory linking workflow
-- cron-job-reliability — Hermes cron failure / provider-routing notes
-- git-secrets-hygiene — secret exposure verification and remediation
-- hermes-provider-config — provider/local model config sync notes
-- mcp, mcp-mcporter, mcp-native-mcp — MCP tooling
+The generated inventory is recorded in:
 
-## How to Restore
+- `MIRROR_MANIFEST.json` — file-level SHA-256 hashes and source metadata.
+- `MIRROR_MANIFEST.md` — human-readable summary.
 
-1. Find the skill in agent-created/
-2. Copy back to ~/.hermes/skills/ (correct category path)
-3. Ensure created_by: "agent" + pinned: true in .usage.json
-4. Verify: `hermes curator pin <name>`
-5. Check cron jobs that reference it still work
+Run the sync from the repository root:
 
-## Update
+```bash
+python3 scripts/sync_from_hermes.py
+python3 scripts/verify_mirror.py
+```
 
-Run backup after significant skill changes. Cron-critical skills change rarely.
+The sync source is the active Hermes profile at `~/.hermes/skills/`.
 
-Author: MidnightRider.sol — created June 9 2026
+## Recovery
+
+To restore an active skill manually, copy the matching directory from:
+
+```text
+mirror/active/<category>/<skill-name>/
+```
+
+to:
+
+```text
+~/.hermes/skills/<category>/<skill-name>/
+```
+
+Archived skills are under `mirror/archive/`. After restoring a cron-critical skill, verify its path and pin it with Hermes:
+
+```bash
+hermes curator pin <skill-name>
+hermes skills list
+```
+
+Do not restore the entire archive blindly. Prefer the active mirror first, then recover individual archived skills as needed.
+
+## Curated recovery tiers
+
+### Tier 1 — Cron-critical
+
+- `weatherAPI-home`
+- `quickthoughts-daily-sync`
+- `music-artist-monitor`
+- `acadian-community-tech`
+- `frontier-stack-tech-review`
+- `mardi-en-acadie-newsletter`
+
+### Tier 2 — Important workflows
+
+- `gbrain-operations`
+- `gpt-transfer-report`
+- `note-capture-workflow`
+- `opencode-delegation-pattern`
+- `acadie-sol-website`
+- `acadie-sol-gallery`
+- `directory-card-lookup`
+- `directory-draft-intake`
+
+### Tier 3 — Supporting workflows
+
+- `community-event-directory-linking`
+- `cron-job-reliability`
+- `git-secrets-hygiene`
+- `hermes-provider-config`
+- `mcp`
+- `mcporter`
+- `native-mcp`
+- `frontier-stack-evaluation`
+
+## Design choices
+
+- The mirror is generated from the live Hermes profile, not from Git history.
+- Skill matching uses frontmatter `name`, so folder renames do not silently break curated refreshes.
+- Runtime metadata, `.git` directories, `__pycache__`, weather caches, and Python bytecode are excluded.
+- Secrets are not copied from `.env` files or from outside the skills tree.
+- `acadie-sol-gallery` is stored as a normal restorable skill directory rather than a loose note.
+
+## Update policy
+
+Refresh after meaningful skill changes, curator activity, or Hermes upgrades. Review the generated diff before committing. Do not commit credentials, runtime state, or generated caches.
+
+Author: MidnightRider.sol
