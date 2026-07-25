@@ -208,20 +208,23 @@ document.querySelectorAll('.filter-type-btn').forEach(btn => {
 
 ## i18n Pattern
 
-Add filter/search strings to both `en` and `fr` copy objects:
+For a sibling/derivative node, do not inherit the parent node's language pair by accident. Use the node's explicit pair (for example `en` and `tl`), keep English as the hard fallback, and persist only supported language values. A future-language copy table may initially mirror English placeholders, but real Tagalog/public translations must come from the steward.
+
 ```js
-// en
+// en — default
 filterBtn: 'Filters', filterTitle: 'Filters',
 filterRecent: '10 Recent', filterEvents: 'Events',
 filterEntries: 'Entries', filterDrafts: 'Drafts', filterPosts: 'Posts',
 searchPlaceholder: 'Search updates…',
 
-// fr
-filterBtn: 'Filtres', filterTitle: 'Filtres',
-filterRecent: '10 récents', filterEvents: 'Événements',
-filterEntries: 'Entrées', filterDrafts: 'Brouillons', filterPosts: 'Publications',
-searchPlaceholder: 'Rechercher des mises à jour…',
+// tl — prepared, opt-in until steward copy exists
+filterBtn: 'Filters', filterTitle: 'Filters',
+filterRecent: '10 Recent', filterEvents: 'Events',
+filterEntries: 'Entries', filterDrafts: 'Drafts', filterPosts: 'Posts',
+searchPlaceholder: 'Search updates…',
 ```
+
+Audit static DOM labels, shared shell labels, placeholders, result counts, empty states, dynamic renderers, and data fallbacks together. Stale values such as `fr` should resolve to English rather than selecting a removed language.
 
 Wire in `updateStaticCopy()`:
 ```js
@@ -231,6 +234,7 @@ document.querySelectorAll('.filter-type-btn[data-filter="recent"]').forEach(b =>
 const searchInput = document.getElementById('my-search');
 if (searchInput) searchInput.placeholder = c.searchPlaceholder;
 ```
+
 
 ## Fixed Positioning Pitfall
 
@@ -249,6 +253,20 @@ if (searchInput) searchInput.placeholder = c.searchPlaceholder;
 
 This centers via auto-margin instead of transform, keeping the fixed positioning pure.
 
+## Popup Child Fitment Pitfall
+
+Constraining the outer drawer width is not enough. Any child with `width: 100%` plus padding or borders can still overflow unless it uses `border-box`. Apply the sizing contract to the drawer and its controls:
+
+```css
+.drawer,
+.drawer *,
+.drawer-nav a {
+  box-sizing: border-box;
+}
+```
+
+When a screenshot shows buttons extending past the popup edge, inspect child computed geometry—not only the drawer width. Check `width`, `padding-inline`, `border-width`, `min-width`, and `box-sizing` for every nav link, language/theme control, and close button. Re-test the same popup on Home, Search, Directory, About, and Entry routes so page-specific cascade rules do not reintroduce the overflow.
+
 ## Checklist
 
 Before marking a popup/search implementation done:
@@ -259,5 +277,7 @@ Before marking a popup/search implementation done:
 - [ ] Search input: `input` event → update state + toggle clear button + re-render
 - [ ] Search clear: `click` → reset input + state + hide clear + re-render
 - [ ] Filter pills: `data-filter` attribute, `syncFilterBtns()` for active state
-- [ ] i18n: both `en` and `fr` copy strings populated, wired in `updateStaticCopy()`
+- [ ] Popup controls: use `border-box` sizing and verify child bounds against the drawer’s inner box
+- [ ] Cross-route fitment: compare popup geometry on all shared-shell pages, not only the homepage screenshot
+- [ ] i18n: use the node's explicit language pair (for example `en`/`tl` for Manila), with English fallback and no stale parent-language keys
 - [ ] No `transform: translateX(-50%)` on any `position: fixed` element

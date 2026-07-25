@@ -34,6 +34,17 @@ Before changing a failing model route, inspect whether the job is actually doing
 4. Test the backing script directly before updating the cron. Do not use `cronjob run` for a scheduled notification if it would send the user an unwanted duplicate.
 5. `model` and `provider` values retained on a `no_agent: true` job are inert; the script and stdout are what matter.
 
+### Output hygiene for deterministic deliveries
+
+For reminders and other fixed notifications, optimize for scanability rather than scheduler provenance:
+
+1. Inspect Hermes's delivery wrapper before editing the script. The scheduler may add a global header, job ID, divider, and management footer even when the script emits one line.
+2. If the user wants clean output across scheduled updates, set the supported config key with `hermes config set cron.wrap_response false`; do not patch `~/.hermes/config.yaml` through the file patch tool, which intentionally protects security-sensitive config.
+3. Put the attention cue at the beginning of the script's exact stdout (for example, `🐈‍⬛ Feed the cat`). Keep the body to one actionable line unless context is genuinely needed.
+4. Verify the backing script directly and inspect its exit status/output. Avoid `cronjob run` when it would create an unwanted duplicate notification.
+5. The wrapper setting is global, while the script output is job-specific; tell the user explicitly when changing the global setting affects other cron deliveries.
+6. If a gateway restart is considered, do not invoke `hermes gateway restart` from inside the running gateway process. The command is blocked to prevent self-termination; if the scheduler reads config at delivery time, a restart is unnecessary for this setting.
+
 When a model is retired (for example an HTTP 410 / end-of-life response), audit both cron definitions and main configuration: fallback routing plus auxiliary compression, skills, MCP, session-search, and vision routes can preserve the dead dependency.
 
 ### Retired-model audit nuance

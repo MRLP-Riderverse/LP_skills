@@ -1,6 +1,6 @@
 # Hermes Skills Mirror
 
-Generated: `2026-07-17T01:12:00+00:00`
+Generated: `2026-07-25T23:37:48+00:00`
 Source: `/home/midnight/.hermes/skills`
 
 This repository contains a disaster-recovery mirror of the active Hermes skills.
@@ -9,8 +9,8 @@ the `mirror/` layer is the broad deterministic backup.
 
 ## Counts
 
-- Active skill directories: 70
-- Active mirrored files: 430
+- Active skill directories: 71
+- Active mirrored files: 455
 - Archived mirrored files: 445
 - Curated skills refreshed: 21
 

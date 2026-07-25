@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-17T01:12:00+00:00",
+  "generated_at_utc": "2026-07-25T23:37:48+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -18,6 +18,7 @@
     "creative/visual-communication",
     "devops/cron-delta-briefing",
     "devops/cron-job-reliability",
+    "devops/hermes-local-model-operations",
     "devops/hermes-persona-layering",
     "devops/hermes-provider-config",
     "devops/kanban",
@@ -74,7 +75,7 @@
     "websites/acadie-sol-website",
     "yuanbao"
   ],
-  "active_skill_count": 70,
+  "active_skill_count": 71,
   "active_files": [
     {
       "path": "README.md",
@@ -223,8 +224,13 @@
     },
     {
       "path": "community/community-event-directory-linking/SKILL.md",
-      "sha256": "0d5747bfe11c580bc86da951b4239e41f099979ab551a73de00a4ccca14265c7",
-      "bytes": 2755
+      "sha256": "e47fb46253fc7832058bd4b29517f84178eb7ff0535f1a327dccffc99add7d6b",
+      "bytes": 5263
+    },
+    {
+      "path": "community/community-event-directory-linking/references/discord-event-link-parsing.md",
+      "sha256": "13fdd0b69321ac92c96718f6237112be8dfbd855723bde3d93629557b0c19fa8",
+      "bytes": 1456
     },
     {
       "path": "community/community-event-directory-linking/references/event-linking-workflow.md",
@@ -253,8 +259,8 @@
     },
     {
       "path": "community/directory-draft-intake/SKILL.md",
-      "sha256": "349f2b8941e2af85b592707f6e81521e801347085d19c7125796075ffa0f0f35",
-      "bytes": 25311
+      "sha256": "621f6bac2a0117da1bd163c9b453465110655abd1cc93ffda25906fa78c733a9",
+      "bytes": 31000
     },
     {
       "path": "community/directory-draft-intake/references/batch-cleanup-and-relation-mapping.md",
@@ -307,9 +313,24 @@
       "bytes": 1723
     },
     {
+      "path": "community/directory-draft-intake/references/manila-intake-routing.md",
+      "sha256": "8d1fa58c455790b426185ba422ff125d1a8350fb0cd585200a314e9130e9c739",
+      "bytes": 3312
+    },
+    {
+      "path": "community/directory-draft-intake/references/manila-promotion-release-pattern.md",
+      "sha256": "c86fe9597cade0adfb5a921c4bdd643e342bfa86f99ae702ccbf514b99d990e4",
+      "bytes": 2321
+    },
+    {
       "path": "community/directory-draft-intake/references/official-promotion-workflow.md",
       "sha256": "2c91af4a25b4d7172392c3556d083be050aae25646befca26bafee2e0395062f",
       "bytes": 2706
+    },
+    {
+      "path": "community/directory-draft-intake/references/pre-publish-review.md",
+      "sha256": "39913e9c1f49a23beb3df858cc901d6a90e77cf97d1af83a140f1992c3d36b08",
+      "bytes": 2406
     },
     {
       "path": "community/directory-draft-intake/references/promotion-slug-location-id-notes.md",
@@ -563,8 +584,8 @@
     },
     {
       "path": "devops/cron-job-reliability/SKILL.md",
-      "sha256": "7236d14da2ce660485a07985daf7d64a78a1000cba281c1c3a4e4170c6b9b1e7",
-      "bytes": 4290
+      "sha256": "fcb83c977bf9f1c0ea7c9770d4df1bc18ca9ef7311e7ad362f5f98ab9d4da7c4",
+      "bytes": 5649
     },
     {
       "path": "devops/cron-job-reliability/references/provider-routing-notes.md",
@@ -575,6 +596,16 @@
       "path": "devops/cron-job-reliability/references/retired-model-and-no-agent-migration.md",
       "sha256": "40758a39d1876f3e7a887dd188f0f5b7efc413a87c14b9537f637dc508ffca8d",
       "bytes": 1555
+    },
+    {
+      "path": "devops/hermes-local-model-operations/SKILL.md",
+      "sha256": "458d27e7a29431105bcb98fc0c87fae3eb51785d43faf17e18ec90a059d2c84a",
+      "bytes": 7701
+    },
+    {
+      "path": "devops/hermes-local-model-operations/references/ollama-hermes-context-and-test-notes.md",
+      "sha256": "aadbe18c17eb2a44c2c98f69c475b2c8e481dc4d586f6d7966ff2e29e7c1d1c1",
+      "bytes": 2702
     },
     {
       "path": "devops/hermes-persona-layering/SKILL.md",
@@ -588,8 +619,8 @@
     },
     {
       "path": "devops/hermes-provider-config/SKILL.md",
-      "sha256": "9bb185a071d417d62f44c303656c146406c8e92d3b6d3ec4a4f69ac63b92a3f8",
-      "bytes": 5362
+      "sha256": "ae92b528918c0ce8195518575ee27268b36372970c7db21cb199d3588bdc949a",
+      "bytes": 8070
     },
     {
       "path": "devops/hermes-provider-config/references/ollama-config-shape.md",
@@ -1233,8 +1264,8 @@
     },
     {
       "path": "productivity/browser-qa-automation/SKILL.md",
-      "sha256": "6b5aeb044295f8aca28143dbeaa63338aee9603896814c7ba05aba7c7dadd128",
-      "bytes": 4328
+      "sha256": "13e1b6e77db95d72f3583e755f564abfd7659994c4fd05a2c967431596d2710a",
+      "bytes": 5624
     },
     {
       "path": "productivity/browser-qa-automation/references/headless-chrome-cdp.md",
@@ -1338,13 +1369,18 @@
     },
     {
       "path": "research/adaptive-research-system/SKILL.md",
-      "sha256": "e6dd86bc573ca5c5ad2c66608a90f66cec154e23c3a4e14ac9815c5c96a92fb4",
-      "bytes": 10240
+      "sha256": "a122add6a14ab60c63c5a8a75595a6cfdd2c58afff7f96aaa61627a62a67e55b",
+      "bytes": 11663
     },
     {
       "path": "research/adaptive-research-system/references/2026-07-13-nb-pay-transparency-act.md",
       "sha256": "a6fe36b313fea8257de14d390822ada20fc5d9ce09d7bfccbe88f92322e1e289",
       "bytes": 2159
+    },
+    {
+      "path": "research/adaptive-research-system/references/community-sentiment-recon.md",
+      "sha256": "7adff05908cafb8e781ff829b47b4ae425cada12ecbf433c92df7e99d7957edc",
+      "bytes": 3144
     },
     {
       "path": "research/adaptive-research-system/references/crypto-weekly-briefing.md",
@@ -1378,8 +1414,8 @@
     },
     {
       "path": "research/delta-briefing-ops/SKILL.md",
-      "sha256": "abee4e294cfdf79cdbc22b177cf37a12dbe66f90f28daaddcb6eac8c724c607c",
-      "bytes": 5325
+      "sha256": "ccd518d0a07c76effe443f538c4c5086b8aa7f068cfaf24ae4c18ae11b128062",
+      "bytes": 6818
     },
     {
       "path": "research/delta-briefing-ops/references/2026-07-06-session-notes.md",
@@ -1395,6 +1431,26 @@
       "path": "research/delta-briefing-ops/references/2026-07-15-frontier-stack-dedup-notes.md",
       "sha256": "e591d31511797eefd45b0760417f1cfcf60e09c1b405839d72f760c8ed87ade1",
       "bytes": 2886
+    },
+    {
+      "path": "research/delta-briefing-ops/references/2026-07-18-frontier-dedup-session-notes.md",
+      "sha256": "14614161cf297d117342e827498c6686d1805809c3740e5e3d638dd1473a6dec",
+      "bytes": 1476
+    },
+    {
+      "path": "research/delta-briefing-ops/references/2026-07-19-frontier-delta-notes.md",
+      "sha256": "09b369e50d7537b4ee3af28c034d60ec0d257071e94c97f35dcbccb5290a289d",
+      "bytes": 1615
+    },
+    {
+      "path": "research/delta-briefing-ops/references/2026-07-20-frontier-delta-notes.md",
+      "sha256": "bb54ead19b049a65f85998620ab02d4e7e99f7391cea7a4fc54d8b6470fe2922",
+      "bytes": 1751
+    },
+    {
+      "path": "research/delta-briefing-ops/references/2026-07-22-frontier-delta-notes.md",
+      "sha256": "4b79d5f4e0e47668931b11eb5b24efcbf24d26b9259470d213b462ca3b72f197",
+      "bytes": 1424
     },
     {
       "path": "research/delta-briefing-ops/references/crypto-weekly-briefing-2026-07-06.md",
@@ -1898,8 +1954,13 @@
     },
     {
       "path": "software-development/software-dev-workflow/SKILL.md",
-      "sha256": "253f69a66ce65d38c9965a1b0520003e42cde2c94d36732ec2ff385ca1f0e83e",
-      "bytes": 22759
+      "sha256": "67c3a5f4a4f89a24a42b45a8296ebc173a10d277ef8dbf85ff392699ff889e49",
+      "bytes": 26363
+    },
+    {
+      "path": "software-development/software-dev-workflow/references/acadie-directory-content-authority.md",
+      "sha256": "7782cef4226d8161a52829ef0c5495a55a160b5d16896adf447af7deb2b81d3f",
+      "bytes": 3157
     },
     {
       "path": "software-development/software-dev-workflow/references/acadie-directory-entry-contract.md",
@@ -1932,9 +1993,19 @@
       "bytes": 1264
     },
     {
+      "path": "software-development/software-dev-workflow/references/layered-directory-card-ux.md",
+      "sha256": "908ec4eba689b3a23eb9b84a9cd9530ab0eecae39b191badfc90f9725d96b134",
+      "bytes": 1777
+    },
+    {
       "path": "software-development/software-dev-workflow/references/menu-drawer-overlay-regressions.md",
       "sha256": "346b3298829d8a08060ad534e4f84e0b00834090e67aaf6d4be7acc3eaba063e",
       "bytes": 1735
+    },
+    {
+      "path": "software-development/software-dev-workflow/references/multi-group-directory-source-routing.md",
+      "sha256": "ea652f436ac50fba947d1a776af15859a8b587433ff77878f4fcf62931999f6a",
+      "bytes": 2494
     },
     {
       "path": "software-development/software-dev-workflow/references/permanent-shared-dock-and-memorial-page.md",
@@ -2038,8 +2109,8 @@
     },
     {
       "path": "websites/acadie-popup-menu-maker/SKILL.md",
-      "sha256": "e85c6c59a43690ce18516160f3ce2097a168a29279c2afedb01dd9d13be6577f",
-      "bytes": 9879
+      "sha256": "8e68bf6c8918a640bcd1b1233bbc1e76e6292c49dafb004c7dd7d2a8a30c8003",
+      "bytes": 11435
     },
     {
       "path": "websites/acadie-sol-gallery/SKILL.md",
@@ -2053,8 +2124,8 @@
     },
     {
       "path": "websites/acadie-sol-website/SKILL.md",
-      "sha256": "529a5d88ec115a8fa3dd48071dcb22b40ed7d15708a9c51bf97c77f0cf0f8999",
-      "bytes": 46552
+      "sha256": "26715c3318b25a3822dcd3b3cf5691f5eb4ad96feb4eaefb20a9a570cda32911",
+      "bytes": 62211
     },
     {
       "path": "websites/acadie-sol-website/references/acadie-sol-contrast-token-audit.md",
@@ -2075,6 +2146,36 @@
       "path": "websites/acadie-sol-website/references/dedicated-search-surface.md",
       "sha256": "a172ae91f1d3ae66d648b7693a2b83ede79931711cdf831df007d2c0b9a7f043",
       "bytes": 3418
+    },
+    {
+      "path": "websites/acadie-sol-website/references/derivative-directory-projects.md",
+      "sha256": "54c846c79a5aa18197fdcb32a3b40fdf3e93f7821d7a83473a69731308cd8ee7",
+      "bytes": 2375
+    },
+    {
+      "path": "websites/acadie-sol-website/references/derivative-node-mood-and-menu-pass.md",
+      "sha256": "c270be2d99abee5919e3e087c7f0638cbb03913e7f556c76d0fc1a1627f3952c",
+      "bytes": 3187
+    },
+    {
+      "path": "websites/acadie-sol-website/references/derivative-pages-launch-and-provenance.md",
+      "sha256": "5d021015c44f49d163da716be66e5eed55cbf244da1cc99bf5042ae856dcf20a",
+      "bytes": 2476
+    },
+    {
+      "path": "websites/acadie-sol-website/references/derivative-search-intent-and-locale.md",
+      "sha256": "86ee04ae7c43a2633ec23e98aaaf161e7440bccf9adb0d8da12c6cdbd08d4216",
+      "bytes": 2451
+    },
+    {
+      "path": "websites/acadie-sol-website/references/directory-prose-rendering-and-route-verification.md",
+      "sha256": "4e3757951a6cd8c4d7cd5d4ec8c2e4557d3227b191e7f3e949688ae6782413e4",
+      "bytes": 2977
+    },
+    {
+      "path": "websites/acadie-sol-website/references/directory-prose-source-of-truth.md",
+      "sha256": "4ae232ead993f361088677cf3e22e073cd73b4fbd4b4ff3929283de289bf7322",
+      "bytes": 2116
     },
     {
       "path": "websites/acadie-sol-website/references/directory-search-ui.md",
@@ -2122,6 +2223,11 @@
       "bytes": 3845
     },
     {
+      "path": "websites/acadie-sol-website/references/homepage-card-composition-and-feelout.md",
+      "sha256": "dea2158ae9a0436bc4f37279e8299b08ff8a9e5160c3b4ee85a6214ea68f4ad6",
+      "bytes": 3037
+    },
+    {
       "path": "websites/acadie-sol-website/references/homepage-events-ui-patterns.md",
       "sha256": "b006cbc3e5ba85e81e4fd3e73fda0ebbcaebbe4f3d342cb75c210cbfa8d9c7dd",
       "bytes": 2625
@@ -2137,6 +2243,11 @@
       "bytes": 3693
     },
     {
+      "path": "websites/acadie-sol-website/references/homepage-media-card-and-gif.md",
+      "sha256": "c6e0223578b96fcd0e9bd1e23ef0ce11389613e9bbeea992ce084eed97783b99",
+      "bytes": 1900
+    },
+    {
       "path": "websites/acadie-sol-website/references/homepage-signal-carousel.md",
       "sha256": "f72f6343c65274fee5734d938a1facc7f7fe246e709d9df2271abf6cec120780",
       "bytes": 3388
@@ -2145,6 +2256,16 @@
       "path": "websites/acadie-sol-website/references/homepage-simplification-and-export-verification.md",
       "sha256": "b0975fca6579958f1294cb317d437eb364cc723a81748f92bb0324039b8fe1d9",
       "bytes": 5782
+    },
+    {
+      "path": "websites/acadie-sol-website/references/identity-correction-and-compact-provenance.md",
+      "sha256": "b73231ebb5c0d93e83bfe0ab83ccc380887cc8248162e4df1d94e8ee48cb3477",
+      "bytes": 2316
+    },
+    {
+      "path": "websites/acadie-sol-website/references/identity-entry-bullets-and-link-rendering.md",
+      "sha256": "f8f23bc2c0178baa907fac996e48134b124c844f427c378d15dcf61226e9c88b",
+      "bytes": 2044
     },
     {
       "path": "websites/acadie-sol-website/references/mobile-home-discovery-deck.md",
@@ -2175,6 +2296,11 @@
       "path": "websites/acadie-sol-website/references/public-record-refresh-and-link-routing.md",
       "sha256": "3ea43fb49dc31ee01c1cb2e4739f98f521b518c55c48f84429c6a99d02da3c81",
       "bytes": 1842
+    },
+    {
+      "path": "websites/acadie-sol-website/references/qr-share-surface-pattern.md",
+      "sha256": "8a333f80e3960ffc082ccba59652b8d228b0590c756a0ed936f8df0e68b0ba4c",
+      "bytes": 1095
     },
     {
       "path": "websites/acadie-sol-website/references/search-bar-bottom-glue.md",

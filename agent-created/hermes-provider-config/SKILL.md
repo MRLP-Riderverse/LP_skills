@@ -112,6 +112,45 @@ print(f"Synced {len(actual)} models to config")
 - `references/ollama-config-shape.md` — config YAML shape, session drift example, default model validation notes
 - `scripts/ollama-sync.py` — standalone sync script (`--apply` to write, dry-run by default)
 
+## Local-model readiness and capability verification
+
+Before testing or routing a local model, use `ollama ps` first. Run model tests **serially**, not in parallel, to avoid VRAM/CPU contention. After each Hermes invocation:
+
+1. Check `ollama ps`.
+2. If the model is still actively working, wait for the Hermes process to finish.
+3. If Hermes has returned but Ollama keeps the model resident under its keep-alive window, explicitly run `ollama stop <model>` before the next test.
+4. Re-check `ollama ps` and record the Hermes exit code and session ID.
+
+Do not mistake Ollama residency after a completed request for a still-running generation. `UNTIL` indicates keep-alive, while the Hermes process state determines whether work is active.
+
+A useful three-part smoke test for a newly installed model is:
+
+- deterministic arithmetic or factual accuracy;
+- strict structured output with Unicode and ordering requirements;
+- actual Hermes tool use, such as a terminal command whose stdout must be reproduced exactly.
+
+A successful short tool test proves provider connectivity and basic tool-call compatibility, but not long-session reliability.
+
+### Effective context is separate from model capability
+
+`ollama show <model>` reports the model's maximum context, while `ollama ps` reports the context actually used by the running server. Ollama may default to only 4096 tokens even when the model supports 64K or more. For Hermes tool-calling workflows, configure and verify an effective context of at least 64K where hardware permits, and set Hermes' `model.context_length` to the true configured value. Otherwise, classify the model as suitable only for short, bounded tasks; long Telegram sessions with Hermes' system prompt and tool schemas may overflow or degrade.
+
+### Telegram and explicit provider selection
+
+Hermes' gateway uses the same provider-agnostic model switching path as the CLI. For a user-defined provider, use the provider flag rather than colon syntax when testing or switching:
+
+```text
+/model <local-model> --provider <provider-key>
+```
+
+For example:
+
+```text
+/model ornith:9b --provider ollama-launch
+```
+
+A model can work with `hermes chat --provider ... --model ...` even if it is missing from the provider's static `models:` list, but it may not appear in the Telegram/CLI picker. Add newly installed chat models to the list, then start a fresh session or restart the gateway so the picker reloads configuration. Local models are not automatically mixed with the default cloud model on every turn; explicit switching, delegation, or routing configuration is required.
+
 ## Verification
 
 After any config change:
@@ -119,3 +158,4 @@ After any config change:
 1. `python3 -c "import yaml; c=yaml.safe_load(open(pathlib.Path.home()/'.hermes'/'config.yaml')); print(c['providers']['<key>']['models'])"` — confirm list parses
 2. `/reset` or new session — config changes require a fresh session to appear in model picker
 3. `hermes model` — verify the Ollama provider shows the correct models
+4. `ollama ps` during a request — confirm the expected effective context, not only the model's advertised maximum

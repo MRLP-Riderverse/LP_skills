@@ -101,6 +101,16 @@ Use this approach when:
 3. **Separate what changes**: User interests vs evaluation framework vs output format
 4. **Save user preferences**: In memory or skill notes for future reference
 
+### For Public-Community Sentiment Recon:
+- Treat a request for recent testimony, public sentiment, or community experience as a time-bounded evidence-recon task, not a generic product comparison.
+- Establish the exact cutoff date before searching and report the window explicitly in the final answer.
+- Prefer first-person posts from the platform's own public community/forum, with post date, author, verbatim excerpt, and permalink. Separate testimony from vendor marketing, reviews, and generic explainers.
+- Use platform-native JSON/RSS/forum endpoints before broad search engines. For Discourse communities, probe `/latest.json`, topic `.json` endpoints, and search JSON; these often expose current posts even when search indexing is poor.
+- If one community is public and another is mainly private/Discord-based, say that the evidence asymmetry limits sentiment conclusions. "No qualifying public testimony found" is not the same as negative sentiment.
+- Include a confidence label per community and distinguish observed sentiment, absence of evidence, and structural/community-visibility signals.
+- When a source is blocked or unavailable, try a different authoritative route once, then disclose the limitation rather than filling the gap with stale material. Do not silently widen the time window.
+- See `references/community-sentiment-recon.md` for the source-selection rubric and direct-endpoint probing recipe.
+
 ### For Novelty-First Digests:
 - When the user asks for a vague "highlights this week" or "what might I not know" report, do a local novelty pass before writing the summary.
 - Search the user's local notes first, then GBrain, using broad keywords and nearby synonyms.

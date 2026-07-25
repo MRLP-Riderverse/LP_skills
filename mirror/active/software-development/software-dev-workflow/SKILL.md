@@ -182,7 +182,11 @@ When a website page renders from generated JSON rather than direct content files
 - Multilingual/public-facing prose belongs in a localized field like `summary`.
 - Slugs and foreign keys are different: the folder slug identifies the entry, while `location_id` should only change with its dependent location/event refs.
 
-**Use this pattern when:**
+### Source-authority and generated-artifact review
+
+For directory rendering bugs, perform a source→export→payload→DOM trace before recommending changes. Read one representative Markdown entry and its metadata side by side, then inspect exporter precedence and renderer field usage. Explicitly classify each field as authored prose, structured taxonomy, contact/public data, or routing state. Do not call category/tag output “inferred” until the exporter proves it derives those fields; metadata may already contain the classification. If Markdown and metadata disagree, preserve the project’s declared editorial authority and add a regression fixture for the disagreement. Verify the actual generated/deployed HTML separately: a local artifact may already contain a routing fix while an older served artifact still links to the introductory route rather than the browse hash.
+
+Reference: see `references/acadie-directory-content-authority.md` for the reusable audit sequence, public-data contract, hash-route checks, and evidence format.
 - adding "recently added" / "latest items" / chronological views
 - adding cross-links from dashboard widgets into rendered cards
 - the page needs ordering that the current payload does not encode explicitly
@@ -194,8 +198,13 @@ When a website page renders from generated JSON rather than direct content files
 4. Verify both layers:
    - exporter: compile/syntax check if applicable and confirm the new fields exist in generated JSON
    - renderer: confirm the new UI markup and logic exist, and that links/anchors resolve to the intended card or section
-5. For public-facing static mirrors, run a copy/UX pass that strips internal data-model language from the rendered UI. Do not expose implementation labels like `source repo`, `generated from`, `published`, `active`, `placeholder`, or `event feed` unless they are explicitly visitor-facing.
-6. For website repos that consume generated JSON from a source repo, treat source edits, export regeneration, and rendered-page verification as one unit of work. If the user reports missing content, check the source record first, re-export the payloads, then confirm the public assets and rendered page both contain the item.
+5. For public-facing static mirrors, run a copy/UX pass that strips internal data-model language from the rendered UI. Do not expose implementation labels like `source repo`, `generated from`, `published`, `active`, `placeholder`, `event feed`, or backend categories such as `project` unless they are explicitly visitor-facing.
+6. For layered directory/contact-card UX, define the information contract before patching markup:
+   - collapsed/quick card: identity plus one concise short-description line;
+   - expanded card: continuation/details and fast-access public contact/social rows, without repeating the collapsed copy;
+   - full page: richer public detail template, still omitting internal tags/categories.
+   Keep tags, categories, verification state, and other routing/filter fields in generated payloads for backend discovery, but do not render them as public chips or labels unless the user explicitly wants them visible. If a description needs deliberate line hierarchy, encode a stable separator in the canonical source (for example ` — `), split it in the renderer, and verify line 1/line 2 behavior at each layer.
+7. For website repos that consume generated JSON from a source repo, treat source edits, export regeneration, and rendered-page verification as one unit of work. If the user reports missing content, check the source record first, re-export the payloads, then confirm the public assets and rendered page both contain the item.
 7. When events or tabs disagree, check whether the split is an intentional computed-status filter (`all` vs `upcoming`/`active`) before chasing routing bugs.
 8. For page transitions that briefly reveal shell ghosts, add a route-pending cloak (`html.route-pending`) or equivalent loading gate and remove it in both success and failure paths after data resolves.
 9. For mobile public pages, verify the first screen before clicks. Overlapping intents such as discover/search/explore should usually collapse into one clear search/browse path with optional lenses.
@@ -215,6 +224,22 @@ Reference: see `references/permanent-shared-dock-and-memorial-page.md` for the p
 Reference: see `references/menu-drawer-overlay-regressions.md` for stale drawer-item, duplicate-close, and shared-dock regression checks.
 Reference: see `references/static-site-audit-checklist.md` for a reusable checklist covering URL validation, hash hardening, class/selector drift, and dark-mode coherence on public static sites.
 Reference: see `references/acadie-directory-export-routing.md` for source→export→render verification, route-pending cloaking, and search/tab split pitfalls.
+Reference: see `references/acadie-directory-content-authority.md` for Markdown-versus-metadata precedence, public-data preservation, generated-artifact checks, and hash-route verification.
+Reference: see `references/layered-directory-card-ux.md` for the collapsed/expanded/full-page contact-card contract and metadata-visibility audit.
+Reference: see `references/multi-group-directory-source-routing.md` for multi-group intake routing, derivative boundaries, handoff ergonomics, and the dry-test matrix for source→route→export→render directory systems.
+
+### Multi-group directory derivatives
+
+When creating an independent directory derivative from an existing static directory system, establish the source-routing contract before building public UI:
+
+1. Give the project one top-level `inbox/` so nontechnical stewards have one obvious drop zone.
+2. Require or generate an explicit group marker such as `Group: edm`; use inference only for unmistakable signals.
+3. Quarantine ambiguous drafts in `inbox/needs-review/` rather than guessing.
+4. Route drafts into `<group>/inbox/`, promote canonical records into `<group>/entries/<slug>/`, and export one group root at a time.
+5. Keep the site renderer unaware of group membership; it renders generated payloads only.
+6. Adapt copied fixtures, branding, language fields, geography defaults, tests, and fallback logic. Parent data leakage is a derivative-boundary failure even if the copied code still passes.
+7. Run the dry-test matrix in the reference before committing or creating public remotes.
+8. For a nontechnical steward, prefer a deterministic entry-intake skill that wraps routing, preview, validation, promotion, and export while leaving commit/push behind explicit approval.
 Reference: see `references/acadie-search-filter-overlay.md` for right-aligned shortcut pills and modal filter-sheet behavior on the Acadie.sol search surface.
 Reference: see `references/acadie-mobile-search-surface-followups.md` for Enter-to-blur search, right-aligned full-page links, and hidden-drawer hitbox fixes.
 

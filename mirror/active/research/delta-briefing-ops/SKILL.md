@@ -25,7 +25,10 @@ Use this skill for scheduled or recurring technology briefs that must be **delta
 ## Workflow
 1. **Find the previous brief**
    - Use session search for the briefing topic.
+   - If search returns an unrelated conversational session or misses cron runs, use session browse (no query) to locate the newest cron sessions by title, then read the relevant sessions directly.
    - Open the most recent relevant session and read around the anchored brief message.
+   - A cron session containing only the user prompt is a failed/empty run, not a delivered brief; skip it and inspect the newest session containing assistant output.
+   - Read the last **three delivered briefs**, not merely the last three job attempts, before filtering.
    - Do not trust the session title alone; the actual delivered brief can be embedded in a later maintenance/debug session.
    - Treat the delivered brief as the source of truth for dedup, not the existence of a generated-but-not-delivered draft.
 
@@ -41,7 +44,9 @@ Use this skill for scheduled or recurring technology briefs that must be **delta
    - GitHub commits when releases lag
    - Article pages for context after the dated item is confirmed
    - Homepage scan only as a fallback
+   - If web search/extraction is unavailable, fall back to direct HTTPS retrieval of canonical feeds and GitHub REST endpoints; save responses before parsing. Backend failure is not source silence.
    - For sources with sparse output, prefer a real silence over widening the window invisibly.
+   - For x402 and other no-release projects, group related commits into one dated delta rather than listing commit noise.
 
 4. **Filter hard**
    - Discard items already covered in the last 3 briefs.
@@ -80,12 +85,16 @@ If there is no meaningful delta across all sources:
 - Do not duplicate sections in multiple languages.
 - Do not rely on alias resolution for tools/skills; use the canonical skill name when a tool requires one.
 - Treat provider throttles during synthesis as a runtime issue, not a source failure: retry once, then simplify or split collection vs synthesis.
-- If the previous brief is embedded in a later debug session, use the message window around the anchor to recover it.
+- Verify every cited URL is the exact canonical URL actually fetched, especially GitHub commit URLs and full SHAs; never reconstruct or abbreviate a hash from memory.
+- Read the live UTC date from the system before establishing the window; do not infer today from the last briefing timestamp.
 
 ## Support files
 - `references/2026-07-06-session-notes.md` — latest probe notes, dedup retrieval quirks, and source deltas.
 - `references/2026-07-11-frontier-stack-probe-notes.md` — fresh source-specific notes: Solana RSS, Agave prerelease labeling, Ollama RCs, LangGraph CLI vs core, x402 PR-body-first verification, and Simon cloud/local boundary signals.
 - `references/2026-07-15-frontier-stack-dedup-notes.md` — current verified source map, dated feed endpoints, and dedup lessons from the July 15 delta run.
+- `references/2026-07-18-frontier-dedup-session-notes.md` — cron-session fallback retrieval, delivered-vs-empty run distinction, and current source-probing lessons.
+- See `references/2026-07-19-frontier-delta-notes.md` for the latest session retrieval fallback, sparse-commit release verification, and bounded-execution synthesis pattern.
+- See `references/2026-07-22-frontier-delta-notes.md` for the latest cron-artifact dedup fallback, moved-repository verification, RC-to-stable status handling, and noise filtering lessons.
 - `references/crypto-weekly-briefing-2026-07-13.md` — source map and endpoint notes for Ethereum / Bitcoin / L2 weekly briefings (feeds, release notes, TVL APIs, and repo scans).
 
 ## Relationship to other skills

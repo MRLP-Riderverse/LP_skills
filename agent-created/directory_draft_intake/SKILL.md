@@ -222,15 +222,17 @@ This is especially useful for restaurant chains, campuses, libraries, and waterf
 8. Only add extra admin notes when there is a real follow-up or verification point worth carrying.
 9. Write the draft into `inbox/` without waiting for more fields.
 
-## Batch release workflow
+### Batch release workflow
 
 Use this when the user follows draft capture with commands like `commit`, `push`, or `export to site`.
 
 1. Commit the new inbox drafts in `acadie_sol_directory`.
 2. Push `acadie_sol_directory` to `origin/main`.
-3. Run `scripts/export_to_site.py` from `acadie_sol_directory`.
-4. Commit the updated `acadie_sol/assets/directory-data.json` in `acadie_sol`.
-5. Push `acadie_sol` to `origin/main`.
+3. Run `scripts/export_to_site.py --all --site ~/ExoCortex/websites/projects/acadie_sol` from `acadie_sol_directory`. The `--all` mode is important: it refreshes the full public payload chain, and inbox drafts should appear in `assets/directory-data.json` as `Draft: <Name>` records rather than being silently treated as clean entries.
+4. Verify the generated payload before touching the site repo: confirm the expected `entry_count`, `draft_count`, exact draft titles/slugs, descriptions, categories, area, and public-data/source fields. Do not hand-edit generated JSON.
+5. Commit the updated `acadie.sol/assets/directory-data.json` plus any intentionally requested site changes (for example homepage metadata) in `acadie.sol`.
+6. Push `acadie.sol` to `origin/main`.
+7. Verify both local `HEAD` values equal their remote `origin/main` values. If Pages deployment is triggered, wait for the workflow tied to the pushed site SHA to complete successfully, then fetch the live homepage and `assets/directory-data.json` with a cache-busting query and confirm HTTP 200 plus the exact metadata/draft markers.
 
 Do not stop after the draft exists if the user asked for release actions too.
 
@@ -302,6 +304,21 @@ A later pass can parse the notes into cleaner structure such as:
 
 That parsing is intentionally postponed.
 
+## Pre-publish review pass
+
+Before committing or pushing a batch that promotes drafts alongside existing official entries, pause for a content review rather than treating routed drafts as publish-ready. Inspect the generated payload in memory or with the exporter’s stdout mode and report the current published/draft counts. Review each description as a card-level one-liner: keep it readable, concrete, and within the schema’s `short_description` limit (currently 160 characters where that schema applies). For identity cards, community projects, and creator/steward records, prefer one compact sentence or short prose paragraph over a bullet-list description; reserve bullets for genuinely scannable public notes. The exporter may collapse Markdown whitespace, so apparent paragraph breaks are not a reliable card-layout control; improve dense copy by rewriting the sentence, not by adding line breaks.
+
+The source `entry.md` is canonical prose, but the current static Acadie renderer primarily consumes the generated JSON payload and does not automatically render arbitrary Markdown links or every source section. Treat source-level Markdown as preservation, not proof of a clickable public link. During promotion verification, inspect the generated item fields and the actual entry-page renderer: confirm that any link the user expects to click is represented in a renderer-supported structured field (currently contact `website`, `address`, `phone`, or `email`, each with its own label/action behavior), or explicitly record it as a follow-up renderer enhancement. Do not claim a source Markdown link is live-clickable without checking the deployed page.
+
+Normalize schema-facing fields before promotion:
+- choose one allowed canonical category; do not publish slash-combined values such as `venue / collective`
+- standardize area/location punctuation across the batch
+- keep uncertain addresses, roving locations, and unresolved relationship hints cautious and visibly labeled rather than presenting guesses as facts
+- keep event recency notes separate from the durable description
+- preserve rich scene language in tags or full notes when it does not belong in the card one-liner
+
+Do not push while the entries are still only drafts unless the user explicitly wants draft previews released. The review should end with proposed copy and concrete field changes, then wait for approval before editing/promotion when the user asked to review first. Use `references/pre-publish-review.md` for the repeatable checklist and the Manila EDM router-root correction documented in the 2026-07 review.
+
 ## Official promotion workflow
 
 When the user asks to promote a draft into a proper entry, switch from intake mode to promotion mode:
@@ -321,7 +338,21 @@ When the user asks to promote a draft into a proper entry, switch from intake mo
 - for the two-repo GitHub Pages flow, commit/push the directory repo first, then commit/push the generated site payload and verify the live Pages payload
 - see `references/bulk-promotion-validation.md` for the deterministic bulk-promotion checklist and validation script
 
-See `references/official-promotion-workflow.md`, `references/promotion-slug-location-id-notes.md`, `templates/official-entry.md`, and `templates/official-meta.json`.
+See `references/official-promotion-workflow.md`, `references/promotion-slug-location-id-notes.md`, `references/pre-publish-review.md`, `references/manila-promotion-release-pattern.md`, `templates/official-entry.md`, and `templates/official-meta.json`.
+
+### Derivative-node promotion release pattern
+
+For a derivative node with a separate source repository and GitHub Pages site repository, treat promotion as one release unit:
+
+1. Inspect each inbox draft and decide the canonical public category before moving it. Normalize draft-only or slash-combined categories to an allowed schema value; do not export values such as `venue / collective` or `collective` when the schema does not allow them.
+2. Create `entries/<slug>/entry.md` and `meta.json` from the draft. Keep the public card description in `meta.json.short_description` and keep it within the schema limit (currently 160 characters); preserve richer scene/context prose in `entry.md` notes.
+3. Put relationships in one canonical place. If `meta.json.related` is populated, do not also add a `## Related places` section to `entry.md`, because the exporter concatenates both and produces duplicate relationship values.
+4. Remove the replaced `inbox/<slug>.md` draft only after the canonical entry exists. This prevents duplicate preview + published records.
+5. Run the exporter with `--stdout` first, then run the site export. Assert `draft_count: 0`, the expected `published_count`, unique slugs, all statuses `published`, and card descriptions within the schema limit. Run the source tests and `git diff --check` before staging.
+6. Commit and push the source repository first. Then selectively stage the generated site payload, commit, and push the site repository. Verify both local HEADs equal their remote branch SHAs.
+7. Wait for the Pages deployment and fetch the deployed `assets/directory-data.json` with a cache-busting query. A successful push is not sufficient proof; confirm the live payload contains the promoted slugs and the expected published/draft counts, and check the key HTML routes return HTTP 200.
+
+The repeatable commands and validation shape are captured in `references/manila-promotion-release-pattern.md`.
 
 When the user gives UX feedback on a promoted/proper entry, treat it as schema and renderer calibration, not just copyediting. For the main quick-search page:
 
@@ -437,6 +468,7 @@ See `references/capture-confirmation-note.md` for the session-specific reminder.
 - `references/export-parser-quirks.md` — exporter-recognized headings, related-places handling, and a common heading pitfall
 - `references/contact-action-links.md` — how structured phone/address/email fields become tap targets in the public renderer
 - `references/official-promotion-workflow.md` — draft-to-official-entry promotion threshold, verification, and two-repo publish sequence
+- `references/manila-intake-routing.md` — explicit-root inbox routing, creator identity normalization, and two-repository release sequence
 - `references/bulk-promotion-validation.md` — deterministic checklist for promoting many inbox drafts at once, including French summaries, category normalization, duplicate-slug checks, and export validation
 - `references/public-directory-quick-card-ux.md` — main directory quick-card UX rules: separate drafts, avoid duplicate tags/location/relations, keep rich material for full pages
 - `templates/official-entry.md` — starter `entry.md` for proper entries

@@ -67,6 +67,14 @@ This subsection is the home for shared UI shell consistency and repeated chrome 
 - Confirm no new console errors appear.
 - Confirm the same interaction works across the relevant pages or states.
 
+## Rendered-data and shared-shell regressions
+
+When a site exports both normalized fields and richer `public_data`, do not assume the payload itself is wrong when cards show repeated Address/Hours/Website rows. Inspect the renderer's row assembly first: build the canonical detail rows, parse supplemental public rows, and deduplicate by normalized `(label, value)` before emitting HTML. Preserve the supplemental payload for search/discovery and future views; suppress only duplicate presentation.
+
+For shared overlay typography, inspect the page-local `body` font declarations before changing the menu markup. A shared drawer that uses `font: inherit` can legitimately render in different fonts when one page declares a body font and another leaves the browser default. Give shared chrome an explicit font-family in the shared shell stylesheet, including descendants, controls, and launchers, then compare the same menu on every affected route.
+
+Use a deterministic payload fixture check alongside browser verification: for each rendered item, assert no duplicate normalized label/value pairs survive. If browser automation is unavailable, report that limitation clearly and still verify script syntax, payload behavior, whitespace, and git state without claiming a live click-through passed.
+
 ## Notes
 
 This umbrella replaces narrower browser QA helpers and should be the first stop for exploratory browser testing, accessibility-guided interactions, and local-desktop browser control.
