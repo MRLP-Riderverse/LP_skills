@@ -1,14 +1,14 @@
 {
-  "generated_at_utc": "2026-07-25T23:37:48+00:00",
+  "generated_at_utc": "2026-08-03T22:47:01+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
+    "autonomous-ai-agents/computer-use",
     "autonomous-ai-agents/hermes-agent",
     "community/acadian-community-tech",
     "community/community-event-directory-linking",
     "community/directory-card-lookup",
     "community/directory-draft-intake",
-    "computer-use",
     "creative/creative-content-workflows",
     "creative/creative-diagramming",
     "creative/creative-notation-art",
@@ -53,21 +53,29 @@
     "note-taking/gpt-transfer-report",
     "note-taking/note-capture-workflow",
     "note-taking/obsidian",
+    "note-taking/personal-data-capture-analysis",
+    "note-taking/personal-data-capture-routing",
     "note-taking/quickthoughts-daily-sync",
     "productivity/browser-qa-automation",
+    "productivity/docx",
     "productivity/linear",
     "productivity/lp64-design-system",
+    "productivity/pdf",
     "productivity/petdex",
     "productivity/workspace-automation",
+    "productivity/xlsx",
     "qr-code-generation",
     "red-teaming/godmode",
     "research-frontier-stack-tech-review",
     "research/adaptive-research-system",
     "research/critical-geopolitical-research",
     "research/delta-briefing-ops",
+    "research/ecosystem-discovery",
     "research/frontier-stack-evaluation",
+    "research/grounded-citations",
     "research/research-paper-writing",
     "software-development-opencode-delegation-pattern",
+    "software-development/inspecting-hermes-desktop-dom",
     "software-development/software-dev-workflow",
     "weatherAPI-home",
     "websites/acadie-popup-menu-maker",
@@ -75,7 +83,7 @@
     "websites/acadie-sol-website",
     "yuanbao"
   ],
-  "active_skill_count": 71,
+  "active_skill_count": 79,
   "active_files": [
     {
       "path": "README.md",
@@ -101,6 +109,11 @@
       "path": "autonomous-ai-agents/ai-coding-agents/references/mobile-ui-verification.md",
       "sha256": "995012173abbf7a32af3a8a2af77cfd8264fc69c9b07822c6ad0ba7fa623ab8e",
       "bytes": 1945
+    },
+    {
+      "path": "autonomous-ai-agents/computer-use/SKILL.md",
+      "sha256": "9ac7c6de890c332f1be5228460c80215318221fce2c99f7e4434868cd25fe6f0",
+      "bytes": 16658
     },
     {
       "path": "autonomous-ai-agents/hermes-agent/SKILL.md",
@@ -259,8 +272,8 @@
     },
     {
       "path": "community/directory-draft-intake/SKILL.md",
-      "sha256": "621f6bac2a0117da1bd163c9b453465110655abd1cc93ffda25906fa78c733a9",
-      "bytes": 31000
+      "sha256": "bbc04815835f7a8168cff8cf6beeb99bd3989bf6bb83b83088fe54b0c5ee2bad",
+      "bytes": 31042
     },
     {
       "path": "community/directory-draft-intake/references/batch-cleanup-and-relation-mapping.md",
@@ -316,6 +329,11 @@
       "path": "community/directory-draft-intake/references/manila-intake-routing.md",
       "sha256": "8d1fa58c455790b426185ba422ff125d1a8350fb0cd585200a314e9130e9c739",
       "bytes": 3312
+    },
+    {
+      "path": "community/directory-draft-intake/references/manila-pages-public-root.md",
+      "sha256": "3052ec255b35635a4fe18f0a5b1312d875a69403b02cfe3968d9fae549ab5094",
+      "bytes": 1370
     },
     {
       "path": "community/directory-draft-intake/references/manila-promotion-release-pattern.md",
@@ -388,11 +406,6 @@
       "bytes": 784
     },
     {
-      "path": "computer-use/SKILL.md",
-      "sha256": "33fdce112f142cd3ec1978b53720099b706b3b51e1781d37c3b4f30f32ebdddd",
-      "bytes": 11179
-    },
-    {
       "path": "creative/DESCRIPTION.md",
       "sha256": "e890a87ac49fed98df4e1fc72fb9c548dd2ba66efa9f15dd1ba65935a1a60eed",
       "bytes": 116
@@ -434,8 +447,8 @@
     },
     {
       "path": "creative/touchdesigner-mcp/SKILL.md",
-      "sha256": "70a4217786c49122b76f2247fe63b18a61f4a0feaf18f4a4b5d176f2125b3641",
-      "bytes": 15429
+      "sha256": "925c387c16a3a0752e4670d48ab9bde94f930cd3dd27fe08cefda2e05c0765e9",
+      "bytes": 15269
     },
     {
       "path": "creative/touchdesigner-mcp/references/3d-scene.md",
@@ -584,8 +597,13 @@
     },
     {
       "path": "devops/cron-job-reliability/SKILL.md",
-      "sha256": "fcb83c977bf9f1c0ea7c9770d4df1bc18ca9ef7311e7ad362f5f98ab9d4da7c4",
-      "bytes": 5649
+      "sha256": "445d4d6805f1180a99db5eb50396d4c8767dc5caece375ae3bcc19b1887b4797",
+      "bytes": 12453
+    },
+    {
+      "path": "devops/cron-job-reliability/references/cron-approval-boundaries.md",
+      "sha256": "578ebb51518f3c26861316c30ab363765f1ad3dbb271b996ad2749384eefae47",
+      "bytes": 2874
     },
     {
       "path": "devops/cron-job-reliability/references/provider-routing-notes.md",
@@ -599,8 +617,13 @@
     },
     {
       "path": "devops/hermes-local-model-operations/SKILL.md",
-      "sha256": "458d27e7a29431105bcb98fc0c87fae3eb51785d43faf17e18ec90a059d2c84a",
-      "bytes": 7701
+      "sha256": "df6bfbfed90e7cd7f3ba1d0a12d5764bb21a263113db985806b189fd1fcb0930",
+      "bytes": 8878
+    },
+    {
+      "path": "devops/hermes-local-model-operations/references/gbrain-local-embedding-maintenance.md",
+      "sha256": "b307c75ac2c76c961b27890249a918448165650a4d520541992b133dd1afb4fe",
+      "bytes": 2159
     },
     {
       "path": "devops/hermes-local-model-operations/references/ollama-hermes-context-and-test-notes.md",
@@ -679,8 +702,8 @@
     },
     {
       "path": "github/github/SKILL.md",
-      "sha256": "72c2c845e420e93f1c1b639c024d015461528cba567d434d39dab23d0940f335",
-      "bytes": 19484
+      "sha256": "fef9d063a61d2510df0e5beecf124f77dc60fffda9ac8925cec4a8f936fba0f8",
+      "bytes": 20120
     },
     {
       "path": "github/github/references/ci-troubleshooting.md",
@@ -709,8 +732,8 @@
     },
     {
       "path": "github/github/references/hermes-skill-backup-sync.md",
-      "sha256": "20d503bc700b9cfbc4f03b754dd24535731a33eec8e0289f9d2e726782df3dd8",
-      "bytes": 2530
+      "sha256": "fd664bda7aa925ec7d78ca8f0738de71bf2ec5b58bd0a72519b36eb97381840d",
+      "bytes": 3174
     },
     {
       "path": "github/github/references/pages-custom-domain-and-sns.md",
@@ -1169,8 +1192,8 @@
     },
     {
       "path": "note-taking/gbrain-operations/SKILL.md",
-      "sha256": "b3bc961309beec20fe86549e6f155309bb1daaee5bfd4485b0c2cc117cbd6fbf",
-      "bytes": 22423
+      "sha256": "833866bfc38671b771bd0baf4014e5a475db5cb68a166f0e6f617158a2fc423f",
+      "bytes": 22782
     },
     {
       "path": "note-taking/gbrain-operations/references/curator-prune-safety.md",
@@ -1233,6 +1256,26 @@
       "bytes": 2935
     },
     {
+      "path": "note-taking/personal-data-capture-analysis/SKILL.md",
+      "sha256": "9046676bb8618cfe152325996ddc7dd249acf4b8313cf97f773b7d7f6500aa34",
+      "bytes": 5757
+    },
+    {
+      "path": "note-taking/personal-data-capture-analysis/references/exact-counting-and-routing.md",
+      "sha256": "99bf06f874181c685ba55d88d202d65ab2457400c92acb40e0a3fca4648f871a",
+      "bytes": 1517
+    },
+    {
+      "path": "note-taking/personal-data-capture-routing/SKILL.md",
+      "sha256": "48328d7288616cfed4d2a4416c2e0ab39cec6c836ebafe5106fc9adc548f3342",
+      "bytes": 6242
+    },
+    {
+      "path": "note-taking/personal-data-capture-routing/references/tagging-and-delegation.md",
+      "sha256": "61c4a4e275f0dad325bc62f82408089f232ce0da67aa09e335d0cd82da3b377a",
+      "bytes": 1617
+    },
+    {
       "path": "note-taking/quickthoughts-daily-sync/SKILL.md",
       "sha256": "0a9441d0be8483dd9f946ce118ccf2f1a832eaa9bf482b06e09fa4221b8a533a",
       "bytes": 11209
@@ -1283,6 +1326,311 @@
       "bytes": 2460
     },
     {
+      "path": "productivity/docx/LICENSE.txt",
+      "sha256": "79f6d8f5b427252fa3b1c11ecdbdb6bf610b944f7530b4de78f770f38741cfaa",
+      "bytes": 1467
+    },
+    {
+      "path": "productivity/docx/SKILL.md",
+      "sha256": "cf17a6245da720b7cc3c61b77cc144225a32547568c4665fb77f0b0da96ff40a",
+      "bytes": 8178
+    },
+    {
+      "path": "productivity/docx/scripts/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "path": "productivity/docx/scripts/accept_changes.py",
+      "sha256": "67095f45597fbe518cba2399c3d11000adcbc2dec0dffcd695c29e3fa5a582b5",
+      "bytes": 4121
+    },
+    {
+      "path": "productivity/docx/scripts/comment.py",
+      "sha256": "37d116e5f56bb142b208c6c6a4bbcf960495abf470ddb7c6675ccfac864ba3d7",
+      "bytes": 14054
+    },
+    {
+      "path": "productivity/docx/scripts/merge_runs.py",
+      "sha256": "3ab367fd7fba4647943d0aa5e65203b15458551410f5ffc821d902616a4b9f40",
+      "bytes": 9398
+    },
+    {
+      "path": "productivity/docx/scripts/office/helpers/__init__.py",
+      "sha256": "678e42456d9e10923c8b9a93691cdd993de3433448a184fa72a0c31f4ae086d5",
+      "bytes": 3358
+    },
+    {
+      "path": "productivity/docx/scripts/office/helpers/pptx_chart.py",
+      "sha256": "47ac266f7d39d11ede6bb0d1f3a19d801394fd2964636f1b48beb701f1832964",
+      "bytes": 5862
+    },
+    {
+      "path": "productivity/docx/scripts/office/helpers/pptx_slide.py",
+      "sha256": "7b9f69b4a5bd6a2d9eabf9e0e3e796d7a421373145f6a8cd11f60b7ba2d6a5d0",
+      "bytes": 1675
+    },
+    {
+      "path": "productivity/docx/scripts/office/helpers/pptx_theme.py",
+      "sha256": "ebb54c56e9c13807f5f98f0cae22d47cdd0162da8525eaa664e3f2c8c8d6bb03",
+      "bytes": 3510
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd",
+      "sha256": "41b93bd8857cc68b1e43be2806a872d736a9bdd6566900062d8fdb57d7bbb354",
+      "bytes": 74984
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd",
+      "sha256": "3fd0586f2637b98bb9886f0e0b67d89e1cc987c2d158cc7deb5f5b9890ced412",
+      "bytes": 6956
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd",
+      "sha256": "29b254ee0d10414a8504b5a08149c7baec35a60d5ff607d6b3f492aa36815f40",
+      "bytes": 51302
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd",
+      "sha256": "5cb76dabd8b97d1e9308a1700b90c20139be4d50792d21a7f09789f5cccd6026",
+      "bytes": 624
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd",
+      "sha256": "5375417f0f5394b8dd1a7035b9679151f19a6b65df309dec10cfb4a420cb00e9",
+      "bytes": 152039
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd",
+      "sha256": "5d389d42befbebd91945d620242347caecd3367f9a3a7cf8d97949507ae1f53c",
+      "bytes": 1231
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd",
+      "sha256": "b4532b6d258832953fbb3ee4c711f4fe25d3faf46a10644b2505f17010d01e88",
+      "bytes": 8862
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd",
+      "sha256": "bdad416b096b61d37b71603b2c949484f9070c830bdaeba93bf35e15c8900614",
+      "bytes": 14795
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd",
+      "sha256": "d173c3e5d61e42e2e3a97226c632fd2ab7cc481fc4e492365b87024ab546daff",
+      "bytes": 83612
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd",
+      "sha256": "3c6709101c6aaa82888df5d8795c33f9e857196790eb320d9194e64be2b6bdd8",
+      "bytes": 1269
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd",
+      "sha256": "0b364451dc36a48dd6dae0f3b6ada05fd9b71e5208211f8ee5537d7e51a587e2",
+      "bytes": 7328
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd",
+      "sha256": "e2abacbb9a55ce1365f8961bc1b1395bbc811e512b111000d8c333f98458dece",
+      "bytes": 6382
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd",
+      "sha256": "0ef4bb354ff44b923564c4ddbdda5987919d220225129ec94614a618ceafc281",
+      "bytes": 1248
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd",
+      "sha256": "0d103b99a4a8652f8871552a69d42d2a3760ac6a5e3ef02d979c4273257ff6a4",
+      "bytes": 880
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd",
+      "sha256": "9c085407751b9061c1f996f6c39ce58451be22a8d334f09175f0e89e42736285",
+      "bytes": 2608
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd",
+      "sha256": "bc92e36ccd233722d4c5869bec71ddc7b12e2df56059942cce5a39065cc9c368",
+      "bytes": 3507
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd",
+      "sha256": "7b5b7413e2c895b1e148e82e292a117d53c7ec65b0696c992edca57b61b4a74b",
+      "bytes": 7507
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd",
+      "sha256": "3213ef1631606250f5010b42cad7ef716f7c59426367798e33c374c0ec391d3a",
+      "bytes": 23313
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd",
+      "sha256": "12264f3c03d738311cd9237d212f1c07479e70f0cbe1ae725d29b36539aef637",
+      "bytes": 1367
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd",
+      "sha256": "beffeed56945c22a77440122c8bdc426f3fcbe7f3b12ea0976c770d1f8d54578",
+      "bytes": 242277
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd",
+      "sha256": "f5ee623b08b6a66935e5aced2f5d8ad0fc71bf9e8e833cd490150c0fa94b8763",
+      "bytes": 26148
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd",
+      "sha256": "585bedc1313b40888dcc544cb74cd939a105ee674f3b1d3aa1cc6d34f70ff155",
+      "bytes": 25279
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd",
+      "sha256": "133c9f64a5c5d573b78d0a474122b22506d8eadb5e063f67cdbbb8fa2f161d0e",
+      "bytes": 535
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd",
+      "sha256": "6bdeb169c3717eb01108853bd9fc5a3750fb1fa5b82abbdd854d49855a40f519",
+      "bytes": 5712
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd",
+      "sha256": "475dcae1e7d1ea46232db6f8481040c15e53a52a3c256831d3df204212b0e831",
+      "bytes": 4010
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd",
+      "sha256": "c2dd9f61f892deae6acd8d20771ea79b12018af25f3bf8d06639c8542d218cfd",
+      "bytes": 171367
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd",
+      "sha256": "a539aa2fb154fa50e0f5cc97e6ad7cbc66f8ec3e3746f61ec6a8b0d5d15ecdf2",
+      "bytes": 4646
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ecma/fourth-edition/opc-contentTypes.xsd",
+      "sha256": "9e0b7209fc69ab11987900404540969976000c5ebe4d4f58c43dc3842886bf3a",
+      "bytes": 1963
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ecma/fourth-edition/opc-coreProperties.xsd",
+      "sha256": "451958454e8588dfc7cd945981ada142ca06ff3307937f5700df059c2b307fa8",
+      "bytes": 2515
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ecma/fourth-edition/opc-digSig.xsd",
+      "sha256": "6de111e11403f7cd49027400755bae0ea1cabef2815f09bd40a24f0017613b24",
+      "bytes": 2856
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/ecma/fourth-edition/opc-relationships.xsd",
+      "sha256": "f565adfef5a502044abc3a9153e157edc25af78304d335994afb958874b15e26",
+      "bytes": 1344
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/mce/mc.xsd",
+      "sha256": "3a37e461ecf5a8670fdec34029703401f8728ab9c96ec1739a6ae58d55212413",
+      "bytes": 3127
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/microsoft/wml-2010.xsd",
+      "sha256": "568b26ee156cb9549aa439ca2158965f77b7c1602b7e0316f40ac6cf586e35f2",
+      "bytes": 26549
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/microsoft/wml-2012.xsd",
+      "sha256": "0fa75578a000439a7988ba0c59fdc69f774bbd416cbacc14d07125b3f686cb74",
+      "bytes": 3745
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/microsoft/wml-2018.xsd",
+      "sha256": "be0ff793a22dd31384650c3a4da14c2fa8062751c2e97b0e5ee852bda13c60ad",
+      "bytes": 901
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/microsoft/wml-cex-2018.xsd",
+      "sha256": "fddc2b880cabb9005aebbc7e783e53c19fec1c03df7d0e2f2076a33a0fdfd081",
+      "bytes": 1778
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/microsoft/wml-cid-2016.xsd",
+      "sha256": "127ca209fa73d7cb708449cb355c871867948a96e4a74f7bf5811ef62d17991d",
+      "bytes": 1002
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd",
+      "sha256": "842e7163409c8d74f4d7088a8bc99500d80bc75332681a0980055b08f374a604",
+      "bytes": 600
+    },
+    {
+      "path": "productivity/docx/scripts/office/schemas/microsoft/wml-symex-2015.xsd",
+      "sha256": "16f6f8072249f431370723c2cd8974672e0d9c897e00e97dd918079df934871b",
+      "bytes": 745
+    },
+    {
+      "path": "productivity/docx/scripts/office/soffice.py",
+      "sha256": "c1b83a67bf7e784ce6255d7b3a58999445f3dad19809845821f1293ab4cbf43e",
+      "bytes": 5945
+    },
+    {
+      "path": "productivity/docx/scripts/office/validate.py",
+      "sha256": "346a4c89d92fff55e610f11efda48c30228815b29bdb10b987e48f7af70acf1e",
+      "bytes": 6142
+    },
+    {
+      "path": "productivity/docx/scripts/office/validators/__init__.py",
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987",
+      "bytes": 336
+    },
+    {
+      "path": "productivity/docx/scripts/office/validators/base.py",
+      "sha256": "44a7a11d8cdfc019f7f6896650964ffe3737fd5777f751ce936aaccd901ea43b",
+      "bytes": 33760
+    },
+    {
+      "path": "productivity/docx/scripts/office/validators/docx.py",
+      "sha256": "93d3444c0ef3f043d21a2285c46d2cda478426b930dc33dcf3b11265935517b5",
+      "bytes": 17482
+    },
+    {
+      "path": "productivity/docx/scripts/office/validators/pptx.py",
+      "sha256": "17eadad2b7a8374ccbe4cda45693bcd6a36f9d61a7d60f9c9ceef9464dec8299",
+      "bytes": 15966
+    },
+    {
+      "path": "productivity/docx/scripts/office/validators/redlining.py",
+      "sha256": "f2f86ddef982923bc802bcbe9ec2815ce84a59f6a7f5148927b8a91b941ccbd3",
+      "bytes": 11303
+    },
+    {
+      "path": "productivity/docx/scripts/templates/comments.xml",
+      "sha256": "a08ba83ee8790ac9e3dc61921f4988f19edd7e06ac09d6f1897a877c1581818d",
+      "bytes": 2603
+    },
+    {
+      "path": "productivity/docx/scripts/templates/commentsExtended.xml",
+      "sha256": "544eeecfeceed4b468fff163cd9c366d33641c8b8ab691ce002576197846afe8",
+      "bytes": 2611
+    },
+    {
+      "path": "productivity/docx/scripts/templates/commentsExtensible.xml",
+      "sha256": "bad10b3283e6ad6e7ef6d1ca5169683721ed690ee331282c65df04017e080631",
+      "bytes": 2707
+    },
+    {
+      "path": "productivity/docx/scripts/templates/commentsIds.xml",
+      "sha256": "db20f9616e004ec42ef736e80c2384e45db0f8d1194d31dc8b37c7d6ecdd6420",
+      "bytes": 2619
+    },
+    {
+      "path": "productivity/docx/scripts/templates/people.xml",
+      "sha256": "056f63aa1197fd8c9dda980c9f1b9ff016fd5fa4a462df8aec5f384f39d23e37",
+      "bytes": 115
+    },
+    {
       "path": "productivity/linear/SKILL.md",
       "sha256": "e7b6fbb8b55f84903759a4b01462938453d5ccc92318bdbdd637f6704a8726ff",
       "bytes": 14782
@@ -1303,6 +1651,66 @@
       "bytes": 147
     },
     {
+      "path": "productivity/pdf/LICENSE.txt",
+      "sha256": "79f6d8f5b427252fa3b1c11ecdbdb6bf610b944f7530b4de78f770f38741cfaa",
+      "bytes": 1467
+    },
+    {
+      "path": "productivity/pdf/SKILL.md",
+      "sha256": "7f5e2db4342a69cc8193803f855fce8739c6b8f4d051a3d2691f827f595ce23e",
+      "bytes": 7005
+    },
+    {
+      "path": "productivity/pdf/forms.md",
+      "sha256": "9530b3f57034792e0242a3abfe8b3c296466329551916f2ff6c5a70db78f7e44",
+      "bytes": 11854
+    },
+    {
+      "path": "productivity/pdf/reference.md",
+      "sha256": "03a5f964f8abecbbe156f363356e927e864d7ee964f1012c84ee1bfc8acbeb95",
+      "bytes": 16692
+    },
+    {
+      "path": "productivity/pdf/scripts/check_bounding_boxes.py",
+      "sha256": "48c1cda674c4946e82e5e10489b1717bd82efa0d8a7c7b43458ceb60c8e56f55",
+      "bytes": 2792
+    },
+    {
+      "path": "productivity/pdf/scripts/check_fillable_fields.py",
+      "sha256": "1fe10b9980a5493c9bbec8c20630c603eaa475b45403751c08f26738736647b8",
+      "bytes": 268
+    },
+    {
+      "path": "productivity/pdf/scripts/convert_pdf_to_images.py",
+      "sha256": "7f58e292a67e18a8ff000d30bad2469389546731f7e8a698cc1d0aed001ea15d",
+      "bytes": 1008
+    },
+    {
+      "path": "productivity/pdf/scripts/create_validation_image.py",
+      "sha256": "4016ae385f11eceb77b97feeed453c5862ed3b7b63557d59d13471c08017a7fd",
+      "bytes": 1276
+    },
+    {
+      "path": "productivity/pdf/scripts/extract_form_field_info.py",
+      "sha256": "bb235b36f497bbb1c7c6821cecf527bbba7213520de11219da99f7b13a38c109",
+      "bytes": 4300
+    },
+    {
+      "path": "productivity/pdf/scripts/extract_form_structure.py",
+      "sha256": "6814e3fe8f78c2b16d766c132b5a727ff7a31b71d76a7d46bd6e40fe50bc97c5",
+      "bytes": 3945
+    },
+    {
+      "path": "productivity/pdf/scripts/fill_fillable_fields.py",
+      "sha256": "236978b6567b0fa1b59a0cba5a0f889db129d954b10fc7ed927bf1421ac670a5",
+      "bytes": 3837
+    },
+    {
+      "path": "productivity/pdf/scripts/fill_pdf_form_with_annotations.py",
+      "sha256": "7bd020ca454a91d27f53f3f0050cc637cef4d78ee6db51b886ea62249ed92164",
+      "bytes": 3253
+    },
+    {
       "path": "productivity/petdex/SKILL.md",
       "sha256": "ca52cda72a9c49d60c4a3c2dbfa6c64c87e62562857b598599cc496b30116fd1",
       "bytes": 3534
@@ -1311,6 +1719,26 @@
       "path": "productivity/workspace-automation/SKILL.md",
       "sha256": "e00a9b9b2453c2e6b00e505f6b22eacbe12fadd8d23d82db2548ae83850014e2",
       "bytes": 2372
+    },
+    {
+      "path": "productivity/xlsx/LICENSE.txt",
+      "sha256": "79f6d8f5b427252fa3b1c11ecdbdb6bf610b944f7530b4de78f770f38741cfaa",
+      "bytes": 1467
+    },
+    {
+      "path": "productivity/xlsx/SKILL.md",
+      "sha256": "5fb6612978efcf12596edbaa4e23a080d8aba97fcae058c2510c28d65fe1d12b",
+      "bytes": 9126
+    },
+    {
+      "path": "productivity/xlsx/scripts/office/soffice.py",
+      "sha256": "c1b83a67bf7e784ce6255d7b3a58999445f3dad19809845821f1293ab4cbf43e",
+      "bytes": 5945
+    },
+    {
+      "path": "productivity/xlsx/scripts/recalc.py",
+      "sha256": "7adfa2bb950272163fce2a0e0c2365c6766a3a32695cf03299dff3bd298c96cf",
+      "bytes": 10724
     },
     {
       "path": "qr-code-generation/SKILL.md",
@@ -1468,6 +1896,16 @@
       "bytes": 1602
     },
     {
+      "path": "research/ecosystem-discovery/SKILL.md",
+      "sha256": "fcaec032ae477c5ddf0f09983e39c5f98a52cc6119f533c4141af23fc097915c",
+      "bytes": 4806
+    },
+    {
+      "path": "research/ecosystem-discovery/references/jupiter-gacha-normalization.md",
+      "sha256": "867f7fa64a929d170e80a5009670fdf7f6940c77779930595f11723d0b6a2c63",
+      "bytes": 1773
+    },
+    {
       "path": "research/frontier-stack-evaluation/SKILL.md",
       "sha256": "bdb1da51be0feb4dcb3fd81d76aa6c45bcd358be99f118ec020514ffdbb0b2e7",
       "bytes": 26393
@@ -1561,6 +1999,31 @@
       "path": "research/frontier-stack-evaluation/references/x402-ecosystem-members.md",
       "sha256": "0be37994019db933a8317d0d06a5f829cd2240ae383f144cd13308be00fdfaf4",
       "bytes": 1846
+    },
+    {
+      "path": "research/grounded-citations/SKILL.md",
+      "sha256": "6e898bfa39e04c014b4b00db1c08e17d6df4e623b728055be30f7623ecb8e93b",
+      "bytes": 6981
+    },
+    {
+      "path": "research/grounded-citations/references/citation-formats.md",
+      "sha256": "774d0b068df0a628d5f8f3136ec5960520aa0eab1affc618880735aa735c62a2",
+      "bytes": 2422
+    },
+    {
+      "path": "research/grounded-citations/references/grounding-rationale.md",
+      "sha256": "2835754857ea05a1c801e88a50d4c2b4cc6ebd52cc4cc1f5741dba05f5af73c1",
+      "bytes": 3127
+    },
+    {
+      "path": "research/grounded-citations/scripts/_hermes_home.py",
+      "sha256": "4bfa31ce48ffaca3ae3fdd2ba5f093a2bedc34b057eec22a38f46e2d68b333d4",
+      "bytes": 836
+    },
+    {
+      "path": "research/grounded-citations/scripts/sources.py",
+      "sha256": "7cc4e18d2dbd36ee662cca77e42f376c430267c7247b39ba57bf839547503392",
+      "bytes": 18830
     },
     {
       "path": "research/research-paper-writing/SKILL.md",
@@ -1953,6 +2416,11 @@
       "bytes": 151
     },
     {
+      "path": "software-development/inspecting-hermes-desktop-dom/SKILL.md",
+      "sha256": "a78a5f8d277a1d6d39fccd5ecf1e76ce519a1ace831f06078dfcc91cb54a3399",
+      "bytes": 6204
+    },
+    {
       "path": "software-development/software-dev-workflow/SKILL.md",
       "sha256": "67c3a5f4a4f89a24a42b45a8296ebc173a10d277ef8dbf85ff392699ff889e49",
       "bytes": 26363
@@ -2049,8 +2517,8 @@
     },
     {
       "path": "weatherAPI-home/SKILL.md",
-      "sha256": "cce9f0a69b3ee6cc451582e8a5b1bdf87f60fa248f3618afc8946ba217fd9ddb",
-      "bytes": 4105
+      "sha256": "4b505a30c923a31013ebb4b1241526336fb77d8341d8c1fddd82a5a08078fa9b",
+      "bytes": 4438
     },
     {
       "path": "weatherAPI-home/_meta.json",
@@ -2059,8 +2527,8 @@
     },
     {
       "path": "weatherAPI-home/bathurst_weather.py",
-      "sha256": "248607485892454bd2c0a27d205ff6ebde647856b909e2ea1685420f73558ba3",
-      "bytes": 11580
+      "sha256": "86cb3cf76a89d0785abba29b476ba2b3010230459bbdddf94bf772d9fd549338",
+      "bytes": 13635
     },
     {
       "path": "weatherAPI-home/locations.json",
@@ -2108,6 +2576,11 @@
       "bytes": 850
     },
     {
+      "path": "weatherAPI-home/weather_walk_telegram.py",
+      "sha256": "8c7fd7f24db7dabd975883d2ecd122feead96224e5bf1e800467ff56f0887ad5",
+      "bytes": 5007
+    },
+    {
       "path": "websites/acadie-popup-menu-maker/SKILL.md",
       "sha256": "8e68bf6c8918a640bcd1b1233bbc1e76e6292c49dafb004c7dd7d2a8a30c8003",
       "bytes": 11435
@@ -2124,8 +2597,8 @@
     },
     {
       "path": "websites/acadie-sol-website/SKILL.md",
-      "sha256": "26715c3318b25a3822dcd3b3cf5691f5eb4ad96feb4eaefb20a9a570cda32911",
-      "bytes": 62211
+      "sha256": "2ccb85f88f43e2450c5f70e0e0fbde9208b5e472ca753cd9e80f861288cf3edd",
+      "bytes": 62749
     },
     {
       "path": "websites/acadie-sol-website/references/acadie-sol-contrast-token-audit.md",

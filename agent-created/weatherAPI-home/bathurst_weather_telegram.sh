@@ -12,4 +12,4 @@ if [[ -f "$ENV_FILE" ]]; then
 fi
 
 cd "$WEATHER_DIR"
-exec python3 "$WEATHER_DIR/weather_telegram.py"
+exec python3 "$WEATHER_DIR/weather_telegram.py" "$@"

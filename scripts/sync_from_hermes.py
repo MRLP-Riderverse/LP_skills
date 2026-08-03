@@ -121,13 +121,14 @@ def main() -> int:
             gallery_note.unlink()
         curated_updates.append("acadie-sol-gallery")
 
-    # The weather cron uses a wrapper outside the skill directory; keep a recovery copy.
-    weather_wrapper = HERMES_SCRIPTS / "bathurst_weather_telegram.sh"
-    weather_backup = CURATED / "weatherAPI-home" / "bathurst_weather_telegram.sh"
-    if weather_wrapper.is_file():
-        weather_backup.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(weather_wrapper, weather_backup)
-        weather_backup.chmod(0o755)
+    # The weather crons use wrappers outside the skill directory; keep recovery copies.
+    for wrapper_name in ("bathurst_weather_telegram.sh", "evening_walk_weather.sh"):
+        weather_wrapper = HERMES_SCRIPTS / wrapper_name
+        weather_backup = CURATED / "weatherAPI-home" / wrapper_name
+        if weather_wrapper.is_file():
+            weather_backup.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(weather_wrapper, weather_backup)
+            weather_backup.chmod(0o755)
 
     active_dst = MIRROR / "active"
     reset_dir(active_dst)

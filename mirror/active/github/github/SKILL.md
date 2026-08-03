@@ -206,7 +206,9 @@ Use this when a sibling repo is the restore point for agent-made Hermes skills.
 7. Run the sync and verifier before staging; scan the resulting tree for excluded artifacts, not only the source copy routine.
 8. Stage and inspect the complete diff, including newly created files and deletions. Treat whitespace warnings from verbatim upstream documentation as informational unless the project requires normalization.
 9. Commit the mirror refresh as a single chore, then push.
-10. Re-run a read-only verification after push and expect a clean tree and zero local/remote divergence.
+10. Re-run a read-only verification after push and expect a clean working tree and zero local/remote divergence.
+11. Verify upstream freshness independently of local tracking state before deciding whether an update is needed. `git status` or a tool's "up to date" message can reflect a stale `origin/*` ref; compare `git ls-remote <remote> refs/heads/main` (or the hosting API's current branch SHA) with the installed commit. Keep runtime-version freshness separate from backup-repo freshness.
+12. After syncing, compare the live tree and mirror with the same exclusions used by the sync script. Assert zero missing, extra, or changed files; a manifest verifier alone proves only internal manifest integrity, not parity with today's source.
 
 Pitfalls:
 - **SKILL.md parity alone is not enough; support files can drift independently.**

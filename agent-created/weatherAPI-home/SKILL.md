@@ -14,6 +14,7 @@ Fetches weather data and delivers formatted reports to Telegram.
 - Temporary travel override comes from `CURRENT_LOCATION` in `~/.hermes/.env`
 - If `CURRENT_LOCATION` is blank, the workflow uses `HOME_LOCATION`
 - One-off requests can override both with `--location "City, Region"`
+- Reusable coordinates are declared for Bathurst, Moncton, and Montreal; new geocoded locations are persisted in `.weather_cache/locations.json` and reused on later requests
 - The script still honors legacy `HOME_WEATHER_LOCATION` as a backward-compatible fallback
 - If no location is configured, the workflow falls back to the hardcoded Bathurst safety default
 - See `references/location-defaults-and-overrides.md` for the resolution order, cache behavior, and cron-safe operator pattern
@@ -25,6 +26,7 @@ Fetches weather data and delivers formatted reports to Telegram.
 - `weather_telegram.py` — main formatter/entrypoint for a single live weather fetch
 - `bathurst_weather.py` — weather data fetcher with per-location cache fallback
 - `weather_location_env.py` — helper for changing `CURRENT_LOCATION` / checking effective defaults in `~/.hermes/.env`
+- `weather_walk_telegram.py` — evening walk decision using the next three hourly forecast slots
 - `weather_format.py` — formatting utilities
 - `~/.hermes/scripts/bathurst_weather_telegram.sh` — shared cron wrapper; sources `~/.hermes/.env`, enters the skill directory, and executes `weather_telegram.py`
 - `~/.hermes/scripts/weather_location.sh` — wrapper for `weather_location_env.py`; use this to set or clear travel location state without editing `.env` manually
@@ -65,10 +67,10 @@ For a one-off override location, run:
 python3 /home/midnight/.hermes/skills/weatherAPI-home/weather_telegram.py --location "San Diego, CA"
 ```
 
-or use the shared wrapper:
+or use the shared wrapper with an explicit one-off location:
 
 ```bash
-~/.hermes/scripts/bathurst_weather_telegram.sh
+~/.hermes/scripts/bathurst_weather_telegram.sh --location "San Diego, CA"
 ```
 
 ### Location handling preference

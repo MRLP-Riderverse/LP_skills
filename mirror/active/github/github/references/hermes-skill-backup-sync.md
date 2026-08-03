@@ -19,6 +19,8 @@ Use this when maintaining a sibling repo that mirrors *agent-made* Hermes skills
 8. Watch for alias drift between old backup naming and live naming. Example class: `note-taking-note-capture-workflow` in a backup repo is not proof that live `note-taking/note-capture-workflow` is covered unless the files actually match.
 9. Commit the mirror refresh as a single chore, then push.
 10. Re-run a read-only verification after push and expect a clean working tree.
+11. Verify upstream freshness independently of local tracking state before deciding whether an update is needed. `git status` or a tool's "up to date" message can reflect a stale `origin/*` ref; compare `git ls-remote <remote> refs/heads/main` (or the hosting API's current branch SHA) with the installed commit. Record the distinction between runtime version freshness and backup-repo freshness.
+12. After syncing, compare the live tree and mirror with the same exclusions used by the sync script. Assert zero missing, extra, or changed files; a manifest verifier alone proves only internal manifest integrity, not parity with today's source.
 
 ## Pitfalls
 

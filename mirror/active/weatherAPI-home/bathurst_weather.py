@@ -29,6 +29,15 @@ LEGACY_HOME_LOCATION_ENV_VAR = "HOME_WEATHER_LOCATION"
 DEFAULT_LATITUDE = 47.6167
 DEFAULT_LONGITUDE = -65.6500
 DEFAULT_LOCATION_NAME = "Bathurst, NB"
+LOCATION_CACHE_FILE = CACHE_DIR / "locations.json"
+
+# Stable city coordinates avoid repeated geocoding for the places used most often.
+# Values are from the Nominatim resolution verified on 2026-08-03.
+DECLARED_LOCATIONS: dict[str, tuple[float, float, str]] = {
+    "bathurst, nb": (47.6208671, -65.6537546, "Bathurst, New Brunswick, CA"),
+    "moncton, nb": (46.0985679, -64.8004265, "Moncton, New Brunswick, CA"),
+    "montreal, qc": (45.5031824, -73.5698065, "Montréal, Québec, CA"),
+}
 
 WEATHER_CODES = {
     0: "Clear sky",
@@ -190,6 +199,45 @@ def save_cache(cache_key: str, data: dict[str, Any]) -> None:
         pass
 
 
+def load_location_cache() -> dict[str, list[Any]]:
+    try:
+        payload = json.loads(LOCATION_CACHE_FILE.read_text(encoding="utf-8"))
+    except (FileNotFoundError, OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def save_location_cache(cache: dict[str, list[Any]]) -> None:
+    try:
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        temp_file = LOCATION_CACHE_FILE.with_suffix(".tmp")
+        temp_file.write_text(json.dumps(cache, indent=2, sort_keys=True), encoding="utf-8")
+        temp_file.replace(LOCATION_CACHE_FILE)
+    except OSError:
+        pass
+
+
+def load_saved_coordinates(location_query: str) -> tuple[float, float, str] | None:
+    key = cache_key_for_location(location_query)
+    declared = DECLARED_LOCATIONS.get(key)
+    if declared is not None:
+        return declared
+
+    saved = load_location_cache().get(key)
+    if not isinstance(saved, list) or len(saved) != 3:
+        return None
+    try:
+        return float(saved[0]), float(saved[1]), str(saved[2])
+    except (TypeError, ValueError):
+        return None
+
+
+def save_resolved_coordinates(location_query: str, coordinates: tuple[float, float, str]) -> None:
+    cache = load_location_cache()
+    cache[cache_key_for_location(location_query)] = [coordinates[0], coordinates[1], coordinates[2]]
+    save_location_cache(cache)
+
+
 def clean_place_name(name: str) -> str:
     cleaned = name.strip()
     for prefix in ("City of ", "Ville de "):
@@ -253,12 +301,19 @@ def resolve_coordinates(location_query: str) -> tuple[float, float, str]:
     if not normalized_query:
         return DEFAULT_LATITUDE, DEFAULT_LONGITUDE, DEFAULT_LOCATION_NAME
 
+    saved = load_saved_coordinates(normalized_query)
+    if saved is not None:
+        return saved
+
     try:
-        return geocode_location(normalized_query)
+        resolved = geocode_location(normalized_query)
     except WeatherError:
         if normalized_query.casefold() == DEFAULT_LOCATION_NAME.casefold():
             return DEFAULT_LATITUDE, DEFAULT_LONGITUDE, DEFAULT_LOCATION_NAME
         raise
+
+    save_resolved_coordinates(normalized_query, resolved)
+    return resolved
 
 
 def parse_weather(api_response: dict[str, Any], location_name: str) -> dict[str, Any]:

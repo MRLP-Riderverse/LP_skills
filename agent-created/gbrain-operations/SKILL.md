@@ -60,11 +60,14 @@ There are TWO different packages named `gbrain` on npm:
 
 **Verification Commands:**
 ```bash
+gbrain --version
 gbrain doctor --json
 gbrain stats
 gbrain import --no-embed <repo>
 gbrain search "some known imported term"
 ```
+
+**Live-version note (2026-08-03):** The installed CLI was verified as `gbrain 0.42.72.1`. Do not require or assume v0.12.3; version numbers may advance. The current `gbrain search --help` describes `search` as keyword/full-text search with `conservative|balanced|tokenmax` modes. Treat the live CLI help as authoritative for command syntax.
 
 **Decision Rules:**
 - If the user only needs keyword search, proceed without API keys.

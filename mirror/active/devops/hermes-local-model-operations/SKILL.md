@@ -27,18 +27,11 @@ Use this skill when adding, evaluating, or tuning an Ollama or other local OpenA
    - For Hermes tool-using agents, target at least 64K when hardware can sustain it. 4K is suitable only for short, bounded probes.
    - Check the installed Hermes runtime's minimum-context guard before recommending a smaller variant: current Hermes rejects configured local contexts below 64K for proper tool use. A measured 16K/32K model may be useful for direct Ollama experiments, but is not automatically a valid Hermes agent configuration.
    - Larger context is a memory and latency tradeoff. If 64K is technically loadable but stalls or times out, classify it as *configured but operationally unusable* rather than downgrading Hermes metadata to falsely claim support. Keep Luna as the orchestrator and treat the local model as experimental until the runtime can complete both a no-tool response and a tool-follow-up.
-@@
--   - Add the derived model to the configured Ollama provider using a model metadata entry with `context_length: 65536`.
-+   - Add the derived model to the configured Ollama provider using a model metadata entry with `context_length: 65536`; use `hermes config set` with a complete models mapping when the provider currently stores models as a list, rather than editing YAML directly.
-+   - Do not leave experimental low-context or stalled high-context variants in the normal provider picker. Keep them installed only if future testing is useful, while preserving the original base model as the fallback.
-@@
--   - A tool-call message alone is not a complete success; verify that the model also completes the follow-up assistant response.
-+   - A tool-call message alone is not a complete success; verify that the model also completes the follow-up assistant response. A Hermes process can store a partial transcript even when the shell wrapper exits by timeout, so inspect the recorded session before judging the result.
-@@
- - Large contexts can trigger CPU fallback, GPU/driver discovery delays, high memory use, long prefill, and wrapper timeouts even when the model technically loads.
-+- Hermes may explicitly refuse a local model whose detected/configured context is below its 64K tool-use minimum; do not work around this by advertising a larger `context_length` than Ollama actually receives.
-+- For Telegram readiness, leave the primary Luna route unchanged unless the local model passes the full completion-and-tool-follow-up test; provider registration alone does not make local orchestration reliable.
-*** End Patch
+   - Add derived models through `hermes config set` with a complete provider-model mapping rather than editing configuration YAML directly.
+   - Do not leave experimental low-context or stalled high-context variants in the normal provider picker. Keep them installed only if future testing is useful, while preserving the original base model as the fallback.
+   - A tool-call message alone is not a complete success; verify that the model also completes the follow-up assistant response. A Hermes process can store a partial transcript even when the shell wrapper exits by timeout, so inspect the recorded session before judging the result.
+   - Hermes may explicitly refuse a local model whose detected/configured context is below its 64K tool-use minimum; do not work around this by advertising a larger `context_length` than Ollama actually receives.
+   - For Telegram readiness, leave the primary Luna route unchanged unless the local model passes the full completion-and-tool-follow-up test; provider registration alone does not make local orchestration reliable.
 
 3. **Configure persistently, without unsafe direct edits**
    - Prefer `hermes config set` for Hermes config changes; direct writes to `~/.hermes/config.yaml` may be guarded.
@@ -69,6 +62,16 @@ Use this skill when adding, evaluating, or tuning an Ollama or other local OpenA
    - Check Ollama logs for `llama-server ... -c 65536`, CPU/GPU placement, CUDA initialization errors, and request completion times.
    - Finish with `ollama ps` and process checks; clean up lingering test runners and model instances.
 
+## Local embedding workloads (Ollama / retrieval indexes)
+
+Embedding is a distinct workload from running a local model as a Hermes chat agent. Do not apply the 64K agent-context target to an embedding model: the embedding runtime only needs enough context for **one already-chunked document**, and the indexer should batch the corpus incrementally.
+
+1. Before a substantial embedding pass, run a provider smoke test and inspect both `ollama show <model> --modelfile` **and** the Ollama/server logs. A Modelfile's requested `num_ctx` can exceed the model artifact's accepted training/runtime context; treat the launched server's accepted context as authoritative.
+2. Use the indexer's supported migration/re-embed command rather than writing vectors directly. It should probe the target model before schema changes, make the provider/model/dimensions persistent, and remain resumable if interrupted.
+3. Record a baseline (`date`, `free -h`, `df -h`, `ollama ps`, accelerator telemetry), then use bounded batches and gentle pacing for a first pass. If the work completes before the first monitoring interval, report process telemetry/logs honestly rather than claiming sampled peak resource use.
+4. Verify at the end: embedded/stale counts, schema-vector dimensions, configured provider, and at least one conceptual retrieval query. Snapshot the index state after a successful migration.
+5. Separate infrastructure success from retrieval-quality success. Evaluate exact, paraphrase, domain-specific, and multilingual queries before adopting an embedding model as the default.
+
 ## Hermes Telegram implications
 
 Hermes Telegram uses the same provider/model runtime as the CLI. A local model can be selected for a session with the configured provider, for example:
@@ -90,4 +93,5 @@ This is session/provider routing, not automatic per-turn mixing with the Luna de
 
 ## Supporting reference
 
-See `references/ollama-hermes-context-and-test-notes.md` for a condensed runtime example, commands, and interpretation guidance.
+- `references/ollama-hermes-context-and-test-notes.md` — condensed runtime example, commands, and interpretation guidance.
+- `references/gbrain-local-embedding-maintenance.md` — backup, migration, verification, and daily stale-catch-up pattern for a local GBrain/Ollama embedding index.

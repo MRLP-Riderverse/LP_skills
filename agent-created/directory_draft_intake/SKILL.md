@@ -338,7 +338,7 @@ When the user asks to promote a draft into a proper entry, switch from intake mo
 - for the two-repo GitHub Pages flow, commit/push the directory repo first, then commit/push the generated site payload and verify the live Pages payload
 - see `references/bulk-promotion-validation.md` for the deterministic bulk-promotion checklist and validation script
 
-See `references/official-promotion-workflow.md`, `references/promotion-slug-location-id-notes.md`, `references/pre-publish-review.md`, `references/manila-promotion-release-pattern.md`, `templates/official-entry.md`, and `templates/official-meta.json`.
+See `references/official-promotion-workflow.md`, `references/promotion-slug-location-id-notes.md`, `references/pre-publish-review.md`, `references/manila-promotion-release-pattern.md`, `references/manila-pages-public-root.md`, `templates/official-entry.md`, and `templates/official-meta.json`.
 
 ### Derivative-node promotion release pattern
 
