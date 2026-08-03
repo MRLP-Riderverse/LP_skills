@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-03T23:04:01+00:00",
+  "generated_at_utc": "2026-08-03T23:11:14+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -1217,8 +1217,8 @@
     },
     {
       "path": "note-taking/note-capture-workflow/SKILL.md",
-      "sha256": "c0c88430fc1cc7c61e392ee2ef6e35c06e55137ebc306afbf5dafb6452736493",
-      "bytes": 25576
+      "sha256": "99a6be3c7ca902eed5dadb6828934261642a80fd2484e339076c3dc180ba243d",
+      "bytes": 25735
     },
     {
       "path": "note-taking/note-capture-workflow/references/direct-edit-incident-may-2026.md",
@@ -1267,8 +1267,13 @@
     },
     {
       "path": "note-taking/personal-data-capture-routing/SKILL.md",
-      "sha256": "48328d7288616cfed4d2a4416c2e0ab39cec6c836ebafe5106fc9adc548f3342",
-      "bytes": 6242
+      "sha256": "9e98654f0ca29a26932384814fe81b887b8d9961a01e043d10ca29b475d574dc",
+      "bytes": 7237
+    },
+    {
+      "path": "note-taking/personal-data-capture-routing/references/structured-telemetry-routing.md",
+      "sha256": "fbf66bacf954de3377ef67bb7fa1891a62847668bed18a4c12e23f734fe757bd",
+      "bytes": 956
     },
     {
       "path": "note-taking/personal-data-capture-routing/references/tagging-and-delegation.md",
@@ -2517,8 +2522,8 @@
     },
     {
       "path": "weatherAPI-home/SKILL.md",
-      "sha256": "f3c905cfa4ea2b2ee091eee44af0c43a5d227583d7d4be4223d044d1cdfdede3",
-      "bytes": 5234
+      "sha256": "bc54bd998d365d540470c9c50c99070d17633d1baba21d0b03aa3df1d9a34c3b",
+      "bytes": 6115
     },
     {
       "path": "weatherAPI-home/_meta.json",

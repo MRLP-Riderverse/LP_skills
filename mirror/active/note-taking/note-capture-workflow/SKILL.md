@@ -164,6 +164,7 @@ Known label conventions (extend when new source types emerge):
 | Raw | *(unset)* | `⁜ ... > content` | User's own direct notes, no attribution |
 | Hermes | `Hermes` | `Notes, by Hermes : content` | Agent-captured notes, analysis, summaries |
 | GPT Transfer | `Hermes · GPT Transfer` | `Notes, by Hermes · GPT Transfer : content` | Reports pasted from GPT/ChatGPT sessions (see `gpt-transfer-report` skill) |
+| Weather | `Weather` | `Notes, by Weather : content` | Deterministic weather observations and evening forecasts captured by the local weather cron wrappers |
 
 The `·` suffix pattern (`Hermes · <Source>`) can be extended for other AI contexts (e.g., `Hermes · Claude`, `Hermes · Gemini`) if the user adds more cross-context transfer workflows. The key design principle: same append-only protocol, same QuickThoughts source of truth — the label is a legibility layer for human scanning, not a separate storage path.
 

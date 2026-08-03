@@ -48,7 +48,7 @@ The evening report fetches the next three local hourly forecast slots and includ
 - wind speed
 - a simple walk recommendation based on rain, wind, temperature, and severe-weather codes
 
-All four weather jobs are hardened as `no_agent: true` script-only cron jobs. The first three use `weather_telegram.sh`; the evening job uses `evening_walk_weather.sh`. The old Bathurst-named wrapper remains only as a compatibility alias.
+All four weather jobs are hardened as `no_agent: true` script-only cron jobs. The first three use `weather_telegram.sh`; the evening job uses `evening_walk_weather.sh`. Each wrapper formats Telegram output and routes a compact deterministic note through the canonical `note` CLI with `NOTE_SOURCE_LABEL=Weather`; no LLM is involved and note-capture failure never blocks weather delivery. The old Bathurst-named wrapper remains only as a compatibility alias.
 
 ## Hardening / Delivery Notes
 
@@ -80,13 +80,17 @@ For a one-off override location, run:
 
 The older `bathurst_weather_telegram.sh` name remains a compatibility alias, but new commands and cron jobs should use the generic wrapper.
 
-For a compact history/QuickThoughts-friendly line without capturing it automatically:
+For a compact history/QuickThoughts-friendly line:
 
 ```bash
 python3 /home/midnight/.hermes/skills/weatherAPI-home/bathurst_weather.py --format note
 ```
 
-Live observations are also appended as small JSONL records under `.weather_cache/history/`. This archive is local runtime data, separate from the tracked skill mirror.
+The generic and evening wrappers route their deterministic output through the canonical `note` CLI using `NOTE_SOURCE_LABEL=Weather`. This happens without an agent/model and is best-effort: a note-capture failure never suppresses weather delivery. Live observations are also appended as small JSONL records under `.weather_cache/history/`. This archive is local runtime data, separate from the tracked skill mirror.
+
+### Historical weather lookup policy
+
+For questions about prior weather, search the local weather archive and GBrain/QuickThoughts-derived pages first. Use a web search only when the local archive does not cover the requested date, location, or measurement. Treat GBrain as the searchable derived index and the local JSONL/QuickThoughts records as the source trail; do not infer that a note reached GBrain until the sync/import path has completed.
 
 ### Location handling preference
 

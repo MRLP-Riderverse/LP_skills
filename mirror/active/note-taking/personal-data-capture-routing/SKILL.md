@@ -93,6 +93,18 @@ Before claiming that a note is in GBrain, distinguish:
 
 When a metric matters, report the source scope, deduplication rule, and whether automated/system entries were excluded. Start with descriptive pattern maps and hypotheses; do not imply diagnosis or deterministic prediction from sparse, mixed-source data.
 
+## Structured Environmental Telemetry
+
+Recurring measurements such as weather are useful longitudinal context. Keep raw measurements in a local append-only structured archive first, with minimal metadata such as local observation time, location/context, primary measurement, conditions/state, units, and provenance. For the user's low-frequency weather schedule, a deterministic wrapper may also append a compact human-readable note through the canonical `note` CLI using a dedicated `Weather` source label; this requires no LLM and preserves the existing QuickThoughts → GBrain sync path.
+
+Use this boundary:
+
+```text
+weather cron → local structured archive + compact QuickThoughts note → existing GBrain sync → historical recall
+```
+
+For prior-weather questions, search the local archive and GBrain/QuickThoughts-derived pages before using web search. Use deterministic local scans for exact dates and measurements; use GBrain for contextual retrieval, and use the web only for gaps.
+
 ## Privacy and UX Direction
 
 Prefer local-first storage and an accessible CLI foundation. Discord or another cloud platform may be a useful prompt gateway, but it is not a fundamental fix for capture friction and should not replace the local source of truth. A future mobile app should be designed around proven capture patterns from the CLI/raw stream rather than invented before real use reveals them.
