@@ -14,7 +14,7 @@ Fetches weather data and delivers formatted reports to Telegram.
 - Temporary travel override comes from `CURRENT_LOCATION` in `~/.hermes/.env`
 - If `CURRENT_LOCATION` is blank, the workflow uses `HOME_LOCATION`
 - One-off requests can override both with `--location "City, Region"`
-- Reusable coordinates are declared for Bathurst, Moncton, and Montreal; new geocoded locations are persisted in `.weather_cache/locations.json` and reused on later requests
+- Reusable coordinates are declared for Bathurst, Moncton, Montreal, and Tokyo; new geocoded locations are persisted in `.weather_cache/locations.json` and reused on later requests
 - The script still honors legacy `HOME_WEATHER_LOCATION` as a backward-compatible fallback
 - If no location is configured, the workflow falls back to the hardcoded Bathurst safety default
 - See `references/location-defaults-and-overrides.md` for the resolution order, cache behavior, and cron-safe operator pattern

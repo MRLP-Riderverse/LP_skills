@@ -39,6 +39,7 @@ DECLARED_LOCATIONS: dict[str, tuple[float, float, str]] = {
     "bathurst, nb": (47.6208671, -65.6537546, "Bathurst, New Brunswick, CA"),
     "moncton, nb": (46.0985679, -64.8004265, "Moncton, New Brunswick, CA"),
     "montreal, qc": (45.5031824, -73.5698065, "Montréal, Québec, CA"),
+    "tokyo, japan": (35.6768601, 139.7638947, "Tokyo, Japan"),
 }
 
 WEATHER_CODES = {

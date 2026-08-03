@@ -18,4 +18,7 @@ cd "$WEATHER_DIR"
 report="$(python3 "$WEATHER_DIR/weather_walk_telegram.py" "$@")"
 printf '%s\n' "$report"
 
-NOTE_SOURCE_LABEL=Weather "$HOME/ExoCortex/Agentic/Scripts/note" "$report" >/dev/null 2>&1 || true
+# Telegram keeps the extra spacing; QuickThoughts stores the same multiline
+# report compactly with one newline between hourly rows.
+compact_report="${report//$'\n\n\n'/$'\n'}"
+NOTE_SOURCE_LABEL=Weather "$HOME/ExoCortex/Agentic/Scripts/note" "$compact_report" >/dev/null 2>&1 || true

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-03T23:16:48+00:00",
+  "generated_at_utc": "2026-08-03T23:22:48+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -2522,8 +2522,8 @@
     },
     {
       "path": "weatherAPI-home/SKILL.md",
-      "sha256": "02e9053b8277793dd5accd22e622b3fe99469e19bee232802c17ae78bc71247e",
-      "bytes": 6452
+      "sha256": "3458fd64842c6b5d6c174832d83e575580a068d7fcdb83fd0f0aaa6ce3660c57",
+      "bytes": 6459
     },
     {
       "path": "weatherAPI-home/_meta.json",
@@ -2532,8 +2532,8 @@
     },
     {
       "path": "weatherAPI-home/bathurst_weather.py",
-      "sha256": "3da44ed8c2b730e089954f88c4399f8f96edcf8036720862c1b81fc32d4b0f89",
-      "bytes": 14688
+      "sha256": "8ee4fa636c2eb385eabfa5134aa2d26cff316962914f24b2edf4662c1d537ff8",
+      "bytes": 14751
     },
     {
       "path": "weatherAPI-home/locations.json",
