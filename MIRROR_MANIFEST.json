@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-03T23:11:14+00:00",
+  "generated_at_utc": "2026-08-03T23:16:48+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -2522,8 +2522,8 @@
     },
     {
       "path": "weatherAPI-home/SKILL.md",
-      "sha256": "bc54bd998d365d540470c9c50c99070d17633d1baba21d0b03aa3df1d9a34c3b",
-      "bytes": 6115
+      "sha256": "02e9053b8277793dd5accd22e622b3fe99469e19bee232802c17ae78bc71247e",
+      "bytes": 6452
     },
     {
       "path": "weatherAPI-home/_meta.json",
@@ -2567,8 +2567,8 @@
     },
     {
       "path": "weatherAPI-home/weather_format.py",
-      "sha256": "8ccabd93c5b1d793acaa4fc12337fa829367c5963a3e05d5dea04b102fb20a7a",
-      "bytes": 3103
+      "sha256": "76f174d8866e8aec9cc8db5993106d9da6b066c6e889e2474735d54043746ac4",
+      "bytes": 3087
     },
     {
       "path": "weatherAPI-home/weather_location_env.py",
@@ -2582,8 +2582,8 @@
     },
     {
       "path": "weatherAPI-home/weather_walk_telegram.py",
-      "sha256": "7beca14c84c3981e296f0abf6ee0ec67994b84659004ee93e193addee40b4ea4",
-      "bytes": 5088
+      "sha256": "7fec62f323ebba8d2cf03dd37726dc28310087c61bf2e70bbf4b00a9756939c5",
+      "bytes": 5094
     },
     {
       "path": "websites/acadie-popup-menu-maker/SKILL.md",

@@ -78,7 +78,7 @@ For a one-off override location, run:
 ~/.hermes/scripts/weather_telegram.sh --location "San Diego, CA"
 ```
 
-The older `bathurst_weather_telegram.sh` name remains a compatibility alias, but new commands and cron jobs should use the generic wrapper.
+Every current-weather request sent through this generic wrapper—including explicit one-shot locations—also appends one compact `Notes, by Weather : ...` observation to QuickThoughts through the canonical `note` CLI. This makes location-specific weather curiosity part of the searchable personal history without using an agent/model. The older `bathurst_weather_telegram.sh` name remains a compatibility alias, but new commands and cron jobs should use the generic wrapper.
 
 For a compact history/QuickThoughts-friendly line:
 

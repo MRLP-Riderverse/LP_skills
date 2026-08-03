@@ -108,7 +108,7 @@ def format_message(location_name: str, rows: list[dict[str, Any]]) -> str:
             f"wind {row['wind_speed_kmh']:.0f} km/h"
         )
         if index < len(rows) - 1:
-            lines.append("")
+            lines.extend(["", ""])
     lines.extend(["", f"Shinobi walk read: {decision}"])
     return "\n".join(lines)
 
