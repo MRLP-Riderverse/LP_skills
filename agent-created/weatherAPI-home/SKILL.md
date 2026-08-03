@@ -1,6 +1,6 @@
 ---
 name: weatherAPI-home
-description: Local Bathurst weather fetcher and Telegram delivery. Powers daily and midday weather cron jobs.
+description: Local-first weather fetcher and Telegram delivery. Supports home, travel, and one-off locations.
 category: weather
 ---
 
@@ -24,11 +24,13 @@ Fetches weather data and delivers formatted reports to Telegram.
 ## Scripts
 
 - `weather_telegram.py` — main formatter/entrypoint for a single live weather fetch
-- `bathurst_weather.py` — weather data fetcher with per-location cache fallback
+- `bathurst_weather.py` — shared weather data fetcher with per-location cache fallback and local history archive
 - `weather_location_env.py` — helper for changing `CURRENT_LOCATION` / checking effective defaults in `~/.hermes/.env`
 - `weather_walk_telegram.py` — evening walk decision using the next three hourly forecast slots
-- `weather_format.py` — formatting utilities
-- `~/.hermes/scripts/bathurst_weather_telegram.sh` — shared cron wrapper; sources `~/.hermes/.env`, enters the skill directory, and executes `weather_telegram.py`
+- `weather_format.py` — Telegram, CLI, and compact history-note formatting
+- `~/.hermes/scripts/weather_telegram.sh` — generic wrapper for home, travel, and one-off weather requests
+- `~/.hermes/scripts/bathurst_weather_telegram.sh` — compatibility alias for older callers
+- `~/.hermes/scripts/evening_walk_weather.sh` — evening walk forecast wrapper
 - `~/.hermes/scripts/weather_location.sh` — wrapper for `weather_location_env.py`; use this to set or clear travel location state without editing `.env` manually
 
 ## Cron Jobs
@@ -36,8 +38,17 @@ Fetches weather data and delivers formatted reports to Telegram.
 - `daily-bathurst-weather` (8:00 AM Atlantic)
 - `brunch-bathurst-weather` (10:30 AM Atlantic)
 - `midday-bathurst-weather` (2:00 PM Atlantic)
+- `evening-bathurst-walk-weather` (6:00 PM Atlantic)
 
-All three weather jobs are hardened as `no_agent: true` script-only cron jobs pointing to `bathurst_weather_telegram.sh`. That removes model/provider dependence for the routine daily sends while keeping the Python weather script available for manual live runs.
+The evening report fetches the next three local hourly forecast slots and includes:
+
+- local time for each slot
+- temperature
+- condition and precipitation probability
+- wind speed
+- a simple walk recommendation based on rain, wind, temperature, and severe-weather codes
+
+All four weather jobs are hardened as `no_agent: true` script-only cron jobs. The first three use `weather_telegram.sh`; the evening job uses `evening_walk_weather.sh`. The old Bathurst-named wrapper remains only as a compatibility alias.
 
 ## Hardening / Delivery Notes
 
@@ -64,14 +75,18 @@ To inspect or change the travel override without editing `.env` manually, use:
 For a one-off override location, run:
 
 ```bash
-python3 /home/midnight/.hermes/skills/weatherAPI-home/weather_telegram.py --location "San Diego, CA"
+~/.hermes/scripts/weather_telegram.sh --location "San Diego, CA"
 ```
 
-or use the shared wrapper with an explicit one-off location:
+The older `bathurst_weather_telegram.sh` name remains a compatibility alias, but new commands and cron jobs should use the generic wrapper.
+
+For a compact history/QuickThoughts-friendly line without capturing it automatically:
 
 ```bash
-~/.hermes/scripts/bathurst_weather_telegram.sh --location "San Diego, CA"
+python3 /home/midnight/.hermes/skills/weatherAPI-home/bathurst_weather.py --format note
 ```
+
+Live observations are also appended as small JSONL records under `.weather_cache/history/`. This archive is local runtime data, separate from the tracked skill mirror.
 
 ### Location handling preference
 

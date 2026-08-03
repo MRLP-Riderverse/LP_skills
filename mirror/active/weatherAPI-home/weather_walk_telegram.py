@@ -100,13 +100,15 @@ def format_message(location_name: str, rows: list[dict[str, Any]]) -> str:
         decision = "Mixed conditions — a short walk may work, but check the hour you want to leave."
 
     lines = [f"🚶 {location_name} evening walk check 🚶", ""]
-    for row in rows:
+    for index, row in enumerate(rows):
         time_label = datetime.fromisoformat(row["time"]).strftime("%H:%M")
         lines.append(
             f"{time_label} — {row['emoji']} {row['temperature_c']:.1f}°C, "
             f"{row['conditions'].lower()}, {row['precipitation_probability']}% precip, "
             f"wind {row['wind_speed_kmh']:.0f} km/h"
         )
+        if index < len(rows) - 1:
+            lines.append("")
     lines.extend(["", f"Shinobi walk read: {decision}"])
     return "\n".join(lines)
 

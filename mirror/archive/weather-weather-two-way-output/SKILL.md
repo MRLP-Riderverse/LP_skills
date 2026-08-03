@@ -1,11 +1,8 @@
 ---
-name: weather-two-way-output
-description: Build a weather workflow with a machine-friendly CLI output and a separate Telegram-friendly text output, both backed by the same fetcher and cache.
-version: 1.0.0
-author: MidnightRider.sol
----
 name: weather-workflow
-description: Complete weather workflow — two-way output (JSON CLI + Telegram text), one-shot location queries, caching, and Open-Meteo API integration.
+description: Complete weather workflow — shared fetcher, JSON/Telegram output, one-shot locations, caching, and local history.
+version: 1.1.0
+author: MidnightRider.sol
 category: weather
 aliases: [weather-two-way-output, weather-one-shot]
 ---

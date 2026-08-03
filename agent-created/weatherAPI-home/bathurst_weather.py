@@ -11,11 +11,12 @@ import hashlib
 import json
 import os
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib import error, parse, request
 
-from weather_format import format_cli_text
+from weather_format import format_cli_text, format_history_note
 
 
 WEATHER_API_URL = "https://api.open-meteo.com/v1/forecast"
@@ -30,6 +31,7 @@ DEFAULT_LATITUDE = 47.6167
 DEFAULT_LONGITUDE = -65.6500
 DEFAULT_LOCATION_NAME = "Bathurst, NB"
 LOCATION_CACHE_FILE = CACHE_DIR / "locations.json"
+HISTORY_DIR = CACHE_DIR / "history"
 
 # Stable city coordinates avoid repeated geocoding for the places used most often.
 # Values are from the Nominatim resolution verified on 2026-08-03.
@@ -342,6 +344,24 @@ def parse_weather(api_response: dict[str, Any], location_name: str) -> dict[str,
     }
 
 
+def append_history_record(weather: dict[str, Any]) -> None:
+    """Append a compact local observation record for later pattern review."""
+    HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+    record = {
+        "recorded_at_utc": datetime.now(timezone.utc).isoformat(),
+        "location": weather["location"],
+        "observed_at": weather.get("observed_at"),
+        "temperature_c": weather["temperature_c"],
+        "conditions": weather["conditions"],
+        "precipitation_mm": weather["precipitation_mm"],
+        "wind_speed_kmh": weather["wind_speed_kmh"],
+    }
+    date_key = datetime.now().astimezone().date().isoformat()
+    history_file = HISTORY_DIR / f"{date_key}.jsonl"
+    with history_file.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
+
+
 def fetch_weather(location: str | None = None) -> dict[str, Any]:
     location_query = resolve_location_query(location)
     cache_key = cache_key_for_location(location_query)
@@ -372,6 +392,7 @@ def fetch_weather(location: str | None = None) -> dict[str, Any]:
 
     weather = parse_weather(api_response, location_name)
     save_cache(cache_key, weather)
+    append_history_record(weather)
     return weather
 
 
@@ -379,7 +400,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Fetch current weather with home-location fallback")
     parser.add_argument(
         "--format",
-        choices=("json", "text"),
+        choices=("json", "text", "note"),
         default="json",
         help="Output format for CLI use (default: json)",
     )
@@ -397,6 +418,8 @@ def main() -> int:
 
     if args.format == "text":
         print(format_cli_text(weather))
+    elif args.format == "note":
+        print(format_history_note(weather))
     else:
         print(json.dumps(weather, indent=2))
     return 0

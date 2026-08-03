@@ -122,7 +122,7 @@ def main() -> int:
         curated_updates.append("acadie-sol-gallery")
 
     # The weather crons use wrappers outside the skill directory; keep recovery copies.
-    for wrapper_name in ("bathurst_weather_telegram.sh", "evening_walk_weather.sh"):
+    for wrapper_name in ("weather_telegram.sh", "bathurst_weather_telegram.sh", "evening_walk_weather.sh"):
         weather_wrapper = HERMES_SCRIPTS / wrapper_name
         weather_backup = CURATED / "weatherAPI-home" / wrapper_name
         if weather_wrapper.is_file():

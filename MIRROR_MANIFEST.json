@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-03T22:47:01+00:00",
+  "generated_at_utc": "2026-08-03T23:04:01+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -2517,8 +2517,8 @@
     },
     {
       "path": "weatherAPI-home/SKILL.md",
-      "sha256": "4b505a30c923a31013ebb4b1241526336fb77d8341d8c1fddd82a5a08078fa9b",
-      "bytes": 4438
+      "sha256": "f3c905cfa4ea2b2ee091eee44af0c43a5d227583d7d4be4223d044d1cdfdede3",
+      "bytes": 5234
     },
     {
       "path": "weatherAPI-home/_meta.json",
@@ -2527,8 +2527,8 @@
     },
     {
       "path": "weatherAPI-home/bathurst_weather.py",
-      "sha256": "86cb3cf76a89d0785abba29b476ba2b3010230459bbdddf94bf772d9fd549338",
-      "bytes": 13635
+      "sha256": "3da44ed8c2b730e089954f88c4399f8f96edcf8036720862c1b81fc32d4b0f89",
+      "bytes": 14688
     },
     {
       "path": "weatherAPI-home/locations.json",
@@ -2562,8 +2562,8 @@
     },
     {
       "path": "weatherAPI-home/weather_format.py",
-      "sha256": "8bbf8628cd6ac5dde4b78e7985170ea294e6403b3ee185bf61d79809127c8867",
-      "bytes": 2719
+      "sha256": "8ccabd93c5b1d793acaa4fc12337fa829367c5963a3e05d5dea04b102fb20a7a",
+      "bytes": 3103
     },
     {
       "path": "weatherAPI-home/weather_location_env.py",
@@ -2577,8 +2577,8 @@
     },
     {
       "path": "weatherAPI-home/weather_walk_telegram.py",
-      "sha256": "8c7fd7f24db7dabd975883d2ecd122feead96224e5bf1e800467ff56f0887ad5",
-      "bytes": 5007
+      "sha256": "7beca14c84c3981e296f0abf6ee0ec67994b84659004ee93e193addee40b4ea4",
+      "bytes": 5088
     },
     {
       "path": "websites/acadie-popup-menu-maker/SKILL.md",
@@ -5004,8 +5004,8 @@
     },
     {
       "path": "weather-weather-two-way-output/SKILL.md",
-      "sha256": "13404ca1428cc35036d852c65ab4ce51dae2732b6d889af1b3801c07160bb77b",
-      "bytes": 6970
+      "sha256": "7fab7cf30b5676ff44518a065914a47963a4e165552bbc755443c3bf5f8bec35",
+      "bytes": 6750
     },
     {
       "path": "weather-weather-two-way-output/_meta.json",

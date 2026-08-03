@@ -42,6 +42,15 @@ def format_cli_text(weather: dict[str, Any]) -> str:
     )
 
 
+def format_history_note(weather: dict[str, Any]) -> str:
+    """Return a compact, QuickThoughts-friendly observation line."""
+    return (
+        f"Weather log — {weather['location']}: {weather['temperature_c']:.1f}°C, "
+        f"{weather['conditions'].lower()}, wind {weather['wind_speed_kmh']:.1f} km/h, "
+        f"precipitation {weather['precipitation_mm']:.1f} mm."
+    )
+
+
 def format_telegram_message(weather: dict[str, Any]) -> str:
     header = f"{weather['emoji']} {weather['location']} weather {weather['emoji']}"
     lines = [
