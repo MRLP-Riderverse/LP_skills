@@ -105,6 +105,10 @@ weather cron → local structured archive + compact QuickThoughts note → exist
 
 For prior-weather questions, search the local archive and GBrain/QuickThoughts-derived pages before using web search. Use deterministic local scans for exact dates and measurements; use GBrain for contextual retrieval, and use the web only for gaps.
 
+Treat explicit current-weather one-shots as valid curiosity telemetry too, regardless of location. Route them through the same deterministic weather wrapper so each request becomes a compact `Notes, by Weather` observation without invoking an LLM or GBrain per report. This preserves the user's questions as a searchable trail rather than logging only scheduled home-weather checks.
+
+Keep presentation layers separate: Telegram may use extra blank lines for human visual scanning, while multiline QuickThoughts entries should use single newlines between structured rows when blank-line padding adds no meaning. Preserve both from the same raw report without mutating older entries.
+
 ## Privacy and UX Direction
 
 Prefer local-first storage and an accessible CLI foundation. Discord or another cloud platform may be a useful prompt gateway, but it is not a fundamental fix for capture friction and should not replace the local source of truth. A future mobile app should be designed around proven capture patterns from the CLI/raw stream rather than invented before real use reveals them.

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-03T23:22:48+00:00",
+  "generated_at_utc": "2026-08-04T18:01:31+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -7,6 +7,7 @@
     "autonomous-ai-agents/hermes-agent",
     "community/acadian-community-tech",
     "community/community-event-directory-linking",
+    "community/community-project-positioning",
     "community/directory-card-lookup",
     "community/directory-draft-intake",
     "creative/creative-content-workflows",
@@ -18,10 +19,13 @@
     "creative/visual-communication",
     "devops/cron-delta-briefing",
     "devops/cron-job-reliability",
+    "devops/deterministic-agent-tool-selection",
     "devops/hermes-local-model-operations",
     "devops/hermes-persona-layering",
     "devops/hermes-provider-config",
+    "devops/hermes-usage-management",
     "devops/kanban",
+    "devops/provider-usage-limit-observability",
     "devops/webhook-subscriptions",
     "gaming/minecraft-modpack-server",
     "gaming/pokemon-player",
@@ -68,6 +72,7 @@
     "red-teaming/godmode",
     "research-frontier-stack-tech-review",
     "research/adaptive-research-system",
+    "research/cognitive-profile-review",
     "research/critical-geopolitical-research",
     "research/delta-briefing-ops",
     "research/ecosystem-discovery",
@@ -83,7 +88,7 @@
     "websites/acadie-sol-website",
     "yuanbao"
   ],
-  "active_skill_count": 79,
+  "active_skill_count": 84,
   "active_files": [
     {
       "path": "README.md",
@@ -249,6 +254,16 @@
       "path": "community/community-event-directory-linking/references/event-linking-workflow.md",
       "sha256": "6cde0bb4157c25072ecf754eb126a165812916d7b38b99220040c216a084da00",
       "bytes": 1104
+    },
+    {
+      "path": "community/community-project-positioning/SKILL.md",
+      "sha256": "2edb7c5c0e21c0a595600fa216fdd426d3a30c5e1efed19bcbc343c4f551ae6f",
+      "bytes": 5987
+    },
+    {
+      "path": "community/community-project-positioning/references/acadie-sol-positioning-case.md",
+      "sha256": "19daaf69acd80481a70a91d49eb9f84bb6849d4b793c4d8f8465819dc5dd3dbb",
+      "bytes": 2582
     },
     {
       "path": "community/directory-card-lookup/SKILL.md",
@@ -616,9 +631,19 @@
       "bytes": 1555
     },
     {
+      "path": "devops/deterministic-agent-tool-selection/SKILL.md",
+      "sha256": "da4cd7180217003390ca0ab8ce65c026a4c3715c19134e0ce4254567bbf8e166",
+      "bytes": 4820
+    },
+    {
+      "path": "devops/deterministic-agent-tool-selection/references/weather-approval-trace.md",
+      "sha256": "4664fe2cbe243b32beceba7c7f94669d73798836f9a1f8c0092106f4ad89ced2",
+      "bytes": 1710
+    },
+    {
       "path": "devops/hermes-local-model-operations/SKILL.md",
-      "sha256": "df6bfbfed90e7cd7f3ba1d0a12d5764bb21a263113db985806b189fd1fcb0930",
-      "bytes": 8878
+      "sha256": "eab5925984ac4cff749e89a25c0d9ae7a739851dda7b84429f5fdf1fd4a569cb",
+      "bytes": 10650
     },
     {
       "path": "devops/hermes-local-model-operations/references/gbrain-local-embedding-maintenance.md",
@@ -656,6 +681,16 @@
       "bytes": 2005
     },
     {
+      "path": "devops/hermes-usage-management/SKILL.md",
+      "sha256": "e08cede91f47695b462d66177b99e26eba6bdf6f08d32de21d14ca40068f594e",
+      "bytes": 2906
+    },
+    {
+      "path": "devops/hermes-usage-management/references/codex-banked-reset.md",
+      "sha256": "27b5b17ddc2417abd5c33ffae61f93dfe19c78fc3f2e1b58ffaa76e668892620",
+      "bytes": 1386
+    },
+    {
       "path": "devops/kanban/SKILL.md",
       "sha256": "3f7fba544aa05a17782bfd44a2ec4db53734e3433e0201c57c54bb6958424e9c",
       "bytes": 4808
@@ -664,6 +699,16 @@
       "path": "devops/kanban/references/heartbeat-cheatsheet.md",
       "sha256": "114dfbe68ad125e4f7d17684b3131387f699ace39d180e0f9260158b4e8e263b",
       "bytes": 1089
+    },
+    {
+      "path": "devops/provider-usage-limit-observability/SKILL.md",
+      "sha256": "603e5fadf33ee3880324d1179be53aaf13cd51bffd845a5e6a66c7861aea9153",
+      "bytes": 4080
+    },
+    {
+      "path": "devops/provider-usage-limit-observability/references/codex-banked-reset-observations.md",
+      "sha256": "a94498ae9fb971269d567abe2054a9080a9de724d87eabfb357d999e311118e2",
+      "bytes": 2122
     },
     {
       "path": "devops/webhook-subscriptions/SKILL.md",
@@ -1217,8 +1262,8 @@
     },
     {
       "path": "note-taking/note-capture-workflow/SKILL.md",
-      "sha256": "99a6be3c7ca902eed5dadb6828934261642a80fd2484e339076c3dc180ba243d",
-      "bytes": 25735
+      "sha256": "4f66d65e9f8f08153f701fcca6f9b931dd1ea7817242cd1af8312f1815568392",
+      "bytes": 26731
     },
     {
       "path": "note-taking/note-capture-workflow/references/direct-edit-incident-may-2026.md",
@@ -1267,8 +1312,8 @@
     },
     {
       "path": "note-taking/personal-data-capture-routing/SKILL.md",
-      "sha256": "9e98654f0ca29a26932384814fe81b887b8d9961a01e043d10ca29b475d574dc",
-      "bytes": 7237
+      "sha256": "6a16ee367f02d807a4558da1277d88334c9ceabe8fcec8b3e62bd3980779f96f",
+      "bytes": 7920
     },
     {
       "path": "note-taking/personal-data-capture-routing/references/structured-telemetry-routing.md",
@@ -1841,14 +1886,24 @@
       "bytes": 2294
     },
     {
+      "path": "research/cognitive-profile-review/SKILL.md",
+      "sha256": "2a9a37dc6881350cf6682327a3b69c805977bf0676a65fa6906a24b92432df13",
+      "bytes": 5775
+    },
+    {
+      "path": "research/cognitive-profile-review/references/cognitive-profile-review.md",
+      "sha256": "aa2dbb4331cb80625291283184172a288a55dda9174e537a78eb8837e81aee88",
+      "bytes": 2715
+    },
+    {
       "path": "research/critical-geopolitical-research/SKILL.md",
       "sha256": "ce1b385575a87add0e1e7a8e4d9a8f2d50bdd5c9449ecf77eebb4d7057586759",
       "bytes": 3002
     },
     {
       "path": "research/delta-briefing-ops/SKILL.md",
-      "sha256": "ccd518d0a07c76effe443f538c4c5086b8aa7f068cfaf24ae4c18ae11b128062",
-      "bytes": 6818
+      "sha256": "71765ea99edb751b2d594dc573d5d33a451d3cf0f62aed7ef1d6cdf072db9502",
+      "bytes": 7005
     },
     {
       "path": "research/delta-briefing-ops/references/2026-07-06-session-notes.md",
@@ -1884,6 +1939,11 @@
       "path": "research/delta-briefing-ops/references/2026-07-22-frontier-delta-notes.md",
       "sha256": "4b79d5f4e0e47668931b11eb5b24efcbf24d26b9259470d213b462ca3b72f197",
       "bytes": 1424
+    },
+    {
+      "path": "research/delta-briefing-ops/references/2026-08-04-frontier-delta-notes.md",
+      "sha256": "b2e547c2a7c43fffeb50014f161b3dbd52ec7f71bd1632296ae2a78fa30931ca",
+      "bytes": 1775
     },
     {
       "path": "research/delta-briefing-ops/references/crypto-weekly-briefing-2026-07-06.md",

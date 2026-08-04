@@ -62,6 +62,30 @@ Use this skill when adding, evaluating, or tuning an Ollama or other local OpenA
    - Check Ollama logs for `llama-server ... -c 65536`, CPU/GPU placement, CUDA initialization errors, and request completion times.
    - Finish with `ollama ps` and process checks; clean up lingering test runners and model instances.
 
+## Direct Ollama local-planner lane
+
+A capable local model can be useful before it is proven as a full Hermes tool-using agent. Treat this as a separate, bounded lane: local first-pass planning, structured extraction, code/diff review, preliminary estimates, and low-risk feedback; reserve a stronger cloud model for genuinely high-impact, ambiguous, or novel decisions. Do not add a cloud-verification step mechanically to every local response—use deterministic validation, tests, or artifact inspection for reversible work.
+
+### Clean-output invocation
+
+Recent Ollama releases expose reasoning controls in `ollama run`:
+
+```bash
+ollama run <model> --think=false "<bounded prompt>"
+# When supported and a final answer is enough:
+ollama run <model> --hidethinking "<bounded prompt>"
+# For a machine-consumed response:
+ollama run <model> --think=false --format json "Return only valid JSON ..."
+```
+
+- Check `ollama run --help` on the installed version instead of assuming these flags exist.
+- `--think=false` prevents visible reasoning on supported models, but still validate the final content. A raw CLI spinner is not part of the model answer.
+- For structured automation, validate parsed JSON/schema and enforce output caps; a model may still add prose or follow an output shape imperfectly.
+
+### Estimate and safety boundary
+
+Use local models for preliminary calculations only when the prompt states assumptions explicitly. Independently recompute numerical results with a deterministic tool before reporting them as correct. For electrical, medical, financial, legal, or other safety-sensitive designs, mark model output as preliminary and require real measurements, component specifications, local requirements, or qualified review before purchase or deployment.
+
 ## Local embedding workloads (Ollama / retrieval indexes)
 
 Embedding is a distinct workload from running a local model as a Hermes chat agent. Do not apply the 64K agent-context target to an embedding model: the embedding runtime only needs enough context for **one already-chunked document**, and the indexer should batch the corpus incrementally.

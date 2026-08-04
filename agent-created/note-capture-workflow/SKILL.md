@@ -64,6 +64,19 @@ Why this matters:
 - Capture CLI: `~/ExoCortex/Agentic/Scripts/note`
 - Notes root default: `~/Documents/Notes/notecore`
 
+## Skill Recovery and Mirror Routing
+
+The Hermes skill resolver searches the live `~/.hermes/skills/` tree; it does not automatically search the LP_skills backup repository. If `skill_view` or another skill-loading path reports a local skill as not found:
+
+1. Do not assume the capability is gone, and do not jump to web search first.
+2. Check the local LP_skills mirror at `~/ExoCortex/websites/projects/LP_skills/`.
+3. Look for the canonical path under `mirror/active/` and the agent-created recovery copy under `agent-created/`.
+4. Run the mirror verifier before treating a recovery copy as trustworthy:
+   `python3 ~/ExoCortex/websites/projects/LP_skills/scripts/verify_mirror.py`
+5. Compare the mirror copy against the live skill name/path before restoring or repairing anything.
+
+LP_skills is a recovery mirror, not a runtime skill-search path. A mirror hit proves recoverability; it does not by itself make the skill loadable until the skill is restored into the live Hermes skills tree.
+
 ## Actual Capture Behavior
 
 As currently implemented, the `note` script appends entries like this:

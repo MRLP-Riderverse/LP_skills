@@ -95,6 +95,7 @@ If there is no meaningful delta across all sources:
 - `references/2026-07-18-frontier-dedup-session-notes.md` — cron-session fallback retrieval, delivered-vs-empty run distinction, and current source-probing lessons.
 - See `references/2026-07-19-frontier-delta-notes.md` for the latest session retrieval fallback, sparse-commit release verification, and bounded-execution synthesis pattern.
 - See `references/2026-07-22-frontier-delta-notes.md` for the latest cron-artifact dedup fallback, moved-repository verification, RC-to-stable status handling, and noise filtering lessons.
+- See `references/2026-08-04-frontier-delta-notes.md` for the exercised session-search fallback, saved-then-parsed GitHub probing pattern, and fresh-item filtering from the August 4 run.
 - `references/crypto-weekly-briefing-2026-07-13.md` — source map and endpoint notes for Ethereum / Bitcoin / L2 weekly briefings (feeds, release notes, TVL APIs, and repo scans).
 
 ## Relationship to other skills
