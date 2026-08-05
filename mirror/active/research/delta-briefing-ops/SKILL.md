@@ -26,6 +26,7 @@ Use this skill for scheduled or recurring technology briefs that must be **delta
 1. **Find the previous brief**
    - Use session search for the briefing topic.
    - If search returns an unrelated conversational session or misses cron runs, use session browse (no query) to locate the newest cron sessions by title, then read the relevant sessions directly.
+   - If `session_search` fails with a database/FTS error, preserve deduplication by querying the local Hermes `~/.hermes/state.db` read-only: identify recent sessions whose title contains the briefing class/topic, then inspect their latest user/assistant messages. Treat this as a retrieval fallback, not as permission to proceed without the last three delivered briefs.
    - Open the most recent relevant session and read around the anchored brief message.
    - A cron session containing only the user prompt is a failed/empty run, not a delivered brief; skip it and inspect the newest session containing assistant output.
    - Read the last **three delivered briefs**, not merely the last three job attempts, before filtering.

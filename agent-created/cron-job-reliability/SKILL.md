@@ -116,12 +116,27 @@ A job can disappear from the persisted `~/.hermes/cron/jobs.json` while the alre
 5. Check `hermes cron status` after the mutation. A gateway restart may be needed to discard a stale in-memory copy, but do not invoke `hermes gateway restart` from inside the running gateway process; use the service manager or a genuinely separate shell. If the create/update path notifies the active scheduler and status/list agree, avoid an unnecessary restart.
 6. Never claim the reminder was restored from metadata alone: verify the script output, persisted job fields, scheduler status, and absence of duplicate definitions.
 
+## Telegram/gateway failures caused by state.db corruption
+
+A Telegram turn that reports `No reply`, session-write failure, or an OpenAI-compatible call error may be failing in persistence rather than at Telegram or the model provider. Treat `malformed database schema (...)`, `invalid rootpage`, or repeated transcript-lag warnings as a state-database incident.
+
+1. Inspect `hermes gateway status`, `hermes sessions list`, `hermes doctor`, and the gateway log before retrying the turn. Confirm whether the gateway is down and whether `~/.hermes/state.db` is malformed.
+2. Stop or isolate the gateway before database repair. Preserve the active database and WAL/SHM sidecars; do not delete them.
+3. Run the built-in repair first: `hermes sessions repair`. If it reports `database disk image is malformed`, use the non-destructive workflow: `hermes sessions recover --source <preserved-backup> --inspect-only`, then recover to a new output database.
+4. Install a recovery output only after checking its JSON report. Prefer a fully verified output; if corruption prevents complete recovery, `--allow-partial` is acceptable only when the report says the output opens cleanly, has `PRAGMA integrity_check: ok`, no foreign-key violations, and rebuilt FTS checks pass. Report lost rows explicitly.
+5. Verify the recovered database with `hermes sessions list` and confirm the current Telegram session is present before bringing the gateway back.
+6. Restart under the service manager, not only as a foreground/manual process. Verify `systemctl --user is-active hermes-gateway.service`, `hermes gateway status`, cron heartbeat, and fresh logs containing `Connected to Telegram`, `Gateway running`, and no new malformed-schema errors.
+7. Do not call the incident fixed based solely on Telegram connectivity: session writes, scheduler heartbeat, and service persistence must all be verified.
+
+See `references/state-db-corruption-recovery.md` for the tested recovery sequence and evidence pattern.
+
 ## Pitfalls
 - `cronjob run` can change `next_run_at`; verification still requires a real output file.
 - A successful config update is not proof of success. Always verify an intentional rerun or, when delivery would be intrusive, test the backing script directly.
 - Do not assume a report was captured from a failed run unless there is a matching file in cron/output.
 - For rate-limited briefs, rerun after routing changes instead of asking the user to wait for the next schedule.
 - Do not mistake an end-of-life HTTP 410 for rate limiting or a scheduler failure; replace the route or remove the agent from deterministic work.
+- A healthy foreground gateway is not enough if the systemd unit remains failed; hand the process back to the service manager and verify the unit itself.
 
 ## References
 - See `references/provider-routing-notes.md` for the current provider/model quirks and a verified rerun pattern.

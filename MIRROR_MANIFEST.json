@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-05T04:39:49+00:00",
+  "generated_at_utc": "2026-08-05T18:36:21+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -25,6 +25,8 @@
     "devops/hermes-provider-config",
     "devops/hermes-usage-management",
     "devops/kanban",
+    "devops/launch-steam",
+    "devops/local-capability-operations",
     "devops/provider-usage-limit-observability",
     "devops/webhook-subscriptions",
     "gaming/minecraft-modpack-server",
@@ -85,7 +87,9 @@
     "research/official-repository-research",
     "research/research-paper-writing",
     "software-development-opencode-delegation-pattern",
+    "software-development/gui-performance-refactoring",
     "software-development/inspecting-hermes-desktop-dom",
+    "software-development/shared-data-gui-audits",
     "software-development/software-dev-workflow",
     "weatherAPI-home",
     "websites/acadie-popup-menu-maker",
@@ -93,7 +97,7 @@
     "websites/acadie-sol-website",
     "yuanbao"
   ],
-  "active_skill_count": 89,
+  "active_skill_count": 93,
   "active_files": [
     {
       "path": "README.md",
@@ -617,8 +621,8 @@
     },
     {
       "path": "devops/cron-job-reliability/SKILL.md",
-      "sha256": "b460369423a07149fff5d5595c169f2ae40d250a0a899f3440cf1dcd27f9ef5e",
-      "bytes": 13875
+      "sha256": "93c5faf3ac45e7412ab581de9bd6cf53aea552c433fc5e232bdd3f9b4083cb77",
+      "bytes": 16016
     },
     {
       "path": "devops/cron-job-reliability/references/cron-approval-boundaries.md",
@@ -634,6 +638,11 @@
       "path": "devops/cron-job-reliability/references/retired-model-and-no-agent-migration.md",
       "sha256": "40758a39d1876f3e7a887dd188f0f5b7efc413a87c14b9537f637dc508ffca8d",
       "bytes": 1555
+    },
+    {
+      "path": "devops/cron-job-reliability/references/state-db-corruption-recovery.md",
+      "sha256": "5a908d9e98613ed30b1d8ffa786da981704e61890ee9960b34da5fcff4dba9a5",
+      "bytes": 2953
     },
     {
       "path": "devops/deterministic-agent-tool-selection/SKILL.md",
@@ -704,6 +713,21 @@
       "path": "devops/kanban/references/heartbeat-cheatsheet.md",
       "sha256": "114dfbe68ad125e4f7d17684b3131387f699ace39d180e0f9260158b4e8e263b",
       "bytes": 1089
+    },
+    {
+      "path": "devops/launch-steam/SKILL.md",
+      "sha256": "7f6cc84508a0ff1be383b5f248f15ed7ffe58917950173fee63959ca8c9877b4",
+      "bytes": 2131
+    },
+    {
+      "path": "devops/local-capability-operations/SKILL.md",
+      "sha256": "09872f685b11c1bf08dbcf72e1f177dff095e6b1ba5332869a27063d13822b3d",
+      "bytes": 4139
+    },
+    {
+      "path": "devops/local-capability-operations/references/steam-launch-pattern.md",
+      "sha256": "2e9fe69030ff9c397a9c5e235356f79c49f3b72c88e0a52ba12c07cdeccc6de4",
+      "bytes": 1530
     },
     {
       "path": "devops/provider-usage-limit-observability/SKILL.md",
@@ -1917,8 +1941,8 @@
     },
     {
       "path": "research/delta-briefing-ops/SKILL.md",
-      "sha256": "71765ea99edb751b2d594dc573d5d33a451d3cf0f62aed7ef1d6cdf072db9502",
-      "bytes": 7005
+      "sha256": "d11d8cba84dea734fc0a4262d03d570113d0ed6fb89c55eb632d9fadc4249f6a",
+      "bytes": 7376
     },
     {
       "path": "research/delta-briefing-ops/references/2026-07-06-session-notes.md",
@@ -2536,9 +2560,49 @@
       "bytes": 151
     },
     {
+      "path": "software-development/gui-performance-refactoring/SKILL.md",
+      "sha256": "7ab2cc5200289c13758d0d3dd5f3eb6287706de21da9b66a72493bac85e34afd",
+      "bytes": 8270
+    },
+    {
+      "path": "software-development/gui-performance-refactoring/references/tk-sidecar-experiment-recipe.md",
+      "sha256": "c318a27d7f914f3a9e5f851d24870c708f11c16b446f5a70fb9552dbce587efb",
+      "bytes": 2503
+    },
+    {
+      "path": "software-development/gui-performance-refactoring/references/tk-sidecar-performance.md",
+      "sha256": "7fc92346c6ac3a189803e8ebef384c36727adb5424d8340addd723da07909104",
+      "bytes": 2659
+    },
+    {
+      "path": "software-development/gui-performance-refactoring/references/tk-sidecar-resize-and-repo-boundary.md",
+      "sha256": "a6ba08ef1e894373418fd633da5db1b3bf4ffb3ae0b958126f1afc5ee8e9b09d",
+      "bytes": 1904
+    },
+    {
+      "path": "software-development/gui-performance-refactoring/references/tk-sidecar-responsive-layout.md",
+      "sha256": "b3215afcbe03112c013aea7ac3ec0ca48f5be74241a08626bb854072a0b92609",
+      "bytes": 2155
+    },
+    {
       "path": "software-development/inspecting-hermes-desktop-dom/SKILL.md",
       "sha256": "a78a5f8d277a1d6d39fccd5ecf1e76ce519a1ace831f06078dfcc91cb54a3399",
       "bytes": 6204
+    },
+    {
+      "path": "software-development/shared-data-gui-audits/SKILL.md",
+      "sha256": "0e59abafdf954907563e59ea30ba5de74ad90f8c11fc9cca807e110a405a5864",
+      "bytes": 6119
+    },
+    {
+      "path": "software-development/shared-data-gui-audits/references/sidecar-gui-refactor-patterns.md",
+      "sha256": "3e57b0bdda1fbb9834575946d48d6a50719e91d62b64da3da848ac21c5dfbed9",
+      "bytes": 3137
+    },
+    {
+      "path": "software-development/shared-data-gui-audits/references/standalone-gui-vs-cli-audit.md",
+      "sha256": "0fe59f84f71a090ac2fd1b188434711eb40876b7d05adac38900287d553f5894",
+      "bytes": 3587
     },
     {
       "path": "software-development/software-dev-workflow/SKILL.md",
