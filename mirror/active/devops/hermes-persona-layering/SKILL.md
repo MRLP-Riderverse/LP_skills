@@ -19,7 +19,7 @@ Use this skill when reviewing, designing, or optimizing Hermes identity and cont
 Treat persona context as distinct layers:
 
 - SOUL.md: stable agent identity, voice, behavioral boundaries, and operating principles. Keep it compact and behaviorally actionable.
-- USER.md: durable facts about the user, preferences, recurring conventions, and stable working context.
+- USER.md: the **user's** durable identity model: motivations, recurring behavior/cognitive patterns, collaboration preferences, and stable working context. It is not the agent's biography. Keep it person-first; detailed project architecture, exact UX specifications, and active plans belong in GBrain/QuickThoughts unless they affect nearly every interaction.
 - MEMORY.md: hot operational cache. Keep only facts that materially improve nearly every session: active configuration, tool quirks, critical paths, high-stakes preferences, and current system conventions.
 - QuickThoughts: warm storage for durable ideas, philosophy, research, session outcomes, and long-term context that does not need injection into every prompt.
 - GBrain: searchable indexed storage populated by the QuickThoughts sync pipeline.
@@ -31,10 +31,11 @@ Treat persona context as distinct layers:
 2. Inspect `config.yaml` for `display.personality` and `agent.system_prompt`; these can add a second persona layer.
 3. Inspect `USER.md` and `MEMORY.md` separately. Do not merge their responsibilities.
 4. Classify each line as identity, user preference, hot operational fact, warm long-term knowledge, or stale status/task history.
-5. Remove completed-work/status notes from hot memory instead of archiving them as permanent facts.
-6. Before removing a durable concept from hot memory, capture a concise version through the canonical QuickThoughts `note` CLI, then verify the persisted entry.
-7. Only then remove or compress the hot-memory entry with the memory tool.
-8. Re-read the resulting file and report measured size/usage. Never claim an optimization without verifying the write.
+5. If the user has asked to be consulted before edits, identify the exact target file (`SOUL.md`, `USER.md`, or `MEMORY.md`), explain its ownership in one sentence, and request approval for the proposed replacement before writing. A general request to “revise” does not override a previously stated ask-first boundary.
+6. Remove completed-work/status notes from hot memory instead of archiving them as permanent facts.
+7. Before removing a durable concept from hot memory, capture a concise version through the canonical QuickThoughts `note` CLI, then verify the persisted entry.
+8. Only then remove or compress the hot-memory entry with the memory tool.
+9. Re-read the resulting file and report measured size/usage. Never claim an optimization without verifying the write.
 
 ## Token discipline
 

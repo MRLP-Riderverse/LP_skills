@@ -29,6 +29,19 @@ For current-weather one-shots and routine reports:
 - Keep weather delivery LLM-free where the workflow is already deterministic.
 - Verify the observed timestamp and report only values returned by the live source.
 
+## Completion-triggered archival side effects
+
+For maintenance/update scripts that intentionally append a QuickThoughts artifact after successful work:
+
+1. Put the canonical `note` call at the terminal completion point, never at invocation/startup.
+2. If the script continues after recoverable command errors, accumulate a failure state while preserving its existing error output and continuation behavior.
+3. Only capture the success note when no tracked work step failed; skip capture on partial or failed runs so the log does not create false success evidence.
+4. Keep the script's own completion timestamp independent of note capture.
+5. Reuse existing script identity variables and concise source-labeled prose. If the source label already names the script, avoid repeating that name in the note body; use wording such as `job completed successfully`.
+6. Keep capture failure separate from the primary job result unless the script explicitly requires archival success for overall success.
+
+Verify both paths with deterministic mocks: a successful run must append one correctly formatted note, while a simulated update failure must still finish its normal output and append nothing.
+
 ## Approval Diagnosis Checklist
 
 When a harmless request unexpectedly produces an approval prompt:
