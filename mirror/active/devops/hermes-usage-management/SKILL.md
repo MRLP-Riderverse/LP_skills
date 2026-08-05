@@ -41,6 +41,18 @@ Hermes is designed to refuse normal reset redemption while the current provider 
 - Do not claim that the banked reset is a universal Hermes feature across all providers; qualify it as Codex/provider-specific when appropriate.
 - Do not conflate token usage, context compression, session reset, and provider quota replenishment.
 
+## Lifetime Token Audits
+
+When a user wants to verify a lifetime-scale Hermes token milestone (for example, a public claim or a personal milestone), distinguish the dashboard-like report from the direct local accounting audit:
+
+1. Run `hermes insights --days 9999` for the human-readable total, date span, models, and platforms.
+2. For proof, audit `~/.hermes/state.db` directly. The `session_model_usage` table is the richer source because it records model-routed usage; sum `input_tokens + output_tokens + cache_read_tokens + cache_write_tokens`.
+3. Explain the metric precisely: Hermes’ displayed **Total tokens** includes cached reads. This is legitimate for “AI tokens processed,” but it is not the same as uncached input + output, and it should not be casually framed as tokens “spent.”
+4. Check whether other profile databases exist before calling it an all-Hermes lifetime total. A single default-profile database supports a verified local-history claim, not a claim about deleted, migrated, or other-machine history.
+5. Expect a small difference between a prior Insights snapshot and a later direct query: the live session can add usage while the audit is being run.
+
+Recommended public wording: **“1B+ AI tokens processed”** or **“1B+ Hermes tokens processed locally verified.”** Avoid “1B tokens spent” unless billing-specific usage is independently established.
+
 ## Reference
 
 See `references/codex-banked-reset.md` for the authoritative documentation-derived behavior and terminology.

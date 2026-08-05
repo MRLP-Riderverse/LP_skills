@@ -38,7 +38,16 @@ Cron creation approval and runtime tool approval are separate scopes. A user-app
 
 See `references/cron-approval-boundaries.md` for the guard-path notes and diagnostic evidence pattern.
 
-## Deterministic-job triage
+## Dynamic editorial feeds: deterministic collection versus curation
+
+For recurring research briefs that must surface fresh, human-centered signals rather than relay a fixed feed, keep the editorial layer agent-driven until the source set and selection rules stabilize.
+
+- **LLM-driven job:** appropriate when the run must search dynamically, judge human texture, remove institutional filler and saturation, compare stories across regions, synthesize patterns, and explain uncertainty or an isolation counter-signal.
+- **`no_agent: true`:** appropriate only when a deterministic script already emits the exact user-facing message. Do not use it merely to avoid model cost when the result still needs selection, interpretation, deduplication judgment, or prose synthesis.
+- **Hybrid path:** first build a deterministic collector under `~/.hermes/scripts/` that emits bounded, structured candidates (for example JSON with title, URL, date, outlet, place, and source status); then attach it to an LLM-driven cron job for editorial selection and synthesis. This keeps retrieval reproducible without flattening the human-signal layer into a link dump.
+- For an exploratory human-signal brief, a fixed no-agent collector tends to reproduce the saturation and indexing problem the brief is meant to correct. Revisit `no_agent` only after repeated runs identify a stable, curated source set and a deterministic output contract.
+
+### Deterministic-job triage
 
 ### Scheduler-owned collector + agent interpretation
 

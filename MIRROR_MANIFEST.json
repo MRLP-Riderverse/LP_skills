@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-05T01:32:17+00:00",
+  "generated_at_utc": "2026-08-05T04:39:49+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -617,8 +617,8 @@
     },
     {
       "path": "devops/cron-job-reliability/SKILL.md",
-      "sha256": "445d4d6805f1180a99db5eb50396d4c8767dc5caece375ae3bcc19b1887b4797",
-      "bytes": 12453
+      "sha256": "b460369423a07149fff5d5595c169f2ae40d250a0a899f3440cf1dcd27f9ef5e",
+      "bytes": 13875
     },
     {
       "path": "devops/cron-job-reliability/references/cron-approval-boundaries.md",
@@ -687,8 +687,8 @@
     },
     {
       "path": "devops/hermes-usage-management/SKILL.md",
-      "sha256": "e08cede91f47695b462d66177b99e26eba6bdf6f08d32de21d14ca40068f594e",
-      "bytes": 2906
+      "sha256": "3f5c326de6714a9a8fc0030baa17aeade6832cd1163a19bbe668d894402bd0ee",
+      "bytes": 4303
     },
     {
       "path": "devops/hermes-usage-management/references/codex-banked-reset.md",
