@@ -33,7 +33,7 @@ Use this skill when the user asks to launch Steam, wake Steam, or start Steam up
 - The script is the source of truth for launching Steam.
 - It is idempotent and uses a lock to avoid duplicate launches.
 - It launches through the user's desktop entry with `gtk-launch steam`, preserving the normal desktop session and Steam's automatic update behavior.
-- It treats the main `steam` client as the already-running signal; a helper-only process is not allowed to block a fresh launch.
+- It treats the main `steam` client as the already-running signal and confirms it remains present for one second; a transient/flapping process does not produce a false-positive success.
 - It verifies `steam` or `steamwebhelper` appears before returning success.
 - `LAUNCH_STEAM_VERIFY_SECONDS` may override the 20-second verification window for controlled tests.
 - Do not type passwords, interact with permission dialogs, or alter Steam account settings.

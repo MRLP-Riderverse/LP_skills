@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-05T18:36:21+00:00",
+  "generated_at_utc": "2026-08-05T18:39:08+00:00",
   "source": "/home/midnight/.hermes/skills",
   "active_skill_directories": [
     "autonomous-ai-agents/ai-coding-agents",
@@ -716,8 +716,8 @@
     },
     {
       "path": "devops/launch-steam/SKILL.md",
-      "sha256": "7f6cc84508a0ff1be383b5f248f15ed7ffe58917950173fee63959ca8c9877b4",
-      "bytes": 2131
+      "sha256": "9330cf9aca844855094fa650ef829aef7c1d182969dbe9de0b27782735c48e71",
+      "bytes": 2188
     },
     {
       "path": "devops/local-capability-operations/SKILL.md",
